@@ -1,2 +1,3 @@
-# bybit-client
-golang bybit-client
+# go-bybit
+
+Bybit client for Go.
