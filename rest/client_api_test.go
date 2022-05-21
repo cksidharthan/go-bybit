@@ -1,9 +1,9 @@
-package public
+package rest
 
 import (
 	"context"
 	"github.com/cksidharthan/go-bybit/helpers"
-	"github.com/cksidharthan/go-bybit/public/spot/filters"
+	"github.com/cksidharthan/go-bybit/rest/filters"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -15,7 +15,7 @@ import (
 func TestSpotClient_API_GetSymbols(t *testing.T) {
 	// t.Skip("Skipping tests to be run manually")
 
-	bybitClient := New(helpers.BYBIT_TESTNET_BASE_URL)
+	bybitClient := New(helpers.BYBIT_TESTNET_BASE_URL, "rwEwhfC6mDFYIGfcyb", "yfNJSzGapfFwbJyvguAyVXLJSIOCIegBg42Z")
 
 	t.Run("happy path - get symbols", func(t *testing.T) {
 		t.Parallel()
@@ -163,5 +163,13 @@ func TestSpotClient_API_GetSymbols(t *testing.T) {
 		assert.Empty(t, bidAskPrice)
 		assert.Nil(t, bidAskPrice)
 		assert.Equal(t, "HTTP 400: Invalid Symbols!", err.Error())
+	})
+
+	t.Run("happy path - get server time", func(t *testing.T) {
+		t.Parallel()
+		serverTime, err := bybitClient.Spot().GetServerTime(context.Background())
+		assert.NoError(t, err)
+		assert.NotEmpty(t, serverTime)
+		assert.NotNil(t, serverTime)
 	})
 }

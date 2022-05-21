@@ -2,8 +2,8 @@ package spot
 
 import (
 	"context"
-	"github.com/cksidharthan/go-bybit/public/domain/spot"
-	"github.com/cksidharthan/go-bybit/public/spot/filters"
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
+	"github.com/cksidharthan/go-bybit/rest/filters"
 )
 
 type SpotInterface interface {
@@ -15,4 +15,5 @@ type SpotInterface interface {
 	GetTickerInfo24hr(ctx context.Context, symbol string) (tickerInfo24hr *spot.TickerResponse, err error)
 	GetLastTradedPrice(ctx context.Context, symbol string) (lastTradedPrice *spot.PriceResponse, err error)
 	GetBidAskPrice(ctx context.Context, symbol string) (bidAskPrice *spot.PriceBidAskResponse, err error)
+	GetServerTime(ctx context.Context) (serverTime *spot.ServerTimeResponse, err error)
 }

@@ -1,8 +1,8 @@
-package public
+package rest
 
 import (
 	"context"
-	"github.com/cksidharthan/go-bybit/public/spot/filters"
+	"github.com/cksidharthan/go-bybit/rest/filters"
 	"github.com/cksidharthan/go-bybit/testdata"
 	"github.com/stretchr/testify/assert"
 	"net/http"
@@ -15,7 +15,7 @@ func TestSpotClient_GetSymbols(t *testing.T) {
 			"/spot/v1/symbols",
 			"../testdata/public/spot/get_symbols_response_200.json",
 			http.StatusOK)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		symbols, err := bybitClient.Spot().GetSymbols(context.Background())
 		assert.NoError(t, err)
 		assert.NotEmpty(t, symbols)
@@ -30,7 +30,7 @@ func TestSpotClient_GetOrderBookDepth(t *testing.T) {
 			"/spot/quote/v1/depth?limit=10&symbol=BTCUSDT",
 			"../testdata/public/spot/get_order_book_depth_200.json",
 			http.StatusOK)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		orderBook, err := bybitClient.Spot().GetOrderBookDepth(context.Background(), &filters.OrderBookDepthFilter{
 			Symbol: "BTCUSDT",
 			Limit:  "10",
@@ -46,7 +46,7 @@ func TestSpotClient_GetOrderBookDepth(t *testing.T) {
 			"/spot/quote/v1/depth?limit=10&symbol=BTCUSD",
 			"../testdata/public/spot/get_order_book_depth_400.json",
 			http.StatusBadRequest)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		orderBook, err := bybitClient.Spot().GetOrderBookDepth(context.Background(), &filters.OrderBookDepthFilter{
 			Symbol: "BTCUSD",
 			Limit:  "10",
@@ -64,7 +64,7 @@ func TestSpotClient_GetMergedOrderBook(t *testing.T) {
 			"/spot/quote/v1/depth/merged?limit=10&scale=1&symbol=BTCUSDT",
 			"../testdata/public/spot/get_merged_order_book_200.json",
 			http.StatusOK)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		orderBook, err := bybitClient.Spot().GetMergedOrderBook(context.Background(), &filters.MergedOrderBookFilter{
 			Symbol: "BTCUSDT",
 			Limit:  "10",
@@ -81,7 +81,7 @@ func TestSpotClient_GetMergedOrderBook(t *testing.T) {
 			"/spot/quote/v1/depth/merged?limit=10&scale=0.5&symbol=BTCUSDT",
 			"../testdata/public/spot/get_merged_order_book_400.json",
 			http.StatusBadRequest)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		orderBook, err := bybitClient.Spot().GetMergedOrderBook(context.Background(), &filters.MergedOrderBookFilter{
 			Symbol: "BTCUSDT",
 			Limit:  "10",
@@ -100,7 +100,7 @@ func TestSpotClient_GetPublicTradeRecords(t *testing.T) {
 			"/spot/quote/v1/trades?limit=10&symbol=BTCUSDT",
 			"../testdata/public/spot/get_public_trade_records_200.json",
 			http.StatusOK)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		publicTradeRecords, err := bybitClient.Spot().GetPublicTradeRecords(context.Background(), &filters.TradeRecordsFilter{
 			Symbol: "BTCUSDT",
 			Limit:  "10",
@@ -116,7 +116,7 @@ func TestSpotClient_GetPublicTradeRecords(t *testing.T) {
 			"/spot/quote/v1/trades?limit=10&symbol=BTCUSDT",
 			"../testdata/public/spot/get_public_trade_records_400.json",
 			http.StatusBadRequest)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		publicTradeRecords, err := bybitClient.Spot().GetPublicTradeRecords(context.Background(), &filters.TradeRecordsFilter{
 			Symbol: "BTCUSDT",
 			Limit:  "10",
@@ -134,7 +134,7 @@ func TestSpotClient_GetKlines(t *testing.T) {
 			"/spot/quote/v1/kline?interval=1m&limit=10&symbol=BTCUSDT",
 			"../testdata/public/spot/get_klines_200.json",
 			http.StatusOK)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		klines, err := bybitClient.Spot().GetKline(context.Background(), &filters.KlineFilter{
 			Symbol:   "BTCUSDT",
 			Limit:    "10",
@@ -151,7 +151,7 @@ func TestSpotClient_GetKlines(t *testing.T) {
 			"/spot/quote/v1/kline?interval=1&limit=10&symbol=BTCUSDT",
 			"../testdata/public/spot/get_klines_400.json",
 			http.StatusBadRequest)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		klines, err := bybitClient.Spot().GetKline(context.Background(), &filters.KlineFilter{
 			Symbol:   "BTCUSDT",
 			Limit:    "10",
@@ -170,7 +170,7 @@ func TestSpotClient_GetTickerInfo24hr(t *testing.T) {
 			"/spot/quote/v1/ticker/24hr?symbol=BTCUSDT",
 			"../testdata/public/spot/get_ticker_info_24hr_200.json",
 			http.StatusOK)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		tickerInfo, err := bybitClient.Spot().GetTickerInfo24hr(context.Background(), "BTCUSDT")
 		assert.NoError(t, err)
 		assert.NotEmpty(t, tickerInfo)
@@ -183,7 +183,7 @@ func TestSpotClient_GetTickerInfo24hr(t *testing.T) {
 			"/spot/quote/v1/ticker/24hr?symbol=BTCUSD",
 			"../testdata/public/spot/get_ticker_info_24hr_400.json",
 			http.StatusBadRequest)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		tickerInfo, err := bybitClient.Spot().GetTickerInfo24hr(context.Background(), "BTCUSD")
 		assert.Error(t, err)
 		assert.Empty(t, tickerInfo)
@@ -198,7 +198,7 @@ func TestSpotClient_GetLastTradedPrice(t *testing.T) {
 			"/spot/quote/v1/ticker/price?symbol=BTCUSDT",
 			"../testdata/public/spot/get_last_traded_price_200.json",
 			http.StatusOK)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		tickerPrice, err := bybitClient.Spot().GetLastTradedPrice(context.Background(), "BTCUSDT")
 		assert.NoError(t, err)
 		assert.NotEmpty(t, tickerPrice)
@@ -211,7 +211,7 @@ func TestSpotClient_GetLastTradedPrice(t *testing.T) {
 			"/spot/quote/v1/ticker/price?symbol=BTCUSD",
 			"../testdata/public/spot/get_last_traded_price_400.json",
 			http.StatusBadRequest)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		tickerPrice, err := bybitClient.Spot().GetLastTradedPrice(context.Background(), "BTCUSD")
 		assert.Error(t, err)
 		assert.Empty(t, tickerPrice)
@@ -226,7 +226,7 @@ func TestSpotClient_GetBidAskPrice(t *testing.T) {
 			"/spot/quote/v1/ticker/book_ticker?symbol=BTCUSDT",
 			"../testdata/public/spot/get_bid_ask_price_200.json",
 			http.StatusOK)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		tickerBook, err := bybitClient.Spot().GetBidAskPrice(context.Background(), "BTCUSDT")
 		assert.NoError(t, err)
 		assert.NotEmpty(t, tickerBook)
@@ -239,11 +239,25 @@ func TestSpotClient_GetBidAskPrice(t *testing.T) {
 			"/spot/quote/v1/ticker/book_ticker?symbol=BTCUSD",
 			"../testdata/public/spot/get_bid_ask_price_400.json",
 			http.StatusBadRequest)
-		bybitClient := New(server.URL)
+		bybitClient := New(server.URL, "", "")
 		tickerBook, err := bybitClient.Spot().GetBidAskPrice(context.Background(), "BTCUSD")
 		assert.Error(t, err)
 		assert.Empty(t, tickerBook)
 		assert.Nil(t, tickerBook)
 		assert.Equal(t, "HTTP 400: Invalid Symbols!", err.Error())
+	})
+}
+
+func TestSpotClient_GetServerTime(t *testing.T) {
+	t.Run("happy path", func(t *testing.T) {
+		server := testdata.FakeBybitServer(
+			"/spot/v1/time",
+			"../testdata/public/spot/get_server_time_200.json",
+			http.StatusOK)
+		bybitClient := New(server.URL, "", "")
+		symbols, err := bybitClient.Spot().GetServerTime(context.Background())
+		assert.NoError(t, err)
+		assert.NotEmpty(t, symbols)
+		assert.NotNil(t, symbols)
 	})
 }

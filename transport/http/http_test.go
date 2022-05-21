@@ -23,7 +23,7 @@ func TestHttp_Call(t *testing.T) {
 		testURL, err := url.Parse("/test-url")
 		assert.NoError(t, err)
 
-		res, err := testHttp.Call(context.Background(), testURL, http.MethodGet, []byte{}, map[string]string{})
+		res, err := testHttp.UnSignedRequest(context.Background(), testURL, http.MethodGet, []byte{}, map[string]string{})
 		assert.NoError(t, err)
 		assert.NotNil(t, res)
 		assert.Equal(t, `{"data":{"test":"test"}}`, string(res))
@@ -41,7 +41,7 @@ func TestHttp_Call(t *testing.T) {
 		testURL, err := url.Parse("/test-error-url")
 		assert.NoError(t, err)
 
-		res, err := testHttp.Call(context.Background(), testURL, http.MethodGet, []byte{}, map[string]string{})
+		res, err := testHttp.UnSignedRequest(context.Background(), testURL, http.MethodGet, []byte{}, map[string]string{})
 		assert.Error(t, err)
 		assert.Nil(t, res)
 		assert.Equal(t, "HTTP 401: ", err.Error())

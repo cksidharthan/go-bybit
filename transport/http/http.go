@@ -26,7 +26,7 @@ func New(url, apiKey, apiSecret string) *Http {
 	}
 }
 
-func (h *Http) Call(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) {
+func (h *Http) UnSignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) {
 	c := http.Client{
 		Timeout: 5 * time.Second,
 	}

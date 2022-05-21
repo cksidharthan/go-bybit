@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/cksidharthan/go-bybit/helpers"
-	"github.com/cksidharthan/go-bybit/public/domain/spot"
-	"github.com/cksidharthan/go-bybit/public/spot/filters"
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
+	"github.com/cksidharthan/go-bybit/rest/filters"
 	"github.com/cksidharthan/go-bybit/transport"
 	httpTransport "github.com/cksidharthan/go-bybit/transport/http"
 	"net/http"
@@ -16,8 +16,8 @@ type SpotClient struct {
 	transporter transport.Transporter
 }
 
-func New(url string) SpotInterface {
-	transporter := httpTransport.New(url, "", "")
+func New(url, apiKey, apiSecret string) SpotInterface {
+	transporter := httpTransport.New(url, apiKey, apiSecret)
 	return &SpotClient{
 		transporter: transporter,
 	}
@@ -29,7 +29,7 @@ func (c *SpotClient) GetSymbols(ctx context.Context) (symbols *spot.SymbolsRespo
 		return
 	}
 
-	payload, err := c.transporter.Call(ctx, apiPath, http.MethodGet, nil, nil)
+	payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
 	if err != nil {
 		return
 	}
@@ -50,7 +50,7 @@ func (c *SpotClient) GetOrderBookDepth(ctx context.Context, filters *filters.Ord
 		filters.ToQuery(apiPath)
 	}
 
-	payload, err := c.transporter.Call(ctx, apiPath, http.MethodGet, nil, nil)
+	payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
 	if err != nil {
 		return
 	}
@@ -71,7 +71,7 @@ func (c *SpotClient) GetMergedOrderBook(ctx context.Context, filters *filters.Me
 		filters.ToQuery(apiPath)
 	}
 
-	payload, err := c.transporter.Call(ctx, apiPath, http.MethodGet, nil, nil)
+	payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
 	if err != nil {
 		return
 	}
@@ -92,7 +92,7 @@ func (c *SpotClient) GetPublicTradeRecords(ctx context.Context, filters *filters
 		filters.ToQuery(apiPath)
 	}
 
-	payload, err := c.transporter.Call(ctx, apiPath, http.MethodGet, nil, nil)
+	payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
 	if err != nil {
 		return
 	}
@@ -113,7 +113,7 @@ func (c *SpotClient) GetKline(ctx context.Context, filters *filters.KlineFilter)
 		filters.ToQuery(apiPath)
 	}
 
-	payload, err := c.transporter.Call(ctx, apiPath, http.MethodGet, nil, nil)
+	payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
 	if err != nil {
 		return
 	}
@@ -131,7 +131,7 @@ func (c *SpotClient) GetTickerInfo24hr(ctx context.Context, symbol string) (tick
 	if err != nil {
 		return
 	}
-	payload, err := c.transporter.Call(ctx, apiPath, http.MethodGet, nil, nil)
+	payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
 	if err != nil {
 		return
 	}
@@ -149,7 +149,7 @@ func (c *SpotClient) GetLastTradedPrice(ctx context.Context, symbol string) (las
 	if err != nil {
 		return
 	}
-	payload, err := c.transporter.Call(ctx, apiPath, http.MethodGet, nil, nil)
+	payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
 	if err != nil {
 		return
 	}
@@ -167,12 +167,30 @@ func (c *SpotClient) GetBidAskPrice(ctx context.Context, symbol string) (bidAskP
 	if err != nil {
 		return
 	}
-	payload, err := c.transporter.Call(ctx, apiPath, http.MethodGet, nil, nil)
+	payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
 	if err != nil {
 		return
 	}
 
 	err = json.Unmarshal(payload, &bidAskPrice)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (c *SpotClient) GetServerTime(ctx context.Context) (serverTime *spot.ServerTimeResponse, err error) {
+	apiPath, err := url.Parse(helpers.PUBLIC_SERVER_TIME_PATH)
+	if err != nil {
+		return
+	}
+
+	payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
+	if err != nil {
+		return
+	}
+
+	err = json.Unmarshal(payload, &serverTime)
 	if err != nil {
 		return
 	}

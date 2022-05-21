@@ -5,6 +5,8 @@ const (
 	BYTICK_MAINNET_BASE_URL = "https://api.bytick.com"
 	BYBIT_TESTNET_BASE_URL  = "https://api-testnet.bybit.com"
 
+	PUBLIC_SERVER_TIME_PATH = "/spot/v1/time"
+
 	// MARKET DATA
 	PUBLIC_MARKET_DATA_ORDER_BOOK_L2_PATH       = "/v2/public/orderBook/L2"
 	PUBLIC_MARKET_DATA_KLINE_LIST_PATH          = "/v2/public/kline/list"

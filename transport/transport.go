@@ -23,5 +23,5 @@ func (e *TransportError) Error() string {
 }
 
 type Transporter interface {
-	Call(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error)
+	UnSignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error)
 }

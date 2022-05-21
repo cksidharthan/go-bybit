@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>public: Go Coverage Report</title>
+		<title>rest: Go Coverage Report</title>
 		<style>
 			body {
 				background: black;
@@ -55,7 +55,7 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com/cksidharthan/go-bybit/public/client.go (100.0%)</option>
+				<option value="file0">github.com/cksidharthan/go-bybit/rest/client.go (100.0%)</option>
 				
 				<option value="file1">github.com/cksidharthan/go-bybit/transport/http/http.go (75.0%)</option>
 				
@@ -71,25 +71,25 @@
 		</div>
 		<div id="content">
 		
-		<pre class="file" id="file0" style="display: none">package public
+		<pre class="file" id="file0" style="display: none">package rest
 
-import "github.com/cksidharthan/go-bybit/public/spot"
+import "github.com/cksidharthan/go-bybit/rest/spot"
 
-type PublicInterface interface {
+type Interface interface {
         Spot() spot.SpotInterface
 }
 
-type PublicClient struct {
+type Client struct {
         spot spot.SpotInterface
 }
 
-func (c *PublicClient) Spot() spot.SpotInterface <span class="cov8" title="1">{
+func (c *Client) Spot() spot.SpotInterface <span class="cov8" title="1">{
         return c.spot
 }</span>
 
-func New(url string) PublicInterface <span class="cov8" title="1">{
-        return &amp;PublicClient{
-                spot: spot.New(url),
+func New(url, apiKey, apiSecret string) Interface <span class="cov8" title="1">{
+        return &amp;Client{
+                spot: spot.New(url, apiKey, apiSecret),
         }
 }</span>
 </pre>
@@ -122,7 +122,7 @@ func New(url, apiKey, apiSecret string) *Http <span class="cov8" title="1">{
         }
 }</span>
 
-func (h *Http) Call(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) <span class="cov8" title="1">{
+func (h *Http) UnSignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) <span class="cov8" title="1">{
         c := http.Client{
                 Timeout: 5 * time.Second,
         }

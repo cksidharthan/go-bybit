@@ -1,11 +1,6 @@
 package spot
 
-type BaseResponse struct {
-	RetCode int    `json:"ret_code"`
-	RetMsg  string `json:"ret_msg"`
-	ExtCode string `json:"ext_code""`
-	ExtInfo string `json:"ext_info""`
-}
+import "github.com/cksidharthan/go-bybit/rest/domain"
 
 type Symbol struct {
 	Name              string `json:"name"`
@@ -25,8 +20,8 @@ type Symbol struct {
 }
 
 type SymbolsResponse struct {
-	BaseResponse `json:",inline"`
-	Result       []Symbol `json:"result"`
+	domain.BaseResponse `json:",inline"`
+	Result              []Symbol `json:"result"`
 }
 
 type OrderBook struct {
@@ -36,8 +31,8 @@ type OrderBook struct {
 }
 
 type OrderBookResponse struct {
-	BaseResponse `json:",inline"`
-	Result       OrderBook `json:"result"`
+	domain.BaseResponse `json:",inline"`
+	Result              OrderBook `json:"result"`
 }
 
 type TradeRecord struct {
@@ -48,13 +43,13 @@ type TradeRecord struct {
 }
 
 type TradeRecordsResponse struct {
-	BaseResponse `json:",inline"`
-	Result       []TradeRecord `json:"result"`
+	domain.BaseResponse `json:",inline"`
+	Result              []TradeRecord `json:"result"`
 }
 
 type KlineResponse struct {
-	BaseResponse `json:",inline"`
-	Result       []interface{} `json:"result"`
+	domain.BaseResponse `json:",inline"`
+	Result              []interface{} `json:"result"`
 }
 
 type TickerData struct {
@@ -71,8 +66,8 @@ type TickerData struct {
 }
 
 type TickerResponse struct {
-	BaseResponse `json:",inline"`
-	Result       TickerData `json:"result"`
+	domain.BaseResponse `json:",inline"`
+	Result              TickerData `json:"result"`
 }
 
 type TickerPrice struct {
@@ -81,8 +76,8 @@ type TickerPrice struct {
 }
 
 type PriceResponse struct {
-	BaseResponse `json:",inline"`
-	Result       TickerPrice `json:"result"`
+	domain.BaseResponse `json:",inline"`
+	Result              TickerPrice `json:"result"`
 }
 
 type PriceBidAsk struct {
@@ -95,6 +90,15 @@ type PriceBidAsk struct {
 }
 
 type PriceBidAskResponse struct {
-	BaseResponse `json:",inline"`
-	Result       PriceBidAsk `json:"result"`
+	domain.BaseResponse `json:",inline"`
+	Result              PriceBidAsk `json:"result"`
+}
+
+type ServerTime struct {
+	ServerTime int64 `json:"serverTime"`
+}
+
+type ServerTimeResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              ServerTime `json:"result"`
 }
