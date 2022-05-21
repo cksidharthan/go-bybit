@@ -1,21 +1,21 @@
 package go_bybit
 
-import v2 "github.com/cksidharthan/go-bybit/v2"
+import "github.com/cksidharthan/go-bybit/public"
 
 type BybitClientInterface interface {
-	BybitV1() v2.BybitV2ClientInterface
+	Public() public.PublicInterface
 }
 
 type BybitClient struct {
-	bybitV2 v2.BybitV2ClientInterface
+	public public.PublicInterface
 }
 
-func (c *BybitClient) BybitV2() v2.BybitV2ClientInterface {
-	return c.bybitV2
+func (c *BybitClient) BybitV2() public.PublicInterface {
+	return c.public
 }
 
 func New(url, apiKey, apiSecret string) *BybitClient {
 	return &BybitClient{
-		bybitV2: v2.New(url, apiKey, apiSecret),
+		public: public.New(url),
 	}
 }

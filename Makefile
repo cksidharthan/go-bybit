@@ -27,6 +27,8 @@ lint: $(LINT_BIN) ; $(info Running lint...) @
 	CGO_LDFLAGS_ALLOW="-Wl,-z,now" CGO_LDFLAGS="${BUILDER_LINKER_FLAGS}" $(LINT_BIN) --timeout 10m run
 	CGO_LDFLAGS_ALLOW="-Wl,-z,now" CGO_LDFLAGS="${BUILDER_LINKER_FLAGS}" go vet ./...
 
-test:; $(info Running tests...) @
-     CGO_ENABLED=0 GOOS=linux go test -v -coverprofile cover.out ./...
-     CGO_ENABLED=0 GOOS=linux  go tool cover -html=cover.out -o cover.html
+test: $(info Running tests...)
+	CGO_ENABLED=0 go test -coverprofile cover.out ./...
+	CGO_ENABLED=0 go tool cover -html=cover.out -o cover.html
+
+.PHONY: all

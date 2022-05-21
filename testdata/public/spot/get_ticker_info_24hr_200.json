@@ -1,0 +1,18 @@
+{
+  "ret_code": 0,
+  "ret_msg": null,
+  "result": {
+    "time": 1653118544840,
+    "symbol": "BTCUSDT",
+    "bestBidPrice": "28736.93",
+    "bestAskPrice": "28769.999986",
+    "volume": "1921.11675457",
+    "quoteVolume": "55338646.9927800049021768",
+    "lastPrice": "28733.91",
+    "highPrice": "29833.33333326",
+    "lowPrice": "27890.02",
+    "openPrice": "29539.117631"
+  },
+  "ext_code": null,
+  "ext_info": null
+}
