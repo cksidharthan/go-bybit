@@ -1,3 +1,5 @@
+[![Code check](https://github.com/cksidharthan/go-bybit/actions/workflows/ci.yml/badge.svg)](https://github.com/cksidharthan/go-bybit/actions/workflows/ci.yml)
+
 # go-bybit
 
 Unofficial [Bybit](https://bybit.com) API Client  for [Go](https://golang.org/).
@@ -23,3 +25,4 @@ Test
 ```bash
 make test
 ```
+![visitors](https://visitor-badge.glitch.me/badge?page_id=cksidharthan.cksidharthan)
