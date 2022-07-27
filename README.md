@@ -25,4 +25,4 @@ Test
 ```bash
 make test
 ```
-![visitors](https://visitor-badge.glitch.me/badge?page_id=cksidharthan.cksidharthan)
+![visitors](https://visitor-badge.glitch.me/badge?page_id=cksidharthan.go-bybit)

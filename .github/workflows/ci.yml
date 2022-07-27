@@ -24,3 +24,16 @@ jobs:
       - run: go test ./... -coverpkg=./... -coverprofile=coverage.out
       - run: go test ./... -json > test.out
       - run: go vet ./... 2> govet.out || true # Ignore go vet status code
+
+  lint-check:
+    name: lint-check
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: lint check
+        run: make lint
