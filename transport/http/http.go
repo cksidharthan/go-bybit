@@ -13,23 +13,44 @@ import (
 	"net/url"
 	"sort"
 	"strconv"
+	"strings"
 	"time"
 
 	"github.com/cksidharthan/go-bybit/transport"
 )
 
 type HTTP struct {
-	URI       string
+	BaseURL   string
 	APIKey    string
 	APISecret string
 }
 
 func New(url, apiKey, apiSecret string) *HTTP {
 	return &HTTP{
-		URI:       url,
+		BaseURL:   url,
 		APIKey:    apiKey,
 		APISecret: apiSecret,
 	}
+}
+
+func (h *HTTP) SignedPostFormRequest(path string, params url.Values, response interface{}) (err error) {
+	u, err := url.Parse(h.BaseURL)
+	if err != nil {
+		return err
+	}
+	u.Path = path
+
+	params = h.populateSignature(params)
+
+	resp, err := http.Post(u.String(), "application/x-www-form-urlencoded", strings.NewReader(params.Encode()))
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+	if err := json.NewDecoder(resp.Body).Decode(&response); err != nil {
+		return err
+	}
+	return
 }
 
 func (h *HTTP) UnSignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) {
@@ -37,7 +58,7 @@ func (h *HTTP) UnSignedRequest(ctx context.Context, apiPath *url.URL, method str
 		Timeout: 5 * time.Second,
 	}
 
-	base, err := url.Parse(h.URI)
+	base, err := url.Parse(h.BaseURL)
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
@@ -106,7 +127,7 @@ func (h *HTTP) SignedRequest(ctx context.Context, apiPath *url.URL, method strin
 		Timeout: 5 * time.Second,
 	}
 
-	base, err := url.Parse(h.URI)
+	base, err := url.Parse(h.BaseURL)
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
@@ -174,10 +195,6 @@ func (h *HTTP) SignedRequest(ctx context.Context, apiPath *url.URL, method strin
 func (h *HTTP) populateSignature(query url.Values) url.Values {
 	intNow := int(time.Now().UTC().UnixNano() / int64(time.Millisecond))
 	now := strconv.Itoa(intNow)
-
-	if query == nil {
-		query = url.Values{}
-	}
 
 	query.Add("api_key", h.APIKey)
 	query.Add("timestamp", now)

@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>market: Go Coverage Report</title>
+		<title>account: Go Coverage Report</title>
 		<style>
 			body {
 				background: black;
@@ -55,27 +55,31 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com/cksidharthan/go-bybit/rest/spot/market/client.go (100.0%)</option>
+				<option value="file0">github.com/cksidharthan/go-bybit/rest/spot/account/client.go (100.0%)</option>
 				
-				<option value="file1">github.com/cksidharthan/go-bybit/rest/spot/market/get_ask_bid_price.go (72.7%)</option>
+				<option value="file1">github.com/cksidharthan/go-bybit/rest/spot/account/place_active_order.go (66.7%)</option>
 				
-				<option value="file2">github.com/cksidharthan/go-bybit/rest/spot/market/get_kline.go (75.0%)</option>
+				<option value="file2">github.com/cksidharthan/go-bybit/rest/spot/market/client.go (100.0%)</option>
 				
-				<option value="file3">github.com/cksidharthan/go-bybit/rest/spot/market/get_last_traded_price.go (72.7%)</option>
+				<option value="file3">github.com/cksidharthan/go-bybit/rest/spot/market/get_ask_bid_price.go (72.7%)</option>
 				
-				<option value="file4">github.com/cksidharthan/go-bybit/rest/spot/market/get_merged_order_book.go (83.3%)</option>
+				<option value="file4">github.com/cksidharthan/go-bybit/rest/spot/market/get_kline.go (75.0%)</option>
 				
-				<option value="file5">github.com/cksidharthan/go-bybit/rest/spot/market/get_order_book_depth.go (75.0%)</option>
+				<option value="file5">github.com/cksidharthan/go-bybit/rest/spot/market/get_last_traded_price.go (72.7%)</option>
 				
-				<option value="file6">github.com/cksidharthan/go-bybit/rest/spot/market/get_public_trade_records.go (75.0%)</option>
+				<option value="file6">github.com/cksidharthan/go-bybit/rest/spot/market/get_merged_order_book.go (83.3%)</option>
 				
-				<option value="file7">github.com/cksidharthan/go-bybit/rest/spot/market/get_server_time.go (70.0%)</option>
+				<option value="file7">github.com/cksidharthan/go-bybit/rest/spot/market/get_order_book_depth.go (75.0%)</option>
 				
-				<option value="file8">github.com/cksidharthan/go-bybit/rest/spot/market/get_symbols.go (70.0%)</option>
+				<option value="file8">github.com/cksidharthan/go-bybit/rest/spot/market/get_public_trade_records.go (75.0%)</option>
 				
-				<option value="file9">github.com/cksidharthan/go-bybit/rest/spot/market/get_ticket_info_24hr.go (72.7%)</option>
+				<option value="file9">github.com/cksidharthan/go-bybit/rest/spot/market/get_server_time.go (70.0%)</option>
 				
-				<option value="file10">github.com/cksidharthan/go-bybit/transport/http/http.go (75.0%)</option>
+				<option value="file10">github.com/cksidharthan/go-bybit/rest/spot/market/get_symbols.go (70.0%)</option>
+				
+				<option value="file11">github.com/cksidharthan/go-bybit/rest/spot/market/get_ticket_info_24hr.go (72.7%)</option>
+				
+				<option value="file12">github.com/cksidharthan/go-bybit/transport/http/http.go (20.7%)</option>
 				
 				</select>
 			</div>
@@ -89,7 +93,7 @@
 		</div>
 		<div id="content">
 		
-		<pre class="file" id="file0" style="display: none">package market
+		<pre class="file" id="file0" style="display: none">package account
 
 import (
         "github.com/cksidharthan/go-bybit/transport"
@@ -108,7 +112,48 @@ func New(url, apiKey, apiSecret string) *Client <span class="cov8" title="1">{
 }</span>
 </pre>
 		
-		<pre class="file" id="file1" style="display: none">package market
+		<pre class="file" id="file1" style="display: none">package account
+
+import (
+        "context"
+        "github.com/cksidharthan/go-bybit/bybit"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/account/types"
+        "github.com/google/go-querystring/query"
+)
+
+func (c *Client) PlaceActiveOrder(ctx context.Context, order types.SpotActiveOrderParams) (res *types.SpotActiveOrderResponse, err error) <span class="cov8" title="1">{
+        queryString, err := query.Values(order)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">if err := c.transporter.SignedPostFormRequest(bybit.PrivateSpotOrderPath, queryString, &amp;res); err != nil </span><span class="cov0" title="0">{
+                return nil, err
+        }</span>
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package market
+
+import (
+        "github.com/cksidharthan/go-bybit/transport"
+        httpTransport "github.com/cksidharthan/go-bybit/transport/http"
+)
+
+type Client struct {
+        transporter transport.Transporter
+}
+
+func New(url, apiKey, apiSecret string) *Client <span class="cov8" title="1">{
+        transporter := httpTransport.New(url, apiKey, apiSecret)
+        return &amp;Client{
+                transporter: transporter,
+        }
+}</span>
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package market
 
 import (
         "context"
@@ -116,12 +161,12 @@ import (
         "net/http"
         "net/url"
 
-        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/bybit"
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
 func (c *Client) GetBidAskPrice(ctx context.Context, symbol string) (bidAskPrice *types.PriceBidAskResponse, err error) <span class="cov8" title="1">{
-        path := helpers.PublicSpotQuoteTickerBookTickerPath + "?symbol=" + symbol
+        path := bybit.PublicSpotQuoteTickerBookTickerPath + "?symbol=" + symbol
         apiPath, err := url.Parse(path)
         if err != nil </span><span class="cov0" title="0">{
                 return
@@ -139,7 +184,7 @@ func (c *Client) GetBidAskPrice(ctx context.Context, symbol string) (bidAskPrice
 }
 </pre>
 		
-		<pre class="file" id="file2" style="display: none">package market
+		<pre class="file" id="file4" style="display: none">package market
 
 import (
         "context"
@@ -150,11 +195,11 @@ import (
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 
-        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/bybit"
 )
 
 func (c *Client) GetKline(ctx context.Context, filters *filters.KlineFilter) (kline *types.KlineResponse, err error) <span class="cov8" title="1">{
-        apiPath, err := url.Parse(helpers.PublicSpotQuoteKlinePath)
+        apiPath, err := url.Parse(bybit.PublicSpotQuoteKlinePath)
         if err != nil </span><span class="cov0" title="0">{
                 return
         }</span>
@@ -175,7 +220,7 @@ func (c *Client) GetKline(ctx context.Context, filters *filters.KlineFilter) (kl
 }
 </pre>
 		
-		<pre class="file" id="file3" style="display: none">package market
+		<pre class="file" id="file5" style="display: none">package market
 
 import (
         "context"
@@ -185,11 +230,11 @@ import (
 
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 
-        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/bybit"
 )
 
 func (c *Client) GetLastTradedPrice(ctx context.Context, symbol string) (lastTradedPrice *types.PriceResponse, err error) <span class="cov8" title="1">{
-        path := helpers.PublicSpotQuoteTickerPrice + "?symbol=" + symbol
+        path := bybit.PublicSpotQuoteTickerPrice + "?symbol=" + symbol
         apiPath, err := url.Parse(path)
         if err != nil </span><span class="cov0" title="0">{
                 return
@@ -207,7 +252,7 @@ func (c *Client) GetLastTradedPrice(ctx context.Context, symbol string) (lastTra
 }
 </pre>
 		
-		<pre class="file" id="file4" style="display: none">package market
+		<pre class="file" id="file6" style="display: none">package market
 
 import (
         "context"
@@ -215,13 +260,13 @@ import (
         "net/http"
         "net/url"
 
-        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/bybit"
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
 func (c *Client) GetMergedOrderBook(ctx context.Context, filters *filters.MergedOrderBookFilter) (orderBook *types.OrderBookResponse, err error) <span class="cov8" title="1">{
-        apiPath, err := url.Parse(helpers.PublicSpotQuoteDepthMergedPath)
+        apiPath, err := url.Parse(bybit.PublicSpotQuoteDepthMergedPath)
         if err != nil </span><span class="cov0" title="0">{
                 return
         }</span>
@@ -242,7 +287,7 @@ func (c *Client) GetMergedOrderBook(ctx context.Context, filters *filters.Merged
 }
 </pre>
 		
-		<pre class="file" id="file5" style="display: none">package market
+		<pre class="file" id="file7" style="display: none">package market
 
 import (
         "context"
@@ -250,13 +295,13 @@ import (
         "net/http"
         "net/url"
 
-        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/bybit"
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
 func (c *Client) GetOrderBookDepth(ctx context.Context, filters *filters.OrderBookDepthFilter) (orderBook *types.OrderBookResponse, err error) <span class="cov8" title="1">{
-        apiPath, err := url.Parse(helpers.PublicSpotQuoteDepthPath)
+        apiPath, err := url.Parse(bybit.PublicSpotQuoteDepthPath)
         if err != nil </span><span class="cov0" title="0">{
                 return
         }</span>
@@ -277,7 +322,7 @@ func (c *Client) GetOrderBookDepth(ctx context.Context, filters *filters.OrderBo
 }
 </pre>
 		
-		<pre class="file" id="file6" style="display: none">package market
+		<pre class="file" id="file8" style="display: none">package market
 
 import (
         "context"
@@ -285,13 +330,13 @@ import (
         "net/http"
         "net/url"
 
-        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/bybit"
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
 func (c *Client) GetPublicTradeRecords(ctx context.Context, filters *filters.TradeRecordsFilter) (publicTradeRecords *types.TradeRecordsResponse, err error) <span class="cov8" title="1">{
-        apiPath, err := url.Parse(helpers.PublicSpotQuoteTradesPath)
+        apiPath, err := url.Parse(bybit.PublicSpotQuoteTradesPath)
         if err != nil </span><span class="cov0" title="0">{
                 return
         }</span>
@@ -312,7 +357,7 @@ func (c *Client) GetPublicTradeRecords(ctx context.Context, filters *filters.Tra
 }
 </pre>
 		
-		<pre class="file" id="file7" style="display: none">package market
+		<pre class="file" id="file9" style="display: none">package market
 
 import (
         "context"
@@ -320,12 +365,12 @@ import (
         "net/http"
         "net/url"
 
-        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/bybit"
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
 func (c *Client) GetServerTime(ctx context.Context) (serverTime *types.ServerTimeResponse, err error) <span class="cov8" title="1">{
-        apiPath, err := url.Parse(helpers.PublicServerTimePath)
+        apiPath, err := url.Parse(bybit.PublicServerTimePath)
         if err != nil </span><span class="cov0" title="0">{
                 return
         }</span>
@@ -343,7 +388,7 @@ func (c *Client) GetServerTime(ctx context.Context) (serverTime *types.ServerTim
 }
 </pre>
 		
-		<pre class="file" id="file8" style="display: none">package market
+		<pre class="file" id="file10" style="display: none">package market
 
 import (
         "context"
@@ -351,12 +396,12 @@ import (
         "net/http"
         "net/url"
 
-        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/bybit"
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
 func (c *Client) GetSymbols(ctx context.Context) (symbols *types.SymbolsResponse, err error) <span class="cov8" title="1">{
-        apiPath, err := url.Parse(helpers.PublicSpotSymbolsPath)
+        apiPath, err := url.Parse(bybit.PublicSpotSymbolsPath)
         if err != nil </span><span class="cov0" title="0">{
                 return
         }</span>
@@ -374,7 +419,7 @@ func (c *Client) GetSymbols(ctx context.Context) (symbols *types.SymbolsResponse
 }
 </pre>
 		
-		<pre class="file" id="file9" style="display: none">package market
+		<pre class="file" id="file11" style="display: none">package market
 
 import (
         "context"
@@ -382,12 +427,12 @@ import (
         "net/http"
         "net/url"
 
-        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/bybit"
         "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
 func (c *Client) GetTickerInfo24hr(ctx context.Context, symbol string) (tickerInfo24hr *types.TickerResponse, err error) <span class="cov8" title="1">{
-        path := helpers.PublicSpotQuoteTicker24HrPath + "?symbol=" + symbol
+        path := bybit.PublicSpotQuoteTicker24HrPath + "?symbol=" + symbol
         apiPath, err := url.Parse(path)
         if err != nil </span><span class="cov0" title="0">{
                 return
@@ -405,40 +450,67 @@ func (c *Client) GetTickerInfo24hr(ctx context.Context, symbol string) (tickerIn
 }
 </pre>
 		
-		<pre class="file" id="file10" style="display: none">package http
+		<pre class="file" id="file12" style="display: none">package http
 
 import (
         "bytes"
         "context"
+        "crypto/hmac"
+        "crypto/sha256"
         "encoding/json"
+        "fmt"
+        "io"
         "io/ioutil"
         "net/http"
         "net/url"
+        "sort"
+        "strconv"
+        "strings"
         "time"
 
         "github.com/cksidharthan/go-bybit/transport"
 )
 
 type HTTP struct {
-        URI       string
+        BaseURL   string
         APIKey    string
         APISecret string
 }
 
 func New(url, apiKey, apiSecret string) *HTTP <span class="cov8" title="1">{
         return &amp;HTTP{
-                URI:       url,
+                BaseURL:   url,
                 APIKey:    apiKey,
                 APISecret: apiSecret,
         }
 }</span>
+
+func (h *HTTP) SignedPostFormRequest(path string, params url.Values, response interface{}) (err error) <span class="cov0" title="0">{
+        u, err := url.Parse(h.BaseURL)
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov0" title="0">u.Path = path
+
+        params = h.populateSignature(params)
+
+        resp, err := http.Post(u.String(), "application/x-www-form-urlencoded", strings.NewReader(params.Encode()))
+        if err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov0" title="0">defer resp.Body.Close()
+        if err := json.NewDecoder(resp.Body).Decode(&amp;response); err != nil </span><span class="cov0" title="0">{
+                return err
+        }</span>
+        <span class="cov0" title="0">return</span>
+}
 
 func (h *HTTP) UnSignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) <span class="cov8" title="1">{
         c := http.Client{
                 Timeout: 5 * time.Second,
         }
 
-        base, err := url.Parse(h.URI)
+        base, err := url.Parse(h.BaseURL)
         if err != nil </span><span class="cov0" title="0">{
                 return nil, &amp;transport.Error{
                         ErrorMsg: err.Error(),
@@ -492,6 +564,116 @@ func (h *HTTP) UnSignedRequest(ctx context.Context, apiPath *url.URL, method str
         }
 
         <span class="cov8" title="1">return respData, nil</span>
+}
+
+func (h *HTTP) SignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) <span class="cov0" title="0">{
+        // Check if the auth values are present
+        if h.APIKey == "" || h.APISecret == "" </span><span class="cov0" title="0">{
+                return nil, &amp;transport.Error{
+                        ErrorMsg: "APIKey and APISecret are required",
+                        HTTPCode: -1,
+                }
+        }</span>
+
+        <span class="cov0" title="0">c := http.Client{
+                Timeout: 5 * time.Second,
+        }
+
+        base, err := url.Parse(h.BaseURL)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, &amp;transport.Error{
+                        ErrorMsg: err.Error(),
+                        HTTPCode: -1,
+                }
+        }</span>
+        <span class="cov0" title="0">apiURL := base.ResolveReference(apiPath)
+
+        // populate with signature
+        query := url.Values{}
+        query = h.populateSignature(query)
+        apiURL.RawQuery = query.Encode()
+
+        req, err := http.NewRequestWithContext(ctx, method, apiURL.String(), bytes.NewBuffer(payload))
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, &amp;transport.Error{
+                        ErrorMsg: err.Error(),
+                        HTTPCode: -1,
+                }
+        }</span>
+
+        <span class="cov0" title="0">req.Header.Add("Content-Type", "application/json")
+
+        for k, v := range headers </span><span class="cov0" title="0">{
+                req.Header.Add(k, v)
+        }</span>
+
+        <span class="cov0" title="0">fmt.Printf("%+v\n", req)
+
+        resp, err := c.Do(req)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, &amp;transport.Error{
+                        ErrorMsg: err.Error(),
+                        HTTPCode: -1,
+                }
+        }</span>
+
+        <span class="cov0" title="0">respData, err := ioutil.ReadAll(resp.Body)
+        if err != nil </span><span class="cov0" title="0">{
+                return nil, &amp;transport.Error{
+                        ErrorMsg: err.Error(),
+                        HTTPCode: -1,
+                }
+        }</span>
+
+        // TODO: Handle error codes
+        <span class="cov0" title="0">if resp.StatusCode &gt; 399 </span><span class="cov0" title="0">{
+                var bybitError transport.BybitError
+                err = json.Unmarshal(respData, &amp;bybitError)
+                if err != nil </span><span class="cov0" title="0">{
+                        return nil, &amp;transport.Error{
+                                ErrorMsg: err.Error(),
+                                HTTPCode: -1,
+                        }
+                }</span>
+                <span class="cov0" title="0">return nil, &amp;transport.Error{
+                        ErrorMsg: bybitError.RetMsg,
+                        HTTPCode: resp.StatusCode,
+                }</span>
+        }
+
+        <span class="cov0" title="0">return respData, nil</span>
+}
+
+func (h *HTTP) populateSignature(query url.Values) url.Values <span class="cov0" title="0">{
+        intNow := int(time.Now().UTC().UnixNano() / int64(time.Millisecond))
+        now := strconv.Itoa(intNow)
+
+        query.Add("api_key", h.APIKey)
+        query.Add("timestamp", now)
+        query.Add("sign", h.sign(query, h.APISecret))
+        return query
+}</span>
+
+func (h *HTTP) sign(query url.Values, secret string) string <span class="cov0" title="0">{
+        keys := make([]string, len(query))
+        i := 0
+        _val := ""
+        for k := range query </span><span class="cov0" title="0">{
+                keys[i] = k
+                i++
+        }</span>
+        <span class="cov0" title="0">sort.Strings(keys)
+        for _, k := range keys </span><span class="cov0" title="0">{
+                _val += k + "=" + query.Get(k) + "&amp;"
+        }</span>
+        <span class="cov0" title="0">_val = _val[0 : len(_val)-1]
+        hash := hmac.New(sha256.New, []byte(secret))
+        _, err := io.WriteString(hash, _val)
+        if err != nil </span><span class="cov0" title="0">{
+                panic(err)</span>
+        }
+
+        <span class="cov0" title="0">return fmt.Sprintf("%x", hash.Sum(nil))</span>
 }
 </pre>
 		
