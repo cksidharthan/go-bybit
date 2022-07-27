@@ -2,6 +2,7 @@ package account
 
 import (
 	"context"
+
 	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/spot"
 	"github.com/google/go-querystring/query"

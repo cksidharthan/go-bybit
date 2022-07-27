@@ -3,11 +3,12 @@ package account
 import (
 	"context"
 	"encoding/json"
+	"net/http"
+	"net/url"
+
 	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/spot"
 	"github.com/google/go-querystring/query"
-	"net/http"
-	"net/url"
 )
 
 func (c *Client) GetActiveOrder(ctx context.Context, params spot.GetActiveOrderParams) (res *spot.GetActiveOrderResponse, err error) {

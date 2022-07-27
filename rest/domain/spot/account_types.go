@@ -48,7 +48,7 @@ type GetActiveOrderResult struct {
 	Symbol              string                `json:"symbol"`
 	SymbolName          string                `json:"symbolName"`
 	OrderLinkID         string                `json:"orderLinkId"`
-	OrderId             string                `json:"orderId"`
+	OrderID             string                `json:"orderId"`
 	Price               string                `json:"price"`
 	OrigQty             string                `json:"origQty"`
 	ExecutedQty         string                `json:"executedQty"`
