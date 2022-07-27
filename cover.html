@@ -117,10 +117,10 @@ import (
         "net/url"
 
         "github.com/cksidharthan/go-bybit/helpers"
-        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetBidAskPrice(ctx context.Context, symbol string) (bidAskPrice *market.PriceBidAskResponse, err error) <span class="cov8" title="1">{
+func (c *Client) GetBidAskPrice(ctx context.Context, symbol string) (bidAskPrice *types.PriceBidAskResponse, err error) <span class="cov8" title="1">{
         path := helpers.PublicSpotQuoteTickerBookTickerPath + "?symbol=" + symbol
         apiPath, err := url.Parse(path)
         if err != nil </span><span class="cov0" title="0">{
@@ -147,12 +147,13 @@ import (
         "net/http"
         "net/url"
 
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
+
         "github.com/cksidharthan/go-bybit/helpers"
-        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
-        "github.com/cksidharthan/go-bybit/rest/filters"
 )
 
-func (c *Client) GetKline(ctx context.Context, filters *filters.KlineFilter) (kline *market.KlineResponse, err error) <span class="cov8" title="1">{
+func (c *Client) GetKline(ctx context.Context, filters *filters.KlineFilter) (kline *types.KlineResponse, err error) <span class="cov8" title="1">{
         apiPath, err := url.Parse(helpers.PublicSpotQuoteKlinePath)
         if err != nil </span><span class="cov0" title="0">{
                 return
@@ -182,11 +183,12 @@ import (
         "net/http"
         "net/url"
 
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
+
         "github.com/cksidharthan/go-bybit/helpers"
-        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
 )
 
-func (c *Client) GetLastTradedPrice(ctx context.Context, symbol string) (lastTradedPrice *market.PriceResponse, err error) <span class="cov8" title="1">{
+func (c *Client) GetLastTradedPrice(ctx context.Context, symbol string) (lastTradedPrice *types.PriceResponse, err error) <span class="cov8" title="1">{
         path := helpers.PublicSpotQuoteTickerPrice + "?symbol=" + symbol
         apiPath, err := url.Parse(path)
         if err != nil </span><span class="cov0" title="0">{
@@ -214,11 +216,11 @@ import (
         "net/url"
 
         "github.com/cksidharthan/go-bybit/helpers"
-        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
-        "github.com/cksidharthan/go-bybit/rest/filters"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetMergedOrderBook(ctx context.Context, filters *filters.MergedOrderBookFilter) (orderBook *market.OrderBookResponse, err error) <span class="cov8" title="1">{
+func (c *Client) GetMergedOrderBook(ctx context.Context, filters *filters.MergedOrderBookFilter) (orderBook *types.OrderBookResponse, err error) <span class="cov8" title="1">{
         apiPath, err := url.Parse(helpers.PublicSpotQuoteDepthMergedPath)
         if err != nil </span><span class="cov0" title="0">{
                 return
@@ -249,11 +251,11 @@ import (
         "net/url"
 
         "github.com/cksidharthan/go-bybit/helpers"
-        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
-        "github.com/cksidharthan/go-bybit/rest/filters"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetOrderBookDepth(ctx context.Context, filters *filters.OrderBookDepthFilter) (orderBook *market.OrderBookResponse, err error) <span class="cov8" title="1">{
+func (c *Client) GetOrderBookDepth(ctx context.Context, filters *filters.OrderBookDepthFilter) (orderBook *types.OrderBookResponse, err error) <span class="cov8" title="1">{
         apiPath, err := url.Parse(helpers.PublicSpotQuoteDepthPath)
         if err != nil </span><span class="cov0" title="0">{
                 return
@@ -284,11 +286,11 @@ import (
         "net/url"
 
         "github.com/cksidharthan/go-bybit/helpers"
-        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
-        "github.com/cksidharthan/go-bybit/rest/filters"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetPublicTradeRecords(ctx context.Context, filters *filters.TradeRecordsFilter) (publicTradeRecords *market.TradeRecordsResponse, err error) <span class="cov8" title="1">{
+func (c *Client) GetPublicTradeRecords(ctx context.Context, filters *filters.TradeRecordsFilter) (publicTradeRecords *types.TradeRecordsResponse, err error) <span class="cov8" title="1">{
         apiPath, err := url.Parse(helpers.PublicSpotQuoteTradesPath)
         if err != nil </span><span class="cov0" title="0">{
                 return
@@ -319,10 +321,10 @@ import (
         "net/url"
 
         "github.com/cksidharthan/go-bybit/helpers"
-        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetServerTime(ctx context.Context) (serverTime *market.ServerTimeResponse, err error) <span class="cov8" title="1">{
+func (c *Client) GetServerTime(ctx context.Context) (serverTime *types.ServerTimeResponse, err error) <span class="cov8" title="1">{
         apiPath, err := url.Parse(helpers.PublicServerTimePath)
         if err != nil </span><span class="cov0" title="0">{
                 return
@@ -350,10 +352,10 @@ import (
         "net/url"
 
         "github.com/cksidharthan/go-bybit/helpers"
-        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetSymbols(ctx context.Context) (symbols *market.SymbolsResponse, err error) <span class="cov8" title="1">{
+func (c *Client) GetSymbols(ctx context.Context) (symbols *types.SymbolsResponse, err error) <span class="cov8" title="1">{
         apiPath, err := url.Parse(helpers.PublicSpotSymbolsPath)
         if err != nil </span><span class="cov0" title="0">{
                 return
@@ -381,10 +383,10 @@ import (
         "net/url"
 
         "github.com/cksidharthan/go-bybit/helpers"
-        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetTickerInfo24hr(ctx context.Context, symbol string) (tickerInfo24hr *market.TickerResponse, err error) <span class="cov8" title="1">{
+func (c *Client) GetTickerInfo24hr(ctx context.Context, symbol string) (tickerInfo24hr *types.TickerResponse, err error) <span class="cov8" title="1">{
         path := helpers.PublicSpotQuoteTicker24HrPath + "?symbol=" + symbol
         apiPath, err := url.Parse(path)
         if err != nil </span><span class="cov0" title="0">{

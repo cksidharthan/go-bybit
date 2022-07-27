@@ -6,12 +6,13 @@ import (
 	"net/http"
 	"net/url"
 
+	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
+	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
+
 	"github.com/cksidharthan/go-bybit/helpers"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/market"
-	"github.com/cksidharthan/go-bybit/rest/filters"
 )
 
-func (c *Client) GetKline(ctx context.Context, filters *filters.KlineFilter) (kline *market.KlineResponse, err error) {
+func (c *Client) GetKline(ctx context.Context, filters *filters.KlineFilter) (kline *types.KlineResponse, err error) {
 	apiPath, err := url.Parse(helpers.PublicSpotQuoteKlinePath)
 	if err != nil {
 		return

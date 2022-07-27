@@ -1,4 +1,4 @@
-package market
+package types
 
 import "github.com/cksidharthan/go-bybit/rest/domain"
 
