@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/cksidharthan/go-bybit/helpers"
+	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
 func (c *Client) GetSymbols(ctx context.Context) (symbols *types.SymbolsResponse, err error) {
-	apiPath, err := url.Parse(helpers.PublicSpotSymbolsPath)
+	apiPath, err := url.Parse(bybit.PublicSpotSymbolsPath)
 	if err != nil {
 		return
 	}

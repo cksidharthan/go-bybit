@@ -6,13 +6,13 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/cksidharthan/go-bybit/helpers"
+	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
 	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
 func (c *Client) GetPublicTradeRecords(ctx context.Context, filters *filters.TradeRecordsFilter) (publicTradeRecords *types.TradeRecordsResponse, err error) {
-	apiPath, err := url.Parse(helpers.PublicSpotQuoteTradesPath)
+	apiPath, err := url.Parse(bybit.PublicSpotQuoteTradesPath)
 	if err != nil {
 		return
 	}

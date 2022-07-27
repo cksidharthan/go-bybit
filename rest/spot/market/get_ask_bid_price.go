@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"net/url"
 
-	"github.com/cksidharthan/go-bybit/helpers"
+	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
 func (c *Client) GetBidAskPrice(ctx context.Context, symbol string) (bidAskPrice *types.PriceBidAskResponse, err error) {
-	path := helpers.PublicSpotQuoteTickerBookTickerPath + "?symbol=" + symbol
+	path := bybit.PublicSpotQuoteTickerBookTickerPath + "?symbol=" + symbol
 	apiPath, err := url.Parse(path)
 	if err != nil {
 		return

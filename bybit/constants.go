@@ -1,4 +1,4 @@
-package helpers
+package bybit
 
 const (
 	BybitMainnetBaseURL  = "https://api.bybit.com"
