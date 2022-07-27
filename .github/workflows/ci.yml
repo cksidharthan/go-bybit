@@ -35,5 +35,8 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get dependencies
+        run: go mod vendor
+
       - name: lint check
         run: make lint
