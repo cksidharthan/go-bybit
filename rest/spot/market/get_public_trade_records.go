@@ -7,11 +7,11 @@ import (
 	"net/url"
 
 	"github.com/cksidharthan/go-bybit/helpers"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/market"
-	"github.com/cksidharthan/go-bybit/rest/filters"
+	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
+	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetPublicTradeRecords(ctx context.Context, filters *filters.TradeRecordsFilter) (publicTradeRecords *market.TradeRecordsResponse, err error) {
+func (c *Client) GetPublicTradeRecords(ctx context.Context, filters *filters.TradeRecordsFilter) (publicTradeRecords *types.TradeRecordsResponse, err error) {
 	apiPath, err := url.Parse(helpers.PublicSpotQuoteTradesPath)
 	if err != nil {
 		return

@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/cksidharthan/go-bybit/helpers"
-	"github.com/cksidharthan/go-bybit/rest/filters"
+	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
 	"github.com/cksidharthan/go-bybit/rest/spot"
 	"github.com/stretchr/testify/assert"
 )
