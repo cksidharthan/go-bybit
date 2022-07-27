@@ -33,7 +33,7 @@ func New(url, apiKey, apiSecret string) *HTTP {
 	}
 }
 
-func (h *HTTP) SignedPostFormRequest(path string, params url.Values, response interface{}) (err error) {
+func (h *HTTP) SignedPostForm(path string, params url.Values, response interface{}) (err error) {
 	u, err := url.Parse(h.BaseURL)
 	if err != nil {
 		return err
@@ -137,8 +137,7 @@ func (h *HTTP) SignedRequest(ctx context.Context, apiPath *url.URL, method strin
 	apiURL := base.ResolveReference(apiPath)
 
 	// populate with signature
-	query := url.Values{}
-	query = h.populateSignature(query)
+	query := h.populateSignature(apiURL.Query())
 	apiURL.RawQuery = query.Encode()
 
 	req, err := http.NewRequestWithContext(ctx, method, apiURL.String(), bytes.NewBuffer(payload))
@@ -149,13 +148,9 @@ func (h *HTTP) SignedRequest(ctx context.Context, apiPath *url.URL, method strin
 		}
 	}
 
-	req.Header.Add("Content-Type", "application/json")
-
 	for k, v := range headers {
 		req.Header.Add(k, v)
 	}
-
-	fmt.Printf("%+v\n", req)
 
 	resp, err := c.Do(req)
 	if err != nil {

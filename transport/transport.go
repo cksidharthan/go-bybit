@@ -23,7 +23,7 @@ func (e *Error) Error() string {
 }
 
 type Transporter interface {
-	SignedPostFormRequest(path string, params url.Values, response interface{}) error
+	SignedPostForm(path string, params url.Values, response interface{}) error
 	UnSignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error)
 	SignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error)
 }

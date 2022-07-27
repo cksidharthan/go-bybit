@@ -5,5 +5,6 @@ import (
 )
 
 type AccountInterface interface {
-	PlaceActiveOrder(ctx context.Context, order ActiveOrderParams) (*ActiveOrderResponse, error)
+	PlaceActiveOrder(ctx context.Context, params PlaceActiveOrderParams) (*PlaceActiveOrderResponse, error)
+	GetActiveOrder(ctx context.Context, params GetActiveOrderParams) (*GetActiveOrderResponse, error)
 }

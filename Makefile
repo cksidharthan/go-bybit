@@ -30,7 +30,7 @@ lint: $(LINT_BIN) ; $(info Running lint...) @
 test: $(info Running tests...)
 	# NOTE: make sure to export the values for the env variables in the terminal prompt before running the tests
 	export BYBIT_API_KEY=${BYBIT_API_KEY}
-	export BYBIT_SECRET_KEY=${BYBIT_SECRET_KEY}
+	export BYBIT_API_SECRET=${BYBIT_API_SECRET}
 	CGO_ENABLED=0 go test -coverprofile cover.out ./...
 	CGO_ENABLED=0 go tool cover -html=cover.out -o cover.html
 
