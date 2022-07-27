@@ -5,7 +5,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/cksidharthan/go-bybit/helpers"
+	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
 	"github.com/cksidharthan/go-bybit/rest/spot"
 	"github.com/stretchr/testify/assert"
@@ -13,7 +13,7 @@ import (
 
 // The tests in this file will hit the bybit testnet API.
 func TestClient_Spot(t *testing.T) {
-	bybitClient := spot.New(helpers.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
+	bybitClient := spot.New(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
 
 	t.Run("happy path - get symbols", func(t *testing.T) {
 		t.Parallel()

@@ -8,11 +8,11 @@ import (
 
 	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 
-	"github.com/cksidharthan/go-bybit/helpers"
+	"github.com/cksidharthan/go-bybit/bybit"
 )
 
 func (c *Client) GetLastTradedPrice(ctx context.Context, symbol string) (lastTradedPrice *types.PriceResponse, err error) {
-	path := helpers.PublicSpotQuoteTickerPrice + "?symbol=" + symbol
+	path := bybit.PublicSpotQuoteTickerPrice + "?symbol=" + symbol
 	apiPath, err := url.Parse(path)
 	if err != nil {
 		return
