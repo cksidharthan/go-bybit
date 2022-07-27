@@ -1,4 +1,4 @@
-package types
+package spot
 
 import "github.com/cksidharthan/go-bybit/rest/domain"
 

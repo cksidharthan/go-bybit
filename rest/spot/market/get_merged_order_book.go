@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"net/url"
 
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
+
 	"github.com/cksidharthan/go-bybit/bybit"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetMergedOrderBook(ctx context.Context, filters *filters.MergedOrderBookFilter) (orderBook *types.OrderBookResponse, err error) {
+func (c *Client) GetMergedOrderBook(ctx context.Context, filters *spot.MergedOrderBookFilter) (orderBook *spot.OrderBookResponse, err error) {
 	apiPath, err := url.Parse(bybit.PublicSpotQuoteDepthMergedPath)
 	if err != nil {
 		return

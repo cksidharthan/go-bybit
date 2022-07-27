@@ -28,6 +28,9 @@ lint: $(LINT_BIN) ; $(info Running lint...) @
 	CGO_LDFLAGS_ALLOW="-Wl,-z,now" CGO_LDFLAGS="${BUILDER_LINKER_FLAGS}" go vet ./...
 
 test: $(info Running tests...)
+	# NOTE: make sure to export the values for the env variables in the terminal prompt before running the tests
+	export BYBIT_API_KEY=${BYBIT_API_KEY}
+	export BYBIT_SECRET_KEY=${BYBIT_SECRET_KEY}
 	CGO_ENABLED=0 go test -coverprofile cover.out ./...
 	CGO_ENABLED=0 go tool cover -html=cover.out -o cover.html
 

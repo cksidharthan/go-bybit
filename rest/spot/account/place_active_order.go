@@ -3,12 +3,13 @@ package account
 import (
 	"context"
 
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
+
 	"github.com/cksidharthan/go-bybit/bybit"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/account/types"
 	"github.com/google/go-querystring/query"
 )
 
-func (c *Client) PlaceActiveOrder(ctx context.Context, order types.SpotActiveOrderParams) (res *types.SpotActiveOrderResponse, err error) {
+func (c *Client) PlaceActiveOrder(ctx context.Context, order spot.ActiveOrderParams) (res *spot.ActiveOrderResponse, err error) {
 	queryString, err := query.Values(order)
 	if err != nil {
 		return

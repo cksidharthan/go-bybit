@@ -6,11 +6,12 @@ import (
 	"net/http"
 	"net/url"
 
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
+
 	"github.com/cksidharthan/go-bybit/bybit"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetTickerInfo24hr(ctx context.Context, symbol string) (tickerInfo24hr *types.TickerResponse, err error) {
+func (c *Client) GetTickerInfo24hr(ctx context.Context, symbol string) (tickerInfo24hr *spot.TickerResponse, err error) {
 	path := bybit.PublicSpotQuoteTicker24HrPath + "?symbol=" + symbol
 	apiPath, err := url.Parse(path)
 	if err != nil {

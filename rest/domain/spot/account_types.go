@@ -1,11 +1,11 @@
-package types
+package spot
 
 import (
 	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain"
 )
 
-type SpotActiveOrderParams struct {
+type ActiveOrderParams struct {
 	Symbol bybit.Symbol        `url:"symbol" json:"symbol"`
 	Qty    float64             `url:"qty" json:"qty"`
 	Side   bybit.Side          `url:"side" json:"side"`
@@ -16,7 +16,7 @@ type SpotActiveOrderParams struct {
 	OrderLinkID string            `url:"orderLinkId,omitempty" json:"orderLinkID,omitempty"`
 }
 
-type SpotActiveOrderResult struct {
+type ActiveOrderResult struct {
 	OrderID      string                `json:"orderId"`
 	OrderLinkID  string                `json:"orderLinkId"`
 	Symbol       string                `json:"symbol"`
@@ -32,7 +32,7 @@ type SpotActiveOrderResult struct {
 	ExecutedQty  string                `json:"executedQty"`
 }
 
-type SpotActiveOrderResponse struct {
+type ActiveOrderResponse struct {
 	domain.BaseResponse `json:",inline"`
-	Result              SpotActiveOrderResult `json:"result"`
+	Result              ActiveOrderResult `json:"result"`
 }

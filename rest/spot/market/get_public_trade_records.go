@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"net/url"
 
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
+
 	"github.com/cksidharthan/go-bybit/bybit"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetPublicTradeRecords(ctx context.Context, filters *filters.TradeRecordsFilter) (publicTradeRecords *types.TradeRecordsResponse, err error) {
+func (c *Client) GetPublicTradeRecords(ctx context.Context, filters *spot.TradeRecordsFilter) (publicTradeRecords *spot.TradeRecordsResponse, err error) {
 	apiPath, err := url.Parse(bybit.PublicSpotQuoteTradesPath)
 	if err != nil {
 		return

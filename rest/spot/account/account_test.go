@@ -6,20 +6,20 @@ import (
 	"os"
 	"testing"
 
-	"github.com/cksidharthan/go-bybit/rest/spot"
-	"github.com/stretchr/testify/assert"
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
+	spotRest "github.com/cksidharthan/go-bybit/rest/spot"
 
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/account/types"
+	"github.com/stretchr/testify/assert"
 
 	"github.com/cksidharthan/go-bybit/bybit"
 )
 
 // the tests are not run in parallel as we test the buy and sell orders
 func TestClient_Account(t *testing.T) {
-	client := spot.New(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
+	client := spotRest.New(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
 
 	t.Run("Place Active Order - Buy", func(t *testing.T) {
-		order := types.SpotActiveOrderParams{
+		order := spot.ActiveOrderParams{
 			Symbol: "BTCUSDT",
 			Side:   bybit.SideBuy,
 			Type:   bybit.OrderTypeSpotLimit,
@@ -44,7 +44,7 @@ func TestClient_Account(t *testing.T) {
 	// Skipped Test
 	t.Run("Place Active Order - Sell", func(t *testing.T) {
 		t.Skip("Skipping this test as it will fail if there is a lag in buy order")
-		order := types.SpotActiveOrderParams{
+		order := spot.ActiveOrderParams{
 			Symbol: "BTCUSDT",
 			Side:   bybit.SideSell,
 			Type:   bybit.OrderTypeSpotLimit,

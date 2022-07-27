@@ -6,14 +6,14 @@ import (
 	"testing"
 
 	"github.com/cksidharthan/go-bybit/bybit"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
-	"github.com/cksidharthan/go-bybit/rest/spot"
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
+	spotRest "github.com/cksidharthan/go-bybit/rest/spot"
 	"github.com/stretchr/testify/assert"
 )
 
 // The tests in this file will hit the bybit testnet API.
 func TestClient_Spot(t *testing.T) {
-	bybitClient := spot.New(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
+	bybitClient := spotRest.New(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
 
 	t.Run("happy path - get symbols", func(t *testing.T) {
 		t.Parallel()
@@ -26,7 +26,7 @@ func TestClient_Spot(t *testing.T) {
 
 	t.Run("happy path - get order book depth", func(t *testing.T) {
 		t.Parallel()
-		orderBook, err := bybitClient.Market().GetOrderBookDepth(context.Background(), &filters.OrderBookDepthFilter{
+		orderBook, err := bybitClient.Market().GetOrderBookDepth(context.Background(), &spot.OrderBookDepthFilter{
 			Symbol: "BTCUSDT",
 			Limit:  "10",
 		})
@@ -37,7 +37,7 @@ func TestClient_Spot(t *testing.T) {
 	})
 
 	t.Run("400 - get order book depth", func(t *testing.T) {
-		orderBook, err := bybitClient.Market().GetOrderBookDepth(context.Background(), &filters.OrderBookDepthFilter{
+		orderBook, err := bybitClient.Market().GetOrderBookDepth(context.Background(), &spot.OrderBookDepthFilter{
 			Symbol: "BTCUSD",
 			Limit:  "10",
 		})
@@ -49,7 +49,7 @@ func TestClient_Spot(t *testing.T) {
 
 	t.Run("happy path - get merged order book", func(t *testing.T) {
 		t.Parallel()
-		orderBook, err := bybitClient.Market().GetMergedOrderBook(context.Background(), &filters.MergedOrderBookFilter{
+		orderBook, err := bybitClient.Market().GetMergedOrderBook(context.Background(), &spot.MergedOrderBookFilter{
 			Symbol: "BTCUSDT",
 			Limit:  "10",
 			Scale:  "1",
@@ -61,7 +61,7 @@ func TestClient_Spot(t *testing.T) {
 	})
 
 	t.Run("400 - get merged order book ", func(t *testing.T) {
-		orderBook, err := bybitClient.Market().GetMergedOrderBook(context.Background(), &filters.MergedOrderBookFilter{
+		orderBook, err := bybitClient.Market().GetMergedOrderBook(context.Background(), &spot.MergedOrderBookFilter{
 			Symbol: "BTCUSDT",
 			Limit:  "10",
 			Scale:  "0.5",
@@ -73,7 +73,7 @@ func TestClient_Spot(t *testing.T) {
 	})
 
 	t.Run("happy path - get public records", func(t *testing.T) {
-		publicTradeRecords, err := bybitClient.Market().GetPublicTradeRecords(context.Background(), &filters.TradeRecordsFilter{
+		publicTradeRecords, err := bybitClient.Market().GetPublicTradeRecords(context.Background(), &spot.TradeRecordsFilter{
 			Symbol: "BTCUSDT",
 			Limit:  "10",
 		})
@@ -85,7 +85,7 @@ func TestClient_Spot(t *testing.T) {
 	})
 
 	t.Run("400 - get public records", func(t *testing.T) {
-		publicTradeRecords, err := bybitClient.Market().GetPublicTradeRecords(context.Background(), &filters.TradeRecordsFilter{
+		publicTradeRecords, err := bybitClient.Market().GetPublicTradeRecords(context.Background(), &spot.TradeRecordsFilter{
 			Symbol: "BTCUSD",
 			Limit:  "10",
 		})
@@ -96,7 +96,7 @@ func TestClient_Spot(t *testing.T) {
 	})
 
 	t.Run("happy path - get kline", func(t *testing.T) {
-		klines, err := bybitClient.Market().GetKline(context.Background(), &filters.KlineFilter{
+		klines, err := bybitClient.Market().GetKline(context.Background(), &spot.KlineFilter{
 			Symbol:   "BTCUSDT",
 			Limit:    "10",
 			Interval: "1m",
@@ -109,7 +109,7 @@ func TestClient_Spot(t *testing.T) {
 	})
 
 	t.Run("400 - get kline", func(t *testing.T) {
-		klines, err := bybitClient.Market().GetKline(context.Background(), &filters.KlineFilter{
+		klines, err := bybitClient.Market().GetKline(context.Background(), &spot.KlineFilter{
 			Symbol:   "BTCUSDT",
 			Limit:    "10",
 			Interval: "1",
