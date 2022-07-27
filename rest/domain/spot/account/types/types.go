@@ -5,30 +5,34 @@ import (
 	"github.com/cksidharthan/go-bybit/rest/domain"
 )
 
-type PlaceActiveOrderParams struct {
-	Symbol bybit.Symbol    `json:"symbol"`
-	Qty    float64         `json:"qty"`
-	Side   bybit.Side      `json:"side"`
-	Type   bybit.OrderType `json:"type"`
+type SpotActiveOrderParams struct {
+	Symbol bybit.Symbol        `url:"symbol" json:"symbol"`
+	Qty    float64             `url:"qty" json:"qty"`
+	Side   bybit.Side          `url:"side" json:"side"`
+	Type   bybit.OrderTypeSpot `url:"type" json:"type"`
 
-	TimeInForce bybit.TimeInForce `json:"timeInForce,omitempty"`
-	Price       float64           `json:"price,omitempty"`
-	OrderLinkID string            `json:"orderLinkId,omitempty"`
+	TimeInForce bybit.TimeInForce `url:"timeInForce,omitempty" json:"timeInForce,omitempty"`
+	Price       float64           `url:"price,omitempty" json:"price,omitempty"`
+	OrderLinkID string            `url:"orderLinkId,omitempty" json:"orderLinkID,omitempty"`
 }
 
-type PlaceActiveOrderResponse struct {
+type SpotActiveOrderResult struct {
+	OrderID      string                `json:"orderId"`
+	OrderLinkID  string                `json:"orderLinkId"`
+	Symbol       string                `json:"symbol"`
+	TransactTime string                `json:"transactTime"`
+	Price        string                `json:"price"`
+	OrigQty      string                `json:"origQty"`
+	Type         bybit.OrderTypeSpot   `json:"type"`
+	Side         string                `json:"side"`
+	Status       bybit.OrderStatusSpot `json:"status"`
+	TimeInForce  bybit.TimeInForce     `json:"timeInForce"`
+	AccountID    string                `json:"accountId"`
+	SymbolName   string                `json:"symbolName"`
+	ExecutedQty  string                `json:"executedQty"`
+}
+
+type SpotActiveOrderResponse struct {
 	domain.BaseResponse `json:",inline"`
-	OrderID             int                   `json:"orderId"`
-	OrderLinkID         string                `json:"orderLinkId"`
-	Symbol              string                `json:"symbol"`
-	TransactTime        int                   `json:"transactTime"`
-	Price               float64               `json:"price"`
-	OrigQty             float64               `json:"origQty"`
-	Type                bybit.OrderTypeSpot   `json:"type"`
-	Side                string                `json:"side"`
-	Status              bybit.OrderStatusSpot `json:"status"`
-	TimeInForce         bybit.TimeInForce     `json:"timeInForce"`
-	AccountID           int64                 `json:"accountId"`
-	SymbolName          string                `json:"symbolName"`
-	ExecutedQty         string                `json:"executedQty"`
+	Result              SpotActiveOrderResult `json:"result"`
 }

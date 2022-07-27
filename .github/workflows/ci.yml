@@ -6,6 +6,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      BYBIT_API_KEY: ${{ secrets.BYBIT_API_KEY }}
+      BYBIT_API_SECRET: ${{ secrets.BYBIT_API_SECRET }}
     steps:
       # Checkout
       - name: Checkout
@@ -28,6 +31,9 @@ jobs:
   lint-check:
     name: lint-check
     runs-on: ubuntu-latest
+    env:
+      BYBIT_API_KEY: ${{ secrets.BYBIT_API_KEY }}
+      BYBIT_API_SECRET: ${{ secrets.BYBIT_API_SECRET }}
     steps:
       # Checkout
       - name: Checkout

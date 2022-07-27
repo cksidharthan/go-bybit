@@ -5,8 +5,10 @@ type Symbol string
 type Side string
 
 const (
-	SideBuy  Side = "Buy"
-	SideSell Side = "Sell"
+	SideBuy      Side = "Buy"
+	SideSell     Side = "Sell"
+	SideSpotBuy  Side = "BUY"
+	SideSpotSell Side = "SELL"
 )
 
 type OrderType string
