@@ -1,4 +1,4 @@
-package spot
+package market
 
 import "github.com/cksidharthan/go-bybit/rest/domain"
 

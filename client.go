@@ -1,4 +1,4 @@
-package go_bybit
+package gobybit
 
 import (
 	"github.com/cksidharthan/go-bybit/rest"

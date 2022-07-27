@@ -2,11 +2,12 @@ package http
 
 import (
 	"context"
-	"github.com/stretchr/testify/assert"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 func TestHttp_Call(t *testing.T) {
@@ -19,11 +20,11 @@ func TestHttp_Call(t *testing.T) {
 		}))
 		defer server.Close()
 
-		testHttp := New(server.URL, "", "")
+		testHTTP := New(server.URL, "", "")
 		testURL, err := url.Parse("/test-url")
 		assert.NoError(t, err)
 
-		res, err := testHttp.UnSignedRequest(context.Background(), testURL, http.MethodGet, []byte{}, map[string]string{})
+		res, err := testHTTP.UnSignedRequest(context.Background(), testURL, http.MethodGet, []byte{}, map[string]string{})
 		assert.NoError(t, err)
 		assert.NotNil(t, res)
 		assert.Equal(t, `{"data":{"test":"test"}}`, string(res))
@@ -37,11 +38,11 @@ func TestHttp_Call(t *testing.T) {
 		}))
 		defer server.Close()
 
-		testHttp := New(server.URL, "", "")
+		testHTTP := New(server.URL, "", "")
 		testURL, err := url.Parse("/test-error-url")
 		assert.NoError(t, err)
 
-		res, err := testHttp.UnSignedRequest(context.Background(), testURL, http.MethodGet, []byte{}, map[string]string{})
+		res, err := testHTTP.UnSignedRequest(context.Background(), testURL, http.MethodGet, []byte{}, map[string]string{})
 		assert.Error(t, err)
 		assert.Nil(t, res)
 		assert.Equal(t, "HTTP 401: ", err.Error())

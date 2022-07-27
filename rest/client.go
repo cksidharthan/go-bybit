@@ -3,14 +3,14 @@ package rest
 import "github.com/cksidharthan/go-bybit/rest/spot"
 
 type Interface interface {
-	Spot() spot.SpotInterface
+	Spot() spot.Interface
 }
 
 type Client struct {
-	spot spot.SpotInterface
+	spot spot.Interface
 }
 
-func (c *Client) Spot() spot.SpotInterface {
+func (c *Client) Spot() spot.Interface {
 	return c.spot
 }
 

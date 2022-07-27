@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<title>rest: Go Coverage Report</title>
+		<title>market: Go Coverage Report</title>
 		<style>
 			body {
 				background: black;
@@ -55,9 +55,27 @@
 			<div id="nav">
 				<select id="files">
 				
-				<option value="file0">github.com/cksidharthan/go-bybit/rest/client.go (100.0%)</option>
+				<option value="file0">github.com/cksidharthan/go-bybit/rest/spot/market/client.go (100.0%)</option>
 				
-				<option value="file1">github.com/cksidharthan/go-bybit/transport/http/http.go (75.0%)</option>
+				<option value="file1">github.com/cksidharthan/go-bybit/rest/spot/market/get_ask_bid_price.go (72.7%)</option>
+				
+				<option value="file2">github.com/cksidharthan/go-bybit/rest/spot/market/get_kline.go (75.0%)</option>
+				
+				<option value="file3">github.com/cksidharthan/go-bybit/rest/spot/market/get_last_traded_price.go (72.7%)</option>
+				
+				<option value="file4">github.com/cksidharthan/go-bybit/rest/spot/market/get_merged_order_book.go (83.3%)</option>
+				
+				<option value="file5">github.com/cksidharthan/go-bybit/rest/spot/market/get_order_book_depth.go (75.0%)</option>
+				
+				<option value="file6">github.com/cksidharthan/go-bybit/rest/spot/market/get_public_trade_records.go (75.0%)</option>
+				
+				<option value="file7">github.com/cksidharthan/go-bybit/rest/spot/market/get_server_time.go (70.0%)</option>
+				
+				<option value="file8">github.com/cksidharthan/go-bybit/rest/spot/market/get_symbols.go (70.0%)</option>
+				
+				<option value="file9">github.com/cksidharthan/go-bybit/rest/spot/market/get_ticket_info_24hr.go (72.7%)</option>
+				
+				<option value="file10">github.com/cksidharthan/go-bybit/transport/http/http.go (75.0%)</option>
 				
 				</select>
 			</div>
@@ -71,30 +89,321 @@
 		</div>
 		<div id="content">
 		
-		<pre class="file" id="file0" style="display: none">package rest
+		<pre class="file" id="file0" style="display: none">package market
 
-import "github.com/cksidharthan/go-bybit/rest/spot"
-
-type Interface interface {
-        Spot() spot.SpotInterface
-}
+import (
+        "github.com/cksidharthan/go-bybit/transport"
+        httpTransport "github.com/cksidharthan/go-bybit/transport/http"
+)
 
 type Client struct {
-        spot spot.SpotInterface
+        transporter transport.Transporter
 }
 
-func (c *Client) Spot() spot.SpotInterface <span class="cov8" title="1">{
-        return c.spot
-}</span>
-
-func New(url, apiKey, apiSecret string) Interface <span class="cov8" title="1">{
+func New(url, apiKey, apiSecret string) *Client <span class="cov8" title="1">{
+        transporter := httpTransport.New(url, apiKey, apiSecret)
         return &amp;Client{
-                spot: spot.New(url, apiKey, apiSecret),
+                transporter: transporter,
         }
 }</span>
 </pre>
 		
-		<pre class="file" id="file1" style="display: none">package http
+		<pre class="file" id="file1" style="display: none">package market
+
+import (
+        "context"
+        "encoding/json"
+        "net/http"
+        "net/url"
+
+        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+)
+
+func (c *Client) GetBidAskPrice(ctx context.Context, symbol string) (bidAskPrice *market.PriceBidAskResponse, err error) <span class="cov8" title="1">{
+        path := helpers.PublicSpotQuoteTickerBookTickerPath + "?symbol=" + symbol
+        apiPath, err := url.Parse(path)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">err = json.Unmarshal(payload, &amp;bidAskPrice)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file2" style="display: none">package market
+
+import (
+        "context"
+        "encoding/json"
+        "net/http"
+        "net/url"
+
+        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+        "github.com/cksidharthan/go-bybit/rest/filters"
+)
+
+func (c *Client) GetKline(ctx context.Context, filters *filters.KlineFilter) (kline *market.KlineResponse, err error) <span class="cov8" title="1">{
+        apiPath, err := url.Parse(helpers.PublicSpotQuoteKlinePath)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">if filters != nil </span><span class="cov8" title="1">{
+                filters.ToQuery(apiPath)
+        }</span>
+
+        <span class="cov8" title="1">payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">err = json.Unmarshal(payload, &amp;kline)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file3" style="display: none">package market
+
+import (
+        "context"
+        "encoding/json"
+        "net/http"
+        "net/url"
+
+        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+)
+
+func (c *Client) GetLastTradedPrice(ctx context.Context, symbol string) (lastTradedPrice *market.PriceResponse, err error) <span class="cov8" title="1">{
+        path := helpers.PublicSpotQuoteTickerPrice + "?symbol=" + symbol
+        apiPath, err := url.Parse(path)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">err = json.Unmarshal(payload, &amp;lastTradedPrice)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file4" style="display: none">package market
+
+import (
+        "context"
+        "encoding/json"
+        "net/http"
+        "net/url"
+
+        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+        "github.com/cksidharthan/go-bybit/rest/filters"
+)
+
+func (c *Client) GetMergedOrderBook(ctx context.Context, filters *filters.MergedOrderBookFilter) (orderBook *market.OrderBookResponse, err error) <span class="cov8" title="1">{
+        apiPath, err := url.Parse(helpers.PublicSpotQuoteDepthMergedPath)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">if filters != nil </span><span class="cov8" title="1">{
+                filters.ToQuery(apiPath)
+        }</span>
+
+        <span class="cov8" title="1">payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
+        if err != nil </span><span class="cov8" title="1">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">err = json.Unmarshal(payload, &amp;orderBook)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file5" style="display: none">package market
+
+import (
+        "context"
+        "encoding/json"
+        "net/http"
+        "net/url"
+
+        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+        "github.com/cksidharthan/go-bybit/rest/filters"
+)
+
+func (c *Client) GetOrderBookDepth(ctx context.Context, filters *filters.OrderBookDepthFilter) (orderBook *market.OrderBookResponse, err error) <span class="cov8" title="1">{
+        apiPath, err := url.Parse(helpers.PublicSpotQuoteDepthPath)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">if filters != nil </span><span class="cov8" title="1">{
+                filters.ToQuery(apiPath)
+        }</span>
+
+        <span class="cov8" title="1">payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">err = json.Unmarshal(payload, &amp;orderBook)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file6" style="display: none">package market
+
+import (
+        "context"
+        "encoding/json"
+        "net/http"
+        "net/url"
+
+        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+        "github.com/cksidharthan/go-bybit/rest/filters"
+)
+
+func (c *Client) GetPublicTradeRecords(ctx context.Context, filters *filters.TradeRecordsFilter) (publicTradeRecords *market.TradeRecordsResponse, err error) <span class="cov8" title="1">{
+        apiPath, err := url.Parse(helpers.PublicSpotQuoteTradesPath)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">if filters != nil </span><span class="cov8" title="1">{
+                filters.ToQuery(apiPath)
+        }</span>
+
+        <span class="cov8" title="1">payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">err = json.Unmarshal(payload, &amp;publicTradeRecords)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file7" style="display: none">package market
+
+import (
+        "context"
+        "encoding/json"
+        "net/http"
+        "net/url"
+
+        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+)
+
+func (c *Client) GetServerTime(ctx context.Context) (serverTime *market.ServerTimeResponse, err error) <span class="cov8" title="1">{
+        apiPath, err := url.Parse(helpers.PublicServerTimePath)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">err = json.Unmarshal(payload, &amp;serverTime)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file8" style="display: none">package market
+
+import (
+        "context"
+        "encoding/json"
+        "net/http"
+        "net/url"
+
+        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+)
+
+func (c *Client) GetSymbols(ctx context.Context) (symbols *market.SymbolsResponse, err error) <span class="cov8" title="1">{
+        apiPath, err := url.Parse(helpers.PublicSpotSymbolsPath)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">err = json.Unmarshal(payload, &amp;symbols)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file9" style="display: none">package market
+
+import (
+        "context"
+        "encoding/json"
+        "net/http"
+        "net/url"
+
+        "github.com/cksidharthan/go-bybit/helpers"
+        "github.com/cksidharthan/go-bybit/rest/domain/spot/market"
+)
+
+func (c *Client) GetTickerInfo24hr(ctx context.Context, symbol string) (tickerInfo24hr *market.TickerResponse, err error) <span class="cov8" title="1">{
+        path := helpers.PublicSpotQuoteTicker24HrPath + "?symbol=" + symbol
+        apiPath, err := url.Parse(path)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+
+        <span class="cov8" title="1">err = json.Unmarshal(payload, &amp;tickerInfo24hr)
+        if err != nil </span><span class="cov0" title="0">{
+                return
+        }</span>
+        <span class="cov8" title="1">return</span>
+}
+</pre>
+		
+		<pre class="file" id="file10" style="display: none">package http
 
 import (
         "bytes"
@@ -108,28 +417,28 @@ import (
         "github.com/cksidharthan/go-bybit/transport"
 )
 
-type Http struct {
-        Uri       string
-        ApiKey    string
-        ApiSecret string
+type HTTP struct {
+        URI       string
+        APIKey    string
+        APISecret string
 }
 
-func New(url, apiKey, apiSecret string) *Http <span class="cov8" title="1">{
-        return &amp;Http{
-                Uri:       url,
-                ApiKey:    apiKey,
-                ApiSecret: apiSecret,
+func New(url, apiKey, apiSecret string) *HTTP <span class="cov8" title="1">{
+        return &amp;HTTP{
+                URI:       url,
+                APIKey:    apiKey,
+                APISecret: apiSecret,
         }
 }</span>
 
-func (h *Http) UnSignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) <span class="cov8" title="1">{
+func (h *HTTP) UnSignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) <span class="cov8" title="1">{
         c := http.Client{
                 Timeout: 5 * time.Second,
         }
 
-        base, err := url.Parse(h.Uri)
+        base, err := url.Parse(h.URI)
         if err != nil </span><span class="cov0" title="0">{
-                return nil, &amp;transport.TransportError{
+                return nil, &amp;transport.Error{
                         ErrorMsg: err.Error(),
                         HTTPCode: -1,
                 }
@@ -138,7 +447,7 @@ func (h *Http) UnSignedRequest(ctx context.Context, apiPath *url.URL, method str
 
         req, err := http.NewRequestWithContext(ctx, method, apiURL.String(), bytes.NewReader(payload))
         if err != nil </span><span class="cov0" title="0">{
-                return nil, &amp;transport.TransportError{
+                return nil, &amp;transport.Error{
                         ErrorMsg: err.Error(),
                         HTTPCode: -1,
                 }
@@ -150,7 +459,7 @@ func (h *Http) UnSignedRequest(ctx context.Context, apiPath *url.URL, method str
 
         <span class="cov8" title="1">resp, err := c.Do(req)
         if err != nil </span><span class="cov0" title="0">{
-                return nil, &amp;transport.TransportError{
+                return nil, &amp;transport.Error{
                         ErrorMsg: err.Error(),
                         HTTPCode: -1,
                 }
@@ -158,7 +467,7 @@ func (h *Http) UnSignedRequest(ctx context.Context, apiPath *url.URL, method str
 
         <span class="cov8" title="1">respData, err := ioutil.ReadAll(resp.Body)
         if err != nil </span><span class="cov0" title="0">{
-                return nil, &amp;transport.TransportError{
+                return nil, &amp;transport.Error{
                         ErrorMsg: err.Error(),
                         HTTPCode: -1,
                 }
@@ -169,12 +478,12 @@ func (h *Http) UnSignedRequest(ctx context.Context, apiPath *url.URL, method str
                 var bybitError transport.BybitError
                 err = json.Unmarshal(respData, &amp;bybitError)
                 if err != nil </span><span class="cov0" title="0">{
-                        return nil, &amp;transport.TransportError{
+                        return nil, &amp;transport.Error{
                                 ErrorMsg: err.Error(),
                                 HTTPCode: -1,
                         }
                 }</span>
-                <span class="cov8" title="1">return nil, &amp;transport.TransportError{
+                <span class="cov8" title="1">return nil, &amp;transport.Error{
                         ErrorMsg: bybitError.RetMsg,
                         HTTPCode: resp.StatusCode,
                 }</span>

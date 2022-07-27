@@ -12,28 +12,28 @@ import (
 	"github.com/cksidharthan/go-bybit/transport"
 )
 
-type Http struct {
-	Uri       string
-	ApiKey    string
-	ApiSecret string
+type HTTP struct {
+	URI       string
+	APIKey    string
+	APISecret string
 }
 
-func New(url, apiKey, apiSecret string) *Http {
-	return &Http{
-		Uri:       url,
-		ApiKey:    apiKey,
-		ApiSecret: apiSecret,
+func New(url, apiKey, apiSecret string) *HTTP {
+	return &HTTP{
+		URI:       url,
+		APIKey:    apiKey,
+		APISecret: apiSecret,
 	}
 }
 
-func (h *Http) UnSignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) {
+func (h *HTTP) UnSignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) {
 	c := http.Client{
 		Timeout: 5 * time.Second,
 	}
 
-	base, err := url.Parse(h.Uri)
+	base, err := url.Parse(h.URI)
 	if err != nil {
-		return nil, &transport.TransportError{
+		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
 			HTTPCode: -1,
 		}
@@ -42,7 +42,7 @@ func (h *Http) UnSignedRequest(ctx context.Context, apiPath *url.URL, method str
 
 	req, err := http.NewRequestWithContext(ctx, method, apiURL.String(), bytes.NewReader(payload))
 	if err != nil {
-		return nil, &transport.TransportError{
+		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
 			HTTPCode: -1,
 		}
@@ -54,7 +54,7 @@ func (h *Http) UnSignedRequest(ctx context.Context, apiPath *url.URL, method str
 
 	resp, err := c.Do(req)
 	if err != nil {
-		return nil, &transport.TransportError{
+		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
 			HTTPCode: -1,
 		}
@@ -62,7 +62,7 @@ func (h *Http) UnSignedRequest(ctx context.Context, apiPath *url.URL, method str
 
 	respData, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return nil, &transport.TransportError{
+		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
 			HTTPCode: -1,
 		}
@@ -73,12 +73,12 @@ func (h *Http) UnSignedRequest(ctx context.Context, apiPath *url.URL, method str
 		var bybitError transport.BybitError
 		err = json.Unmarshal(respData, &bybitError)
 		if err != nil {
-			return nil, &transport.TransportError{
+			return nil, &transport.Error{
 				ErrorMsg: err.Error(),
 				HTTPCode: -1,
 			}
 		}
-		return nil, &transport.TransportError{
+		return nil, &transport.Error{
 			ErrorMsg: bybitError.RetMsg,
 			HTTPCode: resp.StatusCode,
 		}

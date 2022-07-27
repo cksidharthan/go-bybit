@@ -13,12 +13,12 @@ type BybitError struct {
 	Token   string `json:"token"`
 }
 
-type TransportError struct {
+type Error struct {
 	HTTPCode int    `json:"httpCode"`
 	ErrorMsg string `json:"errorMsg"`
 }
 
-func (e *TransportError) Error() string {
+func (e *Error) Error() string {
 	return fmt.Sprintf("HTTP %d: %s", e.HTTPCode, e.ErrorMsg)
 }
 

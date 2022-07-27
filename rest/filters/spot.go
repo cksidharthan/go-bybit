@@ -1,6 +1,10 @@
 package filters
 
-import "net/url"
+import (
+	"encoding/json"
+	"fmt"
+	"net/url"
+)
 
 type OrderBookDepthFilter struct {
 	Symbol string `json:"symbol,required"`
@@ -9,6 +13,14 @@ type OrderBookDepthFilter struct {
 
 // ToQuery converts the current filters into querystring
 func (o *OrderBookDepthFilter) ToQuery(u *url.URL) {
+	// return as params here
+	mydata := map[string]string{}
+	data, _ := json.Marshal(u.Query())
+	err := json.Unmarshal(data, &mydata)
+	if err != nil {
+		return
+	}
+	fmt.Printf("%+v\n", mydata)
 	queryString := u.Query()
 	if o.Symbol != "" {
 		queryString.Set("symbol", o.Symbol)

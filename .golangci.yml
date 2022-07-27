@@ -5,7 +5,6 @@ linters:
   disable-all: true
   enable:
     - govet
-    - staticcheck
     - unused
     - gosimple
     - structcheck
