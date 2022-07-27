@@ -3,10 +3,11 @@ package account_test
 import (
 	"context"
 	"fmt"
-	"github.com/cksidharthan/go-bybit/rest/spot"
-	"github.com/stretchr/testify/assert"
 	"os"
 	"testing"
+
+	"github.com/cksidharthan/go-bybit/rest/spot"
+	"github.com/stretchr/testify/assert"
 
 	"github.com/cksidharthan/go-bybit/rest/domain/spot/account/types"
 
