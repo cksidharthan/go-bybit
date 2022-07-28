@@ -18,9 +18,18 @@ Pull requests are welcome.
 
 Please make sure to add tests when adding new methods.
 
-## Development
 
-Test
+
+## Local Development
+Code Formatting and linting.
+
+```bash
+make fmt
+make lint
+```
+
+
+## Unit Testing
 
 ```bash
 make test

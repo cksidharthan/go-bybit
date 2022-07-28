@@ -5,7 +5,26 @@ const (
 	BytickMainnetBaseURL = "https://api.bytick.com"
 	BybitTestnetBaseURL  = "https://api-testnet.bybit.com"
 
-	PublicServerTimePath = "/spot/v1/time"
+	/* Spot Market API */
+	PublicServerTimePath                = "/spot/v1/time"
+	PublicSpotSymbolsPath               = "/spot/v1/symbols"
+	PublicSpotQuoteDepthPath            = "/spot/quote/v1/depth"
+	PublicSpotQuoteDepthMergedPath      = "/spot/quote/v1/depth/merged"
+	PublicSpotQuoteTradesPath           = "/spot/quote/v1/trades"
+	PublicSpotQuoteKlinePath            = "/spot/quote/v1/kline"
+	PublicSpotQuoteTicker24HrPath       = "/spot/quote/v1/ticker/24hr"
+	PublicSpotQuoteTickerPrice          = "/spot/quote/v1/ticker/price"
+	PublicSpotQuoteTickerBookTickerPath = "/spot/quote/v1/ticker/book_ticker"
+
+	/* Spot Account API */
+	PrivateSpotOrderPath                = "/spot/v1/order"
+	PrivateSpotOrderFastPath            = "/spot/v1/order/fast"
+	PrivateSpotOrderBatchCancelPath     = "/spot/order/batch-cancel"
+	PrivateSpotOrderBatchFastCancelPath = "/spot/order/batch-fast-cancel"
+	PrivateSpotBatchCancelByIdsPath     = "/spot/order/batch-cancel-by-ids"
+	PrivateOpenOrdersPath               = "/spot/v1/open-orders"
+	PrivateOrderHistoryPath             = "/spot/v1/history-orders"
+	PrivateTradeHistoryPath             = "/spot/v1/myTrades"
 
 	// MARKET DATA
 	PublicMarketDataOrderBookL2Path       = "/v2/public/orderBook/L2"
@@ -20,16 +39,6 @@ const (
 	PublicMarketDataBigDealPath           = "/v2/public/big-deal"
 	PublicMarketDataAccountRatioPath      = "/v2/public/account-ratio"
 
-	// SPOT
-	PublicSpotSymbolsPath               = "/spot/v1/symbols"
-	PublicSpotQuoteDepthPath            = "/spot/quote/v1/depth"
-	PublicSpotQuoteDepthMergedPath      = "/spot/quote/v1/depth/merged"
-	PublicSpotQuoteTradesPath           = "/spot/quote/v1/trades"
-	PublicSpotQuoteKlinePath            = "/spot/quote/v1/kline"
-	PublicSpotQuoteTicker24HrPath       = "/spot/quote/v1/ticker/24hr"
-	PublicSpotQuoteTickerPrice          = "/spot/quote/v1/ticker/price"
-	PublicSpotQuoteTickerBookTickerPath = "/spot/quote/v1/ticker/book_ticker"
-
 	// ACCOUNT DATA ENDPOINTS
 	// Inverse Perpetual
 	PrivateInversePerpOrderCreatePath  = "/v2/private/order/create"
@@ -43,13 +52,6 @@ const (
 	PrivateUSDTPerpPositionListPath        = "/private/linear/position/list"
 	PrivateUSDTPerpPositionSetLeveragePath = "/private/linear/position/set-leverage"
 	PrivateUSDTPerpTradeExecutionListPath  = "/private/linear/trade/execution/list"
-
-	// SPOT
-	PrivateSpotOrderPath                = "/spot/v1/order"
-	PrivateSpotOrderFastPath            = "/spot/v1/order/fast"
-	PrivateSpotOrderBatchCancelPath     = "/spot/order/batch-cancel"
-	PrivateSpotOrderBatchFastCancelPath = "/spot/order/batch-fast-cancel"
-	PrivateSpotBatchCancelByIdsPath     = "/spot/order/batch-cancel-by-ids"
 
 	// WALLET_DATA
 	PrivateWalletBalancePath = "/v2/private/wallet/balance"
