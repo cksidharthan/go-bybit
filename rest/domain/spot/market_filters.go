@@ -1,4 +1,4 @@
-package filters
+package spot
 
 import (
 	"encoding/json"

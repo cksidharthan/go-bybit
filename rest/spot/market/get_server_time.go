@@ -6,11 +6,12 @@ import (
 	"net/http"
 	"net/url"
 
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
+
 	"github.com/cksidharthan/go-bybit/bybit"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetServerTime(ctx context.Context) (serverTime *types.ServerTimeResponse, err error) {
+func (c *Client) GetServerTime(ctx context.Context) (serverTime *spot.ServerTimeResponse, err error) {
 	apiPath, err := url.Parse(bybit.PublicServerTimePath)
 	if err != nil {
 		return

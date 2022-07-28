@@ -1,27 +1,26 @@
 package spot
 
 import (
-	accountMethod "github.com/cksidharthan/go-bybit/rest/domain/spot/account/methods"
-	marketMethod "github.com/cksidharthan/go-bybit/rest/domain/spot/market/methods"
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
 	"github.com/cksidharthan/go-bybit/rest/spot/account"
 	"github.com/cksidharthan/go-bybit/rest/spot/market"
 )
 
 type Interface interface {
-	Market() marketMethod.Interface
-	Account() accountMethod.Interface
+	Market() spot.MarketInterface
+	Account() spot.AccountInterface
 }
 
 type Client struct {
-	market  marketMethod.Interface
-	account accountMethod.Interface
+	market  spot.MarketInterface
+	account spot.AccountInterface
 }
 
-func (c *Client) Market() marketMethod.Interface {
+func (c *Client) Market() spot.MarketInterface {
 	return c.market
 }
 
-func (c *Client) Account() accountMethod.Interface {
+func (c *Client) Account() spot.AccountInterface {
 	return c.account
 }
 

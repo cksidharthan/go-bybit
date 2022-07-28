@@ -6,12 +6,12 @@ import (
 	"net/http"
 	"net/url"
 
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
+
 	"github.com/cksidharthan/go-bybit/bybit"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/filters"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot/market/types"
 )
 
-func (c *Client) GetOrderBookDepth(ctx context.Context, filters *filters.OrderBookDepthFilter) (orderBook *types.OrderBookResponse, err error) {
+func (c *Client) GetOrderBookDepth(ctx context.Context, filters *spot.OrderBookDepthFilter) (orderBook *spot.OrderBookResponse, err error) {
 	apiPath, err := url.Parse(bybit.PublicSpotQuoteDepthPath)
 	if err != nil {
 		return
