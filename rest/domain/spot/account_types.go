@@ -70,3 +70,28 @@ type GetActiveOrderResponse struct {
 	domain.BaseResponse `json:",inline"`
 	Result              GetActiveOrderResult `json:"result"`
 }
+
+type CancelActiveOrderParams struct {
+	OrderID     string `url:"orderId,omitempty" json:"orderId,omitempty"`
+	OrderLinkID string `url:"orderLinkId,omitempty" json:"orderLinkId,omitempty"`
+}
+
+type CancelActiveOrderResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              CancelAllActiveOrdersResult `json:"result"`
+}
+
+type CancelAllActiveOrdersResult struct {
+	OrderID      string                `json:"orderId"`
+	OrderLinkID  string                `json:"orderLinkId"`
+	Symbol       string                `json:"symbol"`
+	Status       bybit.OrderStatusSpot `json:"status"`
+	AccountID    string                `json:"accountId"`
+	TransactTime string                `json:"transactTime"`
+	Price        string                `json:"price"`
+	OrigQty      string                `json:"origQty"`
+	ExecutedQty  string                `json:"executedQty"`
+	TimeInForce  bybit.TimeInForce     `json:"timeInForce"`
+	Type         bybit.OrderTypeSpot   `json:"type"`
+	Side         bybit.Side            `json:"side"`
+}
