@@ -8,13 +8,20 @@ import (
 
 	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/linear"
+	"github.com/google/go-querystring/query"
 )
 
-func (c *Client) QuerySymbol(ctx context.Context) (res *linear.QuerySymbolResponse, err error) {
-	apiPath, err := url.Parse(bybit.PublicQuerySymbolPath)
+func (c *Client) GetLastFundingRate(ctx context.Context, params *linear.GetLastFundingRateParams) (res *linear.GetLastFundingRateResponse, err error) {
+	apiPath, err := url.Parse(bybit.PublicGetLastFundingRatePath)
 	if err != nil {
 		return
 	}
+
+	queryString, err := query.Values(params)
+	if err != nil {
+		return
+	}
+	apiPath.RawQuery = queryString.Encode()
 
 	payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
 	if err != nil {

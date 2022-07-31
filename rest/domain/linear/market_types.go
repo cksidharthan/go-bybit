@@ -106,17 +106,44 @@ type GetPublicTradingRecordsResult struct {
 	TradeTimeMs int     `json:"trade_time_ms"`
 }
 
-type QuerySymbolParams struct {
+type GetLastFundingRateParams struct {
 	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type GetLastFundingRateResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              GetLastFundingRateResult `json:"result"`
+}
+
+type GetLastFundingRateResult struct {
+	Symbol               string  `json:"symbol"`
+	FundingRate          float64 `json:"funding_rate"`
+	FundingRateTimestamp string  `json:"funding_rate_timestamp"`
 }
 
 type QuerySymbolResponse struct {
 	domain.BaseResponse `json:",inline"`
-	Result              QuerySymbolResult `json:"result"`
+	Result              []QuerySymbolResult `json:"result"`
 }
 
 type QuerySymbolResult struct {
-	Symbol               string  `json:"symbol"`
-	FundingRate          float64 `json:"funding_rate"`
-	FundingRateTimestamp string  `json:"funding_rate_timestamp"`
+	Name                  string  `json:"name"`
+	Alias                 string  `json:"alias"`
+	Status                string  `json:"status"`
+	BaseCurrency          string  `json:"base_currency"`
+	QuoteCurrency         string  `json:"quote_currency"`
+	PriceScale            int     `json:"price_scale"`
+	TakerFee              string  `json:"taker_fee"`
+	MakerFee              string  `json:"maker_fee"`
+	FundingInterval       int     `json:"funding_interval"`
+	MinLeverage           float64 `json:"min_leverage"`
+	MaxLeverage           float64 `json:"max_leverage"`
+	LeverageStep          string  `json:"leverage_step"`
+	MinPrice              string  `json:"min_price"`
+	MaxPrice              string  `json:"max_price"`
+	TickSize              string  `json:"tick_size"`
+	MaxTradingQty         float64 `json:"max_trading_qty"`
+	MinTradingQty         float64 `json:"min_trading_qty"`
+	QtyStep               float64 `json:"qty_step"`
+	PostOnlyMaxTradingQty string  `json:"post_only_max_trading_qty"`
 }
