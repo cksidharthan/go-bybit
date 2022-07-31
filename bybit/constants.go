@@ -30,8 +30,9 @@ const (
 	PrivateWalletBalancePath = "/spot/v1/account"
 
 	/* USDT Perpetual Market API */
-	PublicLinearOrderBookPath = "v2/public/orderBook/L2"
-	PublicQueryKlinePath      = "/public/linear/kline"
+	PublicLinearOrderBookPath      = "v2/public/orderBook/L2"
+	PublicQueryKlinePath           = "/public/linear/kline"
+	PublicGetSymbolInformationPath = "/v2/public/tickers"
 
 	// ACCOUNT DATA ENDPOINTS
 	// Inverse Perpetual

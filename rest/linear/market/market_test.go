@@ -30,17 +30,30 @@ func TestClient_Linear_Market(t *testing.T) {
 
 	t.Run("Query Kline - LINEAR", func(t *testing.T) {
 		t.Parallel()
-		orderBook, err := bybitClient.Market().QueryKline(context.Background(), &linear.QueryKlineParams{
+		kline, err := bybitClient.Market().QueryKline(context.Background(), &linear.QueryKlineParams{
 			Symbol:   "BTCUSDT",
 			Interval: bybit.Interval1Min,
 			From:     time.Now().Add(-time.Hour).Second(),
 			Limit:    3,
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, 0, orderBook.RetCode)
-		assert.NotEmpty(t, orderBook)
-		assert.NotNil(t, orderBook)
-		assert.Equal(t, "BTCUSDT", orderBook.Result[0].Symbol)
-		assert.Equal(t, 3, len(orderBook.Result))
+		assert.Equal(t, 0, kline.RetCode)
+		assert.NotEmpty(t, kline)
+		assert.NotNil(t, kline)
+		assert.Equal(t, "BTCUSDT", kline.Result[0].Symbol)
+		assert.Equal(t, 3, len(kline.Result))
+	})
+
+	t.Run("Get Symbol Info - LINEAR", func(t *testing.T) {
+		t.Parallel()
+		symbolInfo, err := bybitClient.Market().GetSymbolInformation(context.Background(), &linear.GetSymbolInformationParams{
+			Symbol: "BTCUSDT",
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, symbolInfo.RetCode)
+		assert.NotEmpty(t, symbolInfo)
+		assert.NotNil(t, symbolInfo)
+		assert.Equal(t, "BTCUSDT", symbolInfo.Result[0].Symbol)
+		assert.Equal(t, 1, len(symbolInfo.Result))
 	})
 }
