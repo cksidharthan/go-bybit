@@ -92,3 +92,35 @@ const (
 	// OrderStatusSpotRejected :
 	OrderStatusSpotRejected = OrderStatusSpot("REJECTED")
 )
+
+// Interval :
+type Interval string
+
+const (
+	// Interval1Min :
+	Interval1Min = Interval("1")
+	// Interval3Min :
+	Interval3Min = Interval("3")
+	// Interval5Min :
+	Interval5Min = Interval("5")
+	// Interval15Min :
+	Interval15Min = Interval("15")
+	// Interval30Min :
+	Interval30Min = Interval("30")
+	// Interval60Min :
+	Interval60Min = Interval("60")
+	// Interval120Min :
+	Interval120Min = Interval("120")
+	// Interval240Min :
+	Interval240Min = Interval("240")
+	// Interval360Min :
+	Interval360Min = Interval("360")
+	// Interval720Min :
+	Interval720Min = Interval("720")
+	// IntervalDay :
+	IntervalDay = Interval("D")
+	// IntervalWeek :
+	IntervalWeek = Interval("W")
+	// IntervalMonth :
+	IntervalMonth = Interval("M")
+)

@@ -67,7 +67,12 @@ func (h *HTTP) UnSignedRequest(ctx context.Context, apiPath *url.URL, method str
 	}
 	apiURL := base.ResolveReference(apiPath)
 
-	req, err := http.NewRequestWithContext(ctx, method, apiURL.String(), bytes.NewReader(payload))
+	apiURL.RawQuery = apiURL.Query().Encode()
+
+	// replace encodings to make it work with http.NewRequest
+	urlString := strings.ReplaceAll(apiURL.String(), "%2C", ",")
+
+	req, err := http.NewRequestWithContext(ctx, method, urlString, bytes.NewReader(payload))
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
