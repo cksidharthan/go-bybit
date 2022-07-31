@@ -12,7 +12,7 @@ import (
 )
 
 // The tests in this file will hit the bybit testnet API.
-func TestClient_Spot(t *testing.T) {
+func TestClient_Spot_Market(t *testing.T) {
 	bybitClient := spotRest.New(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
 
 	t.Run("happy path - get symbols", func(t *testing.T) {
