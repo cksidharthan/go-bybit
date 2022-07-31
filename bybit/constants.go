@@ -26,6 +26,9 @@ const (
 	PrivateOrderHistoryPath             = "/spot/v1/history-orders"
 	PrivateTradeHistoryPath             = "/spot/v1/myTrades"
 
+	/* Spot Wallet API */
+	PrivateWalletBalancePath = "/spot/v1/account"
+
 	// MARKET DATA
 	PublicMarketDataOrderBookL2Path       = "/v2/public/orderBook/L2"
 	PublicMarketDataKlineListPath         = "/v2/public/kline/list"
@@ -52,7 +55,4 @@ const (
 	PrivateUSDTPerpPositionListPath        = "/private/linear/position/list"
 	PrivateUSDTPerpPositionSetLeveragePath = "/private/linear/position/set-leverage"
 	PrivateUSDTPerpTradeExecutionListPath  = "/private/linear/trade/execution/list"
-
-	// WALLET_DATA
-	PrivateWalletBalancePath = "/v2/private/wallet/balance"
 )
