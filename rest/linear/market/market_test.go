@@ -2,14 +2,12 @@ package market_test
 
 import (
 	"context"
-	"os"
-	"testing"
-	"time"
-
 	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/linear"
 	linearRest "github.com/cksidharthan/go-bybit/rest/linear"
 	"github.com/stretchr/testify/assert"
+	"os"
+	"testing"
 )
 
 func TestClient_Spot_Market(t *testing.T) {
@@ -18,14 +16,13 @@ func TestClient_Spot_Market(t *testing.T) {
 
 	t.Run("Get Order Book - LINEAR", func(t *testing.T) {
 		t.Parallel()
-		symbols, err := bybitClient.Market().GetOrderBook(context.Background(), &linear.OrderBookParams{
-			Symbol:   "BTCUSDT",
-			Interval: bybit.Interval1Min,
-			From:     time.Now().Add(-10 * time.Minute).Second(),
+		orderBook, err := bybitClient.Market().GetOrderBook(context.Background(), &linear.OrderBookParams{
+			Symbol: "BTCUSDT",
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, 0, symbols.RetCode)
-		assert.NotEmpty(t, symbols)
-		assert.NotNil(t, symbols)
+		assert.Equal(t, 0, orderBook.RetCode)
+		assert.NotEmpty(t, orderBook)
+		assert.NotNil(t, orderBook)
+		assert.Equal(t, "BTCUSDT", orderBook.Result[0].Symbol)
 	})
 }

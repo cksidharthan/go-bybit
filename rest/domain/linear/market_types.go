@@ -6,10 +6,7 @@ import (
 )
 
 type OrderBookParams struct {
-	Symbol   string         `url:"symbol" json:"symbol"`
-	Interval bybit.Interval `url:"interval" json:"interval"`
-	From     int            `url:"from" json:"from"`
-	Limit    int            `url:"limit,omitempty" json:"limit,omitempty"`
+	Symbol string `url:"symbol" json:"symbol"`
 }
 
 type OrderBookResponse struct {
@@ -18,6 +15,25 @@ type OrderBookResponse struct {
 }
 
 type OrderBookResult struct {
+	Symbol string  `json:"symbol"`
+	Price  string  `json:"price"`
+	Size   float64 `json:"size"`
+	Side   string  `json:"side"`
+}
+
+type QueryKlineParams struct {
+	Symbol   string         `url:"symbol" json:"symbol"`
+	Interval bybit.Interval `url:"interval" json:"interval"`
+	From     int            `url:"from" json:"from"`
+	Limit    int            `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type QueryKlineResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              []QueryKlineResult `json:"result"`
+}
+
+type QueryKlineResult struct {
 	Symbol   string  `json:"symbol"`
 	Period   string  `json:"period"`
 	Interval string  `json:"interval"`
