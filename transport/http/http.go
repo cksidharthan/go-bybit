@@ -140,7 +140,10 @@ func (h *HTTP) SignedRequest(ctx context.Context, apiPath *url.URL, method strin
 	query := h.populateSignature(apiURL.Query())
 	apiURL.RawQuery = query.Encode()
 
-	req, err := http.NewRequestWithContext(ctx, method, apiURL.String(), bytes.NewBuffer(payload))
+	// replace encodings to make it work with http.NewRequest
+	urlString := strings.ReplaceAll(apiURL.String(), "%2C", ",")
+
+	req, err := http.NewRequestWithContext(ctx, method, urlString, bytes.NewBuffer(payload))
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
