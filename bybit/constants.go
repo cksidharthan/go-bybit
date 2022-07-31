@@ -31,6 +31,7 @@ const (
 
 	/* USDT Perpetual Market API */
 	PublicLinearOrderBookPath = "v2/public/orderBook/L2"
+	PublicQueryKlinePath      = "/public/linear/kline"
 
 	// ACCOUNT DATA ENDPOINTS
 	// Inverse Perpetual
