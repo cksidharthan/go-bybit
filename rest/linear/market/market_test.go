@@ -2,12 +2,13 @@ package market_test
 
 import (
 	"context"
+	"os"
+	"testing"
+
 	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/linear"
 	linearRest "github.com/cksidharthan/go-bybit/rest/linear"
 	"github.com/stretchr/testify/assert"
-	"os"
-	"testing"
 )
 
 func TestClient_Spot_Market(t *testing.T) {
