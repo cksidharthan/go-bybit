@@ -48,7 +48,7 @@ type QueryKlineResult struct {
 }
 
 type GetSymbolInformationParams struct {
-	Symbol string `url:"symbol" json:"symbol"`
+	Symbol string `url:"symbol,omitempty" json:"symbol,omitempty"`
 }
 
 type GetSymbolInformationResponse struct {
@@ -83,4 +83,25 @@ type GetSymbolInformationResult struct {
 	DeliveryFeeRate        string  `json:"delivery_fee_rate"`
 	PredictedDeliveryPrice string  `json:"predicted_delivery_price"`
 	DeliveryTime           string  `json:"delivery_time"`
+}
+
+type GetPublicTradingRecordsParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+	// Limit for data size, max size is 1000. Default size is 500
+	Limit int `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type GetPublicTradingRecordsResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              []GetPublicTradingRecordsResult `json:"result"`
+}
+
+type GetPublicTradingRecordsResult struct {
+	ID          string  `json:"id"`
+	Symbol      string  `json:"symbol"`
+	Price       float64 `json:"price"`
+	Qty         float64 `json:"qty"`
+	Side        string  `json:"side"`
+	Time        string  `json:"time"`
+	TradeTimeMs int     `json:"trade_time_ms"`
 }

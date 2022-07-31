@@ -66,4 +66,29 @@ func TestClient_Linear_Market(t *testing.T) {
 		assert.NotNil(t, symbolInfo)
 		assert.GreaterOrEqual(t, len(symbolInfo.Result), 0)
 	})
+
+	t.Run("Get Public Trading Records - LINEAR", func(t *testing.T) {
+		t.Parallel()
+		symbolInfo, err := bybitClient.Market().GetPublicTradingRecords(context.Background(), &linear.GetPublicTradingRecordsParams{
+			Symbol: "BTCUSDT",
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, symbolInfo.RetCode)
+		assert.NotEmpty(t, symbolInfo)
+		assert.NotNil(t, symbolInfo)
+		assert.GreaterOrEqual(t, len(symbolInfo.Result), 0)
+	})
+
+	t.Run("Get Public Trading Records - Limit - LINEAR", func(t *testing.T) {
+		t.Parallel()
+		symbolInfo, err := bybitClient.Market().GetPublicTradingRecords(context.Background(), &linear.GetPublicTradingRecordsParams{
+			Symbol: "BTCUSDT",
+			Limit:  3,
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, symbolInfo.RetCode)
+		assert.NotEmpty(t, symbolInfo)
+		assert.NotNil(t, symbolInfo)
+		assert.Equal(t, 3, len(symbolInfo.Result))
+	})
 }
