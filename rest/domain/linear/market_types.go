@@ -23,7 +23,7 @@ type OrderBookResult struct {
 	Interval string  `json:"interval"`
 	StartAt  int     `json:"start_at"`
 	OpenTime int     `json:"open_time"`
-	Volume   int     `json:"volume"`
+	Volume   float64 `json:"volume"`
 	Open     float64 `json:"open"`
 	High     float64 `json:"high"`
 	Low      float64 `json:"low"`
