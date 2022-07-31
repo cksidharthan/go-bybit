@@ -34,6 +34,7 @@ const (
 	PublicQueryKlinePath              = "/public/linear/kline"
 	PublicGetSymbolInformationPath    = "/v2/public/tickers"
 	PublicGetPublicTradingRecordsPath = "/public/linear/recent-trading-records"
+	PublicQuerySymbolPath             = "/public/linear/funding/prev-funding-rate"
 
 	// ACCOUNT DATA ENDPOINTS
 	// Inverse Perpetual

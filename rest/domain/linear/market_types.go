@@ -105,3 +105,18 @@ type GetPublicTradingRecordsResult struct {
 	Time        string  `json:"time"`
 	TradeTimeMs int     `json:"trade_time_ms"`
 }
+
+type QuerySymbolParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type QuerySymbolResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              QuerySymbolResult `json:"result"`
+}
+
+type QuerySymbolResult struct {
+	Symbol               string  `json:"symbol"`
+	FundingRate          float64 `json:"funding_rate"`
+	FundingRateTimestamp string  `json:"funding_rate_timestamp"`
+}

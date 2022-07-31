@@ -91,4 +91,16 @@ func TestClient_Linear_Market(t *testing.T) {
 		assert.NotNil(t, symbolInfo)
 		assert.Equal(t, 3, len(symbolInfo.Result))
 	})
+
+	t.Run("Query Symbol -  LINEAR", func(t *testing.T) {
+		t.Parallel()
+		symbolInfo, err := bybitClient.Market().QuerySymbol(context.Background(), &linear.QuerySymbolParams{
+			Symbol: "BTCUSDT",
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, symbolInfo.RetCode)
+		assert.NotEmpty(t, symbolInfo)
+		assert.NotNil(t, symbolInfo)
+		assert.Equal(t, "BTCUSDT", symbolInfo.Result.Symbol)
+	})
 }
