@@ -1,33 +1,33 @@
 package linear
 
 import (
-	"github.com/cksidharthan/go-bybit/rest/domain/spot"
-	"github.com/cksidharthan/go-bybit/rest/spot/account"
-	"github.com/cksidharthan/go-bybit/rest/spot/market"
-	"github.com/cksidharthan/go-bybit/rest/spot/wallet"
+	"github.com/cksidharthan/go-bybit/rest/domain/linear"
+	"github.com/cksidharthan/go-bybit/rest/linear/account"
+	"github.com/cksidharthan/go-bybit/rest/linear/market"
+	"github.com/cksidharthan/go-bybit/rest/linear/wallet"
 )
 
 type Interface interface {
-	Market() spot.MarketInterface
-	Account() spot.AccountInterface
-	Wallet() spot.WalletInterface
+	Market() linear.MarketInterface
+	Account() linear.AccountInterface
+	Wallet() linear.WalletInterface
 }
 
 type Client struct {
-	market  spot.MarketInterface
-	account spot.AccountInterface
-	wallet  spot.WalletInterface
+	market  linear.MarketInterface
+	account linear.AccountInterface
+	wallet  linear.WalletInterface
 }
 
-func (c *Client) Market() spot.MarketInterface {
+func (c *Client) Market() linear.MarketInterface {
 	return c.market
 }
 
-func (c *Client) Account() spot.AccountInterface {
+func (c *Client) Account() linear.AccountInterface {
 	return c.account
 }
 
-func (c *Client) Wallet() spot.WalletInterface {
+func (c *Client) Wallet() linear.WalletInterface {
 	return c.wallet
 }
 
