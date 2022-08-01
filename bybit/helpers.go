@@ -3,6 +3,7 @@ package bybit
 import (
 	"fmt"
 	"strconv"
+	"time"
 )
 
 func GetPrecision(value float64) (float64, error) {
@@ -12,4 +13,9 @@ func GetPrecision(value float64) (float64, error) {
 		return 0, err
 	}
 	return orderQty, nil
+}
+
+func GetCurrentTime() string {
+	intNow := int(time.Now().UTC().UnixNano() / int64(time.Millisecond))
+	return strconv.Itoa(intNow)
 }

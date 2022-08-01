@@ -29,18 +29,13 @@ const (
 	/* Spot Wallet API */
 	PrivateWalletBalancePath = "/spot/v1/account"
 
-	// MARKET DATA
-	PublicMarketDataOrderBookL2Path       = "/v2/public/orderBook/L2"
-	PublicMarketDataKlineListPath         = "/v2/public/kline/list"
-	PublicMarketDataTickersPath           = "/v2/public/tickers"
-	PublicMarketDataTradingRecordsPath    = "/v2/public/trading-records"
-	PublicMarketDataSymbolsPath           = "/v2/public/symbols"
-	PublicMarketDataMarkPriceKlinePath    = "/v2/public/mark-price-kline"
-	PublicMarketDataIndexPriceKlinePath   = "/v2/public/index-price-kline"
-	PublicMarketDataPremiumIndexKlinePath = "/v2/public/premium-index-kline"
-	PublicMarketDataOpenInterestPath      = "/v2/public/open-interest"
-	PublicMarketDataBigDealPath           = "/v2/public/big-deal"
-	PublicMarketDataAccountRatioPath      = "/v2/public/account-ratio"
+	/* USDT Perpetual Market API */
+	PublicLinearOrderBookPath         = "v2/public/orderBook/L2"
+	PublicQueryKlinePath              = "/public/linear/kline"
+	PublicGetSymbolInformationPath    = "/v2/public/tickers"
+	PublicGetPublicTradingRecordsPath = "/public/linear/recent-trading-records"
+	PublicGetLastFundingRatePath      = "/public/linear/funding/prev-funding-rate"
+	PublicQuerySymbolPath             = "/v2/public/symbols"
 
 	// ACCOUNT DATA ENDPOINTS
 	// Inverse Perpetual
