@@ -4,7 +4,7 @@
 
 Unofficial [Bybit](https://bybit.com) API Client  for [Go](https://golang.org/).
 
-This Project is under active development and is not production ready.
+This Project is under active development
 
 ## Install
 
