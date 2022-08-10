@@ -2,10 +2,11 @@ package market_test
 
 import (
 	"context"
-	"github.com/cksidharthan/go-bybit/bybit"
-	spotRest "github.com/cksidharthan/go-bybit/rest/spot"
 	"os"
 	"testing"
+
+	"github.com/cksidharthan/go-bybit/bybit"
+	spotRest "github.com/cksidharthan/go-bybit/rest/spot"
 
 	"github.com/cksidharthan/go-bybit/rest/domain/spot"
 	"github.com/stretchr/testify/assert"
