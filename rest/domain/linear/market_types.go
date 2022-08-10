@@ -169,3 +169,25 @@ type GetLiquidatedOrdersResult struct {
 	Side   string  `json:"side"`
 	Time   string  `json:"time"`
 }
+
+type QueryMarkPriceKlineParams struct {
+	Symbol   string         `url:"symbol" json:"symbol"`
+	Interval bybit.Interval `url:"interval" json:"interval"`
+	From     int            `url:"from,omitempty" json:"from,omitempty"`
+	Limit    int            `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type QueryMarkPriceKlineResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              []QueryMarkPriceKlineResult `json:"result"`
+}
+
+type QueryMarkPriceKlineResult struct {
+	Symbol  string  `json:"symbol"`
+	Period  string  `json:"period"`
+	Open    float64 `json:"open"`
+	High    float64 `json:"high"`
+	Low     float64 `json:"low"`
+	Close   float64 `json:"close"`
+	StartAt int     `json:"start_at"`
+}
