@@ -5,13 +5,13 @@ import (
 	httpTransport "github.com/cksidharthan/go-bybit/transport/http"
 )
 
-type Client struct {
+type SpotAccountClient struct {
 	transporter transport.Transporter
 }
 
-func New(url, apiKey, apiSecret string) *Client {
+func NewSpotAccountClient(url, apiKey, apiSecret string) *SpotAccountClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
-	return &Client{
+	return &SpotAccountClient{
 		transporter: transporter,
 	}
 }

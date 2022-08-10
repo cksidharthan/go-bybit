@@ -17,7 +17,7 @@ import (
 
 // the tests are not run in parallel as we test the buy and sell orders
 func TestSpotClient_Account(t *testing.T) {
-	client := spotRest.New(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
+	client := spotRest.NewSpotClient(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
 
 	currentBTCPrice, err := getSpotBTCBuyPriceForTest(client)
 	if err != nil {

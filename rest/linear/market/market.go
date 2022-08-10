@@ -8,7 +8,7 @@ import (
 	"github.com/cksidharthan/go-bybit/rest/domain/linear"
 )
 
-func (c *Client) GetOrderBook(ctx context.Context, params *linear.OrderBookParams) (res *linear.OrderBookResponse, err error) {
+func (c *LinearMarketClient) GetOrderBook(ctx context.Context, params *linear.OrderBookParams) (res *linear.OrderBookResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicLinearOrderBookPath, params, &res)
 	if err != nil {
 		return
@@ -16,7 +16,7 @@ func (c *Client) GetOrderBook(ctx context.Context, params *linear.OrderBookParam
 	return
 }
 
-func (c *Client) QueryKline(ctx context.Context, params *linear.QueryKlineParams) (res *linear.QueryKlineResponse, err error) {
+func (c *LinearMarketClient) QueryKline(ctx context.Context, params *linear.QueryKlineParams) (res *linear.QueryKlineResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicQueryKlinePath, params, &res)
 	if err != nil {
 		return
@@ -24,7 +24,7 @@ func (c *Client) QueryKline(ctx context.Context, params *linear.QueryKlineParams
 	return
 }
 
-func (c *Client) GetSymbolInformation(ctx context.Context, params *linear.GetSymbolInformationParams) (res *linear.GetSymbolInformationResponse, err error) {
+func (c *LinearMarketClient) GetSymbolInformation(ctx context.Context, params *linear.GetSymbolInformationParams) (res *linear.GetSymbolInformationResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicGetSymbolInformationPath, params, &res)
 	if err != nil {
 		return
@@ -32,7 +32,7 @@ func (c *Client) GetSymbolInformation(ctx context.Context, params *linear.GetSym
 	return
 }
 
-func (c *Client) GetPublicTradingRecords(ctx context.Context, params *linear.GetPublicTradingRecordsParams) (res *linear.GetPublicTradingRecordsResponse, err error) {
+func (c *LinearMarketClient) GetPublicTradingRecords(ctx context.Context, params *linear.GetPublicTradingRecordsParams) (res *linear.GetPublicTradingRecordsResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicGetPublicTradingRecordsPath, params, &res)
 	if err != nil {
 		return
@@ -40,7 +40,7 @@ func (c *Client) GetPublicTradingRecords(ctx context.Context, params *linear.Get
 	return
 }
 
-func (c *Client) QuerySymbol(ctx context.Context) (res *linear.QuerySymbolResponse, err error) {
+func (c *LinearMarketClient) QuerySymbol(ctx context.Context) (res *linear.QuerySymbolResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicQuerySymbolPath, nil, &res)
 	if err != nil {
 		return
@@ -48,7 +48,7 @@ func (c *Client) QuerySymbol(ctx context.Context) (res *linear.QuerySymbolRespon
 	return
 }
 
-func (c *Client) GetLiquidatedOrders(ctx context.Context, params *linear.GetLiquidatedOrdersParams) (res *linear.GetLiquidatedOrdersResponse, err error) {
+func (c *LinearMarketClient) GetLiquidatedOrders(ctx context.Context, params *linear.GetLiquidatedOrdersParams) (res *linear.GetLiquidatedOrdersResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicLiquidatedOrdersPath, params, &res)
 	if err != nil {
 		return
@@ -56,7 +56,7 @@ func (c *Client) GetLiquidatedOrders(ctx context.Context, params *linear.GetLiqu
 	return
 }
 
-func (c *Client) GetLastFundingRate(ctx context.Context, params *linear.GetLastFundingRateParams) (res *linear.GetLastFundingRateResponse, err error) {
+func (c *LinearMarketClient) GetLastFundingRate(ctx context.Context, params *linear.GetLastFundingRateParams) (res *linear.GetLastFundingRateResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicGetLastFundingRatePath, params, &res)
 	if err != nil {
 		return
@@ -64,7 +64,7 @@ func (c *Client) GetLastFundingRate(ctx context.Context, params *linear.GetLastF
 	return
 }
 
-func (c *Client) QueryMarkPriceKline(ctx context.Context, params *linear.QueryMarkPriceKlineParams) (res *linear.QueryMarkPriceKlineResponse, err error) {
+func (c *LinearMarketClient) QueryMarkPriceKline(ctx context.Context, params *linear.QueryMarkPriceKlineParams) (res *linear.QueryMarkPriceKlineResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicQueryMarkPriceKline, params, &res)
 	if err != nil {
 		return
@@ -72,7 +72,7 @@ func (c *Client) QueryMarkPriceKline(ctx context.Context, params *linear.QueryMa
 	return
 }
 
-func (c *Client) QueryIndexPriceKline(ctx context.Context, params *linear.QueryIndexPriceKlineParams) (res *linear.QueryIndexPriceKlineResponse, err error) {
+func (c *LinearMarketClient) QueryIndexPriceKline(ctx context.Context, params *linear.QueryIndexPriceKlineParams) (res *linear.QueryIndexPriceKlineResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicQueryIndexPriceKlinePath, params, &res)
 	if err != nil {
 		return
@@ -80,7 +80,7 @@ func (c *Client) QueryIndexPriceKline(ctx context.Context, params *linear.QueryI
 	return
 }
 
-func (c *Client) QueryPremiumIndexKline(ctx context.Context, params *linear.QueryPremiumIndexKlineParams) (res *linear.QueryPremiumIndexKlineResponse, err error) {
+func (c *LinearMarketClient) QueryPremiumIndexKline(ctx context.Context, params *linear.QueryPremiumIndexKlineParams) (res *linear.QueryPremiumIndexKlineResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicQueryPremiumIndexPriceKlinePath, params, &res)
 	if err != nil {
 		return
@@ -88,7 +88,7 @@ func (c *Client) QueryPremiumIndexKline(ctx context.Context, params *linear.Quer
 	return
 }
 
-func (c *Client) GetOpenInterest(ctx context.Context, params *linear.GetOpenInterestParams) (res *linear.GetOpenInterestResponse, err error) {
+func (c *LinearMarketClient) GetOpenInterest(ctx context.Context, params *linear.GetOpenInterestParams) (res *linear.GetOpenInterestResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicGetOpenInterestPath, params, &res)
 	if err != nil {
 		return
@@ -96,7 +96,7 @@ func (c *Client) GetOpenInterest(ctx context.Context, params *linear.GetOpenInte
 	return
 }
 
-func (c *Client) GetLatestBigDeal(ctx context.Context, params *linear.GetLatestBigDealParams) (res *linear.GetLatestBigDealResponse, err error) {
+func (c *LinearMarketClient) GetLatestBigDeal(ctx context.Context, params *linear.GetLatestBigDealParams) (res *linear.GetLatestBigDealResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicGetLatestBigDealPath, params, &res)
 	if err != nil {
 		return
@@ -104,7 +104,7 @@ func (c *Client) GetLatestBigDeal(ctx context.Context, params *linear.GetLatestB
 	return
 }
 
-func (c *Client) GetLongShortRatio(ctx context.Context, params *linear.GetLongShortRatioParams) (res *linear.GetLongShortRatioResponse, err error) {
+func (c *LinearMarketClient) GetLongShortRatio(ctx context.Context, params *linear.GetLongShortRatioParams) (res *linear.GetLongShortRatioResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicGetLongShortRatioPath, params, &res)
 	if err != nil {
 		return

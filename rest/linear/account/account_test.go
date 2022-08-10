@@ -3,18 +3,19 @@ package account_test
 import (
 	"context"
 	"fmt"
+	"os"
+	"strconv"
+	"testing"
+
 	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/linear"
 	linearRest "github.com/cksidharthan/go-bybit/rest/linear"
 	"github.com/stretchr/testify/assert"
-	"os"
-	"strconv"
-	"testing"
 )
 
 func TestClient_Linear_Market(t *testing.T) {
 	t.Parallel()
-	bybitClient := linearRest.New(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
+	bybitClient := linearRest.NewLinearClient(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
 
 	currentBTCPrice, err := getLinearBTCBuyPriceForTest(bybitClient)
 	if err != nil {
