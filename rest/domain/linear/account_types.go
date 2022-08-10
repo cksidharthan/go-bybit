@@ -151,7 +151,7 @@ type QueryActiveOrderParams struct {
 
 type QueryActiveOrderResponse struct {
 	domain.LinearBaseResponse `json:",inline"`
-	Result                    []QueryActiveOrderResult `json:"result"`
+	Result                    QueryActiveOrderResult `json:"result"`
 }
 
 type QueryActiveOrderResult struct {

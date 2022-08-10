@@ -81,14 +81,36 @@ func TestClient_Linear_Market(t *testing.T) {
 
 	t.Run("Query Active Order - LINEAR", func(t *testing.T) {
 		t.Parallel()
-		response, err := bybitClient.Account().QueryActiveOrder(context.Background(), &linear.QueryActiveOrderParams{
-			Symbol: "BTCUSDT",
-		})
-		assert.NoError(t, err)
-		assert.Equal(t, 0, response.RetCode)
-		assert.NotEmpty(t, response)
-		assert.NotNil(t, response)
-		assert.Equal(t, "BTCUSDT", response.Result[0].Symbol)
+		// place active order to query it
+		orderID := ""
+		{
+			response, err := bybitClient.Account().PlaceActiveOrder(context.Background(), &linear.PlaceActiveOrderParams{
+				Side:           bybit.SideBuy,
+				Symbol:         "BTCUSDT",
+				OrderType:      bybit.OrderTypeLimit,
+				Qty:            0.004,
+				Price:          *currentBTCPrice,
+				TimeInForce:    bybit.TimeInForceGoodTillCancel,
+				ReduceOnly:     false,
+				CloseOnTrigger: false,
+			})
+			assert.NoError(t, err)
+			assert.Equal(t, 0, response.RetCode)
+			assert.NotEmpty(t, response)
+			assert.NotNil(t, response)
+			orderID = response.Result.OrderID
+		}
+		{
+			response, err := bybitClient.Account().QueryActiveOrder(context.Background(), &linear.QueryActiveOrderParams{
+				Symbol:  "BTCUSDT",
+				OrderID: orderID,
+			})
+			assert.NoError(t, err)
+			assert.Equal(t, 0, response.RetCode)
+			assert.NotEmpty(t, response)
+			assert.NotNil(t, response)
+			assert.Equal(t, "BTCUSDT", response.Result.Symbol)
+		}
 	})
 
 }
