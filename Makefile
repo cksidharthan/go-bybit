@@ -9,7 +9,18 @@ export GOFLAGS = -mod=vendor
 export CGO_LDFLAGS_ALLOW="-Wl,-z,now"
 export CGO_LDFLAGS="${BUILDER_LINKER_FLAGS}"
 
+BRANCH := $(shell git branch --show-current)
+CLEANBRANCH := $(shell git branch --show-current | sed 's/\//-/')
+SHORT := $(shell git rev-parse --short HEAD)
+DEVTAG := ${CLEANBRANCH}-${SHORT}
+
 LINT_BIN		:= $(shell go env GOPATH)/bin/golangci-lint
+
+ifeq (${BRANCH}, main)
+	TAG := $(shell cat .version)
+else
+	TAG := "$(shell cat .version)-${DEVTAG}"
+endif
 
 deps:
 	go mod download
@@ -39,3 +50,9 @@ test: $(info Running tests...)
 # NOTE: Install godoc to run this command: `go install golang.org/x/tools/cmd/godoc@latest`
 docs:
 	godoc -http=:6060
+
+tag:
+	@echo "[!!!] Releasing git tag ${TAG} [!!!]"
+	git tag ${TAG}
+	git push --tags
+	@echo "[!!!] Done! [!!!]"
