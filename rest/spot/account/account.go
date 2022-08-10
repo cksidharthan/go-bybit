@@ -2,10 +2,11 @@ package account
 
 import (
 	"context"
+	"net/http"
+
 	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/spot"
 	"github.com/google/go-querystring/query"
-	"net/http"
 )
 
 func (c *Client) PlaceActiveOrder(ctx context.Context, params spot.PlaceActiveOrderParams) (res *spot.PlaceActiveOrderResponse, err error) {

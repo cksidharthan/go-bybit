@@ -2,9 +2,10 @@ package market
 
 import (
 	"context"
+	"net/http"
+
 	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/spot"
-	"net/http"
 )
 
 func (c *Client) GetSymbols(ctx context.Context) (symbols *spot.GetSymbolsResponse, err error) {
