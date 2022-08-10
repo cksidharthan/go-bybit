@@ -23,8 +23,8 @@ type PlaceActiveOrderParams struct {
 }
 
 type PlaceActiveOrderResponse struct {
-	domain.BaseResponse `json:",inline"`
-	Result              PlaceActiveOrderResult `json:"result"`
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    PlaceActiveOrderResult `json:"result"`
 }
 
 type PlaceActiveOrderResult struct {
@@ -64,8 +64,8 @@ type GetActiveOrderParams struct {
 }
 
 type GetActiveOrderResponse struct {
-	domain.BaseResponse `json:",inline"`
-	Result              GetActiveOrderResult `json:"result"`
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    GetActiveOrderResult `json:"result"`
 }
 
 type GetActiveOrderResult struct {
@@ -96,4 +96,28 @@ type GetActiveOrderResultData struct {
 	StopLoss       float64 `json:"stop_loss"`
 	TpTriggerBy    string  `json:"tp_trigger_by"`
 	SlTriggerBy    string  `json:"sl_trigger_by"`
+}
+
+type CancelActiveOrderParams struct {
+	Symbol      string `url:"symbol" json:"symbol"`
+	OrderID     string `url:"order_id,omitempty" json:"order_id,omitempty"`
+	OrderLinkID string `url:"order_link_id,omitempty" json:"order_link_id,omitempty"`
+}
+
+type CancelActiveOrderResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    CancelActiveOrderResult `json:"result"`
+}
+
+type CancelActiveOrderResult struct {
+	OrderID string `json:"order_id"`
+}
+
+type CancelAllActiveOrdersParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type CancelAllActiveOrdersResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    []string `json:"result"`
 }
