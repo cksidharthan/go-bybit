@@ -52,3 +52,48 @@ type PlaceActiveOrderResult struct {
 	SlTriggerBy    string  `json:"sl_trigger_by"`
 	PositionIDx    int     `json:"position_idx"`
 }
+
+type GetActiveOrderParams struct {
+	Symbol      string `url:"symbol" json:"symbol"`
+	OrderID     string `url:"order_id,omitempty" json:"order_id,omitempty"`
+	OrderLinkID string `url:"order_link_id,omitempty" json:"order_link_id,omitempty"`
+	Order       string `url:"order,omitempty" json:"order,omitempty"`
+	Page        int    `url:"page,omitempty" json:"page,omitempty"`
+	Limit       int    `url:"limit,omitempty" json:"limit,omitempty"`
+	OrderStatus string `url:"order_status,omitempty" json:"order_status,omitempty"`
+}
+
+type GetActiveOrderResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              GetActiveOrderResult `json:"result"`
+}
+
+type GetActiveOrderResult struct {
+	CurrentPage int                        `json:"current_page"`
+	Data        []GetActiveOrderResultData `json:"data"`
+}
+
+type GetActiveOrderResultData struct {
+	OrderID        string  `json:"order_id"`
+	UserID         int     `json:"user_id"`
+	Symbol         string  `json:"symbol"`
+	Side           string  `json:"side"`
+	OrderType      string  `json:"order_type"`
+	Price          float64 `json:"price"`
+	Qty            float64 `json:"qty"`
+	TimeInForce    string  `json:"time_in_force"`
+	OrderStatus    string  `json:"order_status"`
+	LastExecPrice  float64 `json:"last_exec_price"`
+	CumExecQty     float64 `json:"cum_exec_qty"`
+	CumExecValue   float64 `json:"cum_exec_value"`
+	CumExecFee     float64 `json:"cum_exec_fee"`
+	OrderLinkID    string  `json:"order_link_id"`
+	ReduceOnly     bool    `json:"reduce_only"`
+	CloseOnTrigger bool    `json:"close_on_trigger"`
+	CreatedTime    string  `json:"created_time"`
+	UpdatedTime    string  `json:"updated_time"`
+	TakeProfit     float64 `json:"take_profit"`
+	StopLoss       float64 `json:"stop_loss"`
+	TpTriggerBy    string  `json:"tp_trigger_by"`
+	SlTriggerBy    string  `json:"sl_trigger_by"`
+}

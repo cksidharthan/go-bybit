@@ -15,3 +15,11 @@ func (c *LinearAccountClient) PlaceActiveOrder(ctx context.Context, params *line
 	}
 	return
 }
+
+func (c *LinearAccountClient) GetActiveOrder(ctx context.Context, params *linear.GetActiveOrderParams) (res *linear.GetActiveOrderResponse, err error) {
+	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetActiveOrderPath, params, &res)
+	if err != nil {
+		return
+	}
+	return
+}

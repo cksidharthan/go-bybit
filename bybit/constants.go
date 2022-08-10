@@ -53,6 +53,7 @@ const (
 
 	// USDT Perpetual
 	PrivateLinearPlaceOrderPath          = "/private/linear/order/create"
+	PrivateLinearGetActiveOrderPath      = "/private/linear/order/list"
 	PrivateLinearOrderCancelPath         = "/private/linear/order/cancel"
 	PrivateLinearPositionListPath        = "/private/linear/position/list"
 	PrivateLinearPositionSetLeveragePath = "/private/linear/position/set-leverage"

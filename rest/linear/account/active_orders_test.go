@@ -42,6 +42,20 @@ func TestClient_Linear_Market(t *testing.T) {
 		assert.NotEmpty(t, response)
 		assert.NotNil(t, response)
 	})
+
+	t.Run("Get Active Order - LINEAR", func(t *testing.T) {
+		t.Parallel()
+		response, err := bybitClient.Account().GetActiveOrder(context.Background(), &linear.GetActiveOrderParams{
+			Symbol: "BTCUSDT",
+			Limit:  1,
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.NotNil(t, response)
+		assert.Equal(t, 1, len(response.Result.Data))
+		assert.Equal(t, "BTCUSDT", response.Result.Data[0].Symbol)
+	})
 }
 
 func getLinearBTCBuyPriceForTest(client linearRest.Interface) (*float64, error) {
