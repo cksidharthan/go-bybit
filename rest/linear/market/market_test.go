@@ -100,4 +100,58 @@ func TestClient_Linear_Market(t *testing.T) {
 		assert.NotEmpty(t, symbolInfo)
 		assert.NotNil(t, symbolInfo)
 	})
+
+	t.Run("Get Liquidated Orders -  LINEAR", func(t *testing.T) {
+		t.Parallel()
+		t.Skip("this endpoint is not available and sometimes goes offline")
+		liquidatedOrders, err := bybitClient.Market().GetLiquidatedOrders(context.Background(), &linear.GetLiquidatedOrdersParams{
+			Symbol: "BTCUSDT",
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, liquidatedOrders.RetCode)
+		assert.NotEmpty(t, liquidatedOrders)
+		assert.Equal(t, "OK", liquidatedOrders.RetMsg)
+		assert.NotNil(t, liquidatedOrders)
+	})
+
+	t.Run("Query Mark Price Kline -  LINEAR", func(t *testing.T) {
+		t.Parallel()
+		kline, err := bybitClient.Market().QueryMarkPriceKline(context.Background(), &linear.QueryMarkPriceKlineParams{
+			Symbol:   "BTCUSDT",
+			Interval: bybit.Interval1Min,
+			From:     time.Now().Add(-time.Hour).Second(),
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, kline.RetCode)
+		assert.NotEmpty(t, kline)
+		assert.Equal(t, "OK", kline.RetMsg)
+		assert.NotNil(t, kline)
+		assert.Equal(t, "BTCUSDT", kline.Result[0].Symbol)
+	})
+
+	t.Run("Query Mark Price Kline - Param validation error -  LINEAR", func(t *testing.T) {
+		t.Parallel()
+		kline, err := bybitClient.Market().QueryMarkPriceKline(context.Background(), &linear.QueryMarkPriceKlineParams{
+			Symbol: "BTCUSDT",
+			From:   time.Now().Add(-time.Hour).Second(),
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 10001, kline.RetCode)
+		assert.NotEmpty(t, kline)
+		assert.Equal(t, "Param validation for 'interval' failed on the 'required' tag", kline.RetMsg)
+	})
+
+	t.Run("Get Last Funding Rate -  LINEAR", func(t *testing.T) {
+		t.Parallel()
+		fundingRate, err := bybitClient.Market().GetLastFundingRate(context.Background(), &linear.GetLastFundingRateParams{
+			Symbol: "BTCUSDT",
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, fundingRate.RetCode)
+		assert.NotEmpty(t, fundingRate)
+		assert.Equal(t, "OK", fundingRate.RetMsg)
+		assert.NotNil(t, fundingRate)
+		assert.Equal(t, "BTCUSDT", fundingRate.Result.Symbol)
+	})
+
 }

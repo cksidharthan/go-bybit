@@ -36,6 +36,8 @@ const (
 	PublicGetPublicTradingRecordsPath = "/public/linear/recent-trading-records"
 	PublicGetLastFundingRatePath      = "/public/linear/funding/prev-funding-rate"
 	PublicQuerySymbolPath             = "/v2/public/symbols"
+	PublicLiquidatedOrdersPath        = "/v2/public/liq-records"
+	PublicQueryMarkPriceKline         = "/public/linear/mark-price-kline"
 
 	// ACCOUNT DATA ENDPOINTS
 	// Inverse Perpetual

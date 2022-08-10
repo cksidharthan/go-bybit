@@ -6,8 +6,9 @@ import (
 	"testing"
 
 	"github.com/cksidharthan/go-bybit/bybit"
-	"github.com/cksidharthan/go-bybit/rest/domain/spot"
 	spotRest "github.com/cksidharthan/go-bybit/rest/spot"
+
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -26,9 +27,9 @@ func TestClient_Spot_Market(t *testing.T) {
 
 	t.Run("happy path - get order book depth", func(t *testing.T) {
 		t.Parallel()
-		orderBook, err := bybitClient.Market().GetOrderBookDepth(context.Background(), &spot.OrderBookDepthFilter{
+		orderBook, err := bybitClient.Market().GetOrderBookDepth(context.Background(), &spot.OrderBookDepthParams{
 			Symbol: "BTCUSDT",
-			Limit:  "10",
+			Limit:  10,
 		})
 		assert.NoError(t, err)
 		assert.Equal(t, 0, orderBook.RetCode)
@@ -37,9 +38,9 @@ func TestClient_Spot_Market(t *testing.T) {
 	})
 
 	t.Run("400 - get order book depth", func(t *testing.T) {
-		orderBook, err := bybitClient.Market().GetOrderBookDepth(context.Background(), &spot.OrderBookDepthFilter{
+		orderBook, err := bybitClient.Market().GetOrderBookDepth(context.Background(), &spot.OrderBookDepthParams{
 			Symbol: "BTCUSD",
-			Limit:  "10",
+			Limit:  10,
 		})
 		assert.NoError(t, err)
 		assert.NotEqual(t, 0, orderBook.RetCode)
@@ -49,10 +50,10 @@ func TestClient_Spot_Market(t *testing.T) {
 
 	t.Run("happy path - get merged order book", func(t *testing.T) {
 		t.Parallel()
-		orderBook, err := bybitClient.Market().GetMergedOrderBook(context.Background(), &spot.MergedOrderBookFilter{
+		orderBook, err := bybitClient.Market().GetMergedOrderBook(context.Background(), &spot.MergedOrderBookParams{
 			Symbol: "BTCUSDT",
-			Limit:  "10",
-			Scale:  "1",
+			Limit:  10,
+			Scale:  1,
 		})
 		assert.NoError(t, err)
 		assert.Equal(t, 0, orderBook.RetCode)
@@ -60,22 +61,10 @@ func TestClient_Spot_Market(t *testing.T) {
 		assert.NotNil(t, orderBook)
 	})
 
-	t.Run("400 - get merged order book ", func(t *testing.T) {
-		orderBook, err := bybitClient.Market().GetMergedOrderBook(context.Background(), &spot.MergedOrderBookFilter{
-			Symbol: "BTCUSDT",
-			Limit:  "10",
-			Scale:  "0.5",
-		})
-		assert.Error(t, err)
-		assert.Empty(t, orderBook)
-		assert.Nil(t, orderBook)
-		assert.Equal(t, "HTTP 400: Param scale should be Integer.", err.Error())
-	})
-
 	t.Run("happy path - get public records", func(t *testing.T) {
-		publicTradeRecords, err := bybitClient.Market().GetPublicTradeRecords(context.Background(), &spot.TradeRecordsFilter{
+		publicTradeRecords, err := bybitClient.Market().GetPublicTradeRecords(context.Background(), &spot.PublicTradeRecordsParams{
 			Symbol: "BTCUSDT",
-			Limit:  "10",
+			Limit:  10,
 		})
 		assert.NoError(t, err)
 		assert.NotEmpty(t, publicTradeRecords)
@@ -85,9 +74,9 @@ func TestClient_Spot_Market(t *testing.T) {
 	})
 
 	t.Run("400 - get public records", func(t *testing.T) {
-		publicTradeRecords, err := bybitClient.Market().GetPublicTradeRecords(context.Background(), &spot.TradeRecordsFilter{
+		publicTradeRecords, err := bybitClient.Market().GetPublicTradeRecords(context.Background(), &spot.PublicTradeRecordsParams{
 			Symbol: "BTCUSD",
-			Limit:  "10",
+			Limit:  10,
 		})
 		assert.NoError(t, err)
 		assert.NotEqual(t, 0, publicTradeRecords.RetCode)
@@ -96,9 +85,9 @@ func TestClient_Spot_Market(t *testing.T) {
 	})
 
 	t.Run("happy path - get kline", func(t *testing.T) {
-		klines, err := bybitClient.Market().GetKline(context.Background(), &spot.KlineFilter{
+		klines, err := bybitClient.Market().GetKline(context.Background(), &spot.GetKlineParams{
 			Symbol:   "BTCUSDT",
-			Limit:    "10",
+			Limit:    10,
 			Interval: "1m",
 		})
 		assert.NoError(t, err)
@@ -109,9 +98,9 @@ func TestClient_Spot_Market(t *testing.T) {
 	})
 
 	t.Run("400 - get kline", func(t *testing.T) {
-		klines, err := bybitClient.Market().GetKline(context.Background(), &spot.KlineFilter{
+		klines, err := bybitClient.Market().GetKline(context.Background(), &spot.GetKlineParams{
 			Symbol:   "BTCUSDT",
-			Limit:    "10",
+			Limit:    10,
 			Interval: "1",
 		})
 		assert.NoError(t, err)
@@ -121,7 +110,9 @@ func TestClient_Spot_Market(t *testing.T) {
 	})
 
 	t.Run("happy path - get ticker 24hr", func(t *testing.T) {
-		tickerInfo, err := bybitClient.Market().GetTickerInfo24hr(context.Background(), "BTCUSDT")
+		tickerInfo, err := bybitClient.Market().GetTickerInfo24hr(context.Background(), &spot.GetTickerInfo24hrParams{
+			Symbol: "BTCUSDT",
+		})
 		assert.NoError(t, err)
 		assert.NotEmpty(t, tickerInfo)
 		assert.Equal(t, 0, tickerInfo.RetCode)
@@ -130,7 +121,9 @@ func TestClient_Spot_Market(t *testing.T) {
 	})
 
 	t.Run("400 - get ticker 24hr", func(t *testing.T) {
-		tickerInfo, err := bybitClient.Market().GetTickerInfo24hr(context.Background(), "BTCUSD")
+		tickerInfo, err := bybitClient.Market().GetTickerInfo24hr(context.Background(), &spot.GetTickerInfo24hrParams{
+			Symbol: "BTCUSD",
+		})
 		assert.NoError(t, err)
 		assert.NotEqual(t, 0, tickerInfo.RetCode)
 		assert.Equal(t, -100011, tickerInfo.RetCode)
@@ -138,7 +131,9 @@ func TestClient_Spot_Market(t *testing.T) {
 	})
 
 	t.Run("happy path - get last traded price", func(t *testing.T) {
-		tradePrice, err := bybitClient.Market().GetLastTradedPrice(context.Background(), "BTCUSDT")
+		tradePrice, err := bybitClient.Market().GetLastTradedPrice(context.Background(), &spot.GetLastTradedPriceParams{
+			Symbol: "BTCUSDT",
+		})
 		assert.NoError(t, err)
 		assert.NotEmpty(t, tradePrice)
 		assert.NotNil(t, tradePrice)
@@ -147,7 +142,9 @@ func TestClient_Spot_Market(t *testing.T) {
 	})
 
 	t.Run("400 - get last traded price", func(t *testing.T) {
-		tradePrice, err := bybitClient.Market().GetLastTradedPrice(context.Background(), "BTCUSD")
+		tradePrice, err := bybitClient.Market().GetLastTradedPrice(context.Background(), &spot.GetLastTradedPriceParams{
+			Symbol: "BTCUSD",
+		})
 		assert.NoError(t, err)
 		assert.NotEqual(t, 0, tradePrice.RetCode)
 		assert.Equal(t, -100011, tradePrice.RetCode)
@@ -155,7 +152,9 @@ func TestClient_Spot_Market(t *testing.T) {
 	})
 
 	t.Run("happy path - get bid ask price", func(t *testing.T) {
-		bidAskPrice, err := bybitClient.Market().GetBidAskPrice(context.Background(), "BTCUSDT")
+		bidAskPrice, err := bybitClient.Market().GetBidAskPrice(context.Background(), &spot.GetBidAskPriceParams{
+			Symbol: "BTCUSDT",
+		})
 		assert.NoError(t, err)
 		assert.NotEmpty(t, bidAskPrice)
 		assert.Equal(t, 0, bidAskPrice.RetCode)
@@ -164,7 +163,9 @@ func TestClient_Spot_Market(t *testing.T) {
 	})
 
 	t.Run("400 - get last traded price", func(t *testing.T) {
-		bidAskPrice, err := bybitClient.Market().GetBidAskPrice(context.Background(), "BTCUSD")
+		bidAskPrice, err := bybitClient.Market().GetBidAskPrice(context.Background(), &spot.GetBidAskPriceParams{
+			Symbol: "BTCUSD",
+		})
 		assert.NoError(t, err)
 		assert.NotEqual(t, 0, bidAskPrice.RetCode)
 		assert.Equal(t, -100011, bidAskPrice.RetCode)

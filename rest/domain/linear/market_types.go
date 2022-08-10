@@ -147,3 +147,47 @@ type QuerySymbolResult struct {
 	QtyStep               float64 `json:"qty_step"`
 	PostOnlyMaxTradingQty string  `json:"post_only_max_trading_qty"`
 }
+
+type GetLiquidatedOrdersParams struct {
+	Symbol    string `url:"symbol" json:"symbol"`
+	From      int    `url:"from,omitempty" json:"from,omitempty"`
+	Limit     int    `url:"limit,omitempty" json:"limit,omitempty"`
+	StartTime int    `url:"start_time,omitempty" json:"start_time,omitempty"`
+	EndTime   int    `url:"end_time,omitempty" json:"end_time,omitempty"`
+}
+
+type GetLiquidatedOrdersResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              []GetLiquidatedOrdersResult `json:"result"`
+}
+
+type GetLiquidatedOrdersResult struct {
+	ID     string  `json:"id"`
+	Symbol string  `json:"symbol"`
+	Price  float64 `json:"price"`
+	Qty    float64 `json:"qty"`
+	Side   string  `json:"side"`
+	Time   string  `json:"time"`
+}
+
+type QueryMarkPriceKlineParams struct {
+	Symbol   string         `url:"symbol" json:"symbol"`
+	Interval bybit.Interval `url:"interval" json:"interval"`
+	From     int            `url:"from,omitempty" json:"from,omitempty"`
+	Limit    int            `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type QueryMarkPriceKlineResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              []QueryMarkPriceKlineResult `json:"result"`
+}
+
+type QueryMarkPriceKlineResult struct {
+	Symbol  string  `json:"symbol"`
+	Period  string  `json:"period"`
+	Open    float64 `json:"open"`
+	High    float64 `json:"high"`
+	Low     float64 `json:"low"`
+	Close   float64 `json:"close"`
+	StartAt int     `json:"start_at"`
+}
