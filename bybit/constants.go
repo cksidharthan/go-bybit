@@ -52,9 +52,9 @@ const (
 	PrivateInversePerpLeverageSavePath = "/v2/private/position/leverage/save"
 
 	// USDT Perpetual
-	PrivateUSDTPerpOrderCreatePath         = "/private/linear/order/create"
-	PrivateUSDTPerpOrderCancelPath         = "/private/linear/order/cancel"
-	PrivateUSDTPerpPositionListPath        = "/private/linear/position/list"
-	PrivateUSDTPerpPositionSetLeveragePath = "/private/linear/position/set-leverage"
-	PrivateUSDTPerpTradeExecutionListPath  = "/private/linear/trade/execution/list"
+	PrivateLinearPlaceOrderPath          = "/private/linear/order/create"
+	PrivateLinearOrderCancelPath         = "/private/linear/order/cancel"
+	PrivateLinearPositionListPath        = "/private/linear/position/list"
+	PrivateLinearPositionSetLeveragePath = "/private/linear/position/set-leverage"
+	PrivateLinearTradeExecutionListPath  = "/private/linear/trade/execution/list"
 )
