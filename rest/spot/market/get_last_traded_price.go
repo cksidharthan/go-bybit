@@ -2,27 +2,14 @@ package market
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
-	"net/url"
-
-	"github.com/cksidharthan/go-bybit/rest/domain/spot"
 
 	"github.com/cksidharthan/go-bybit/bybit"
+	"github.com/cksidharthan/go-bybit/rest/domain/spot"
 )
 
-func (c *Client) GetLastTradedPrice(ctx context.Context, symbol string) (lastTradedPrice *spot.PriceResponse, err error) {
-	path := bybit.PublicSpotQuoteTickerPrice + "?symbol=" + symbol
-	apiPath, err := url.Parse(path)
-	if err != nil {
-		return
-	}
-	payload, err := c.transporter.UnSignedRequest(ctx, apiPath, http.MethodGet, nil, nil)
-	if err != nil {
-		return
-	}
-
-	err = json.Unmarshal(payload, &lastTradedPrice)
+func (c *Client) GetLastTradedPrice(ctx context.Context, params *spot.GetLastTradedPriceParams) (res *spot.GetLastTradedPriceResponse, err error) {
+	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicSpotQuoteTickerPrice, params, &res)
 	if err != nil {
 		return
 	}

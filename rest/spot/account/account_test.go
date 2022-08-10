@@ -341,7 +341,9 @@ func TestSpotClient_Account(t *testing.T) {
 }
 
 func getSpotBTCBuyPriceForTest(client spotRest.Interface) (*float64, error) {
-	response, err := client.Market().GetLastTradedPrice(context.Background(), "BTCUSDT")
+	response, err := client.Market().GetLastTradedPrice(context.Background(), &spot.GetLastTradedPriceParams{
+		Symbol: "BTCUSDT",
+	})
 	if err != nil {
 		return nil, fmt.Errorf("failed to get current BTC price: %v", err)
 	}

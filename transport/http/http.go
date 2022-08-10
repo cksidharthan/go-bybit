@@ -16,6 +16,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/google/go-querystring/query"
+
 	"github.com/cksidharthan/go-bybit/transport"
 )
 
@@ -53,7 +55,55 @@ func (h *HTTP) SignedPostForm(path string, params url.Values, response interface
 	return
 }
 
-func (h *HTTP) UnSignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) {
+func (h *HTTP) SignedRequest(ctx context.Context, method string, path string, params interface{}, response interface{}) (err error) {
+	apiPath, err := url.Parse(path)
+	if err != nil {
+		return
+	}
+
+	queryString, err := query.Values(params)
+	if err != nil {
+		return
+	}
+	apiPath.RawQuery = queryString.Encode()
+
+	payload, err := h.signedRequestCall(ctx, apiPath, method, nil, nil)
+	if err != nil {
+		return
+	}
+
+	err = json.Unmarshal(payload, &response)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (h *HTTP) UnsignedRequest(ctx context.Context, method string, path string, params interface{}, response interface{}) (err error) {
+	apiPath, err := url.Parse(path)
+	if err != nil {
+		return
+	}
+
+	queryString, err := query.Values(params)
+	if err != nil {
+		return
+	}
+	apiPath.RawQuery = queryString.Encode()
+
+	payload, err := h.unSignedRequestCall(ctx, apiPath, method, nil, nil)
+	if err != nil {
+		return
+	}
+
+	err = json.Unmarshal(payload, &response)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (h *HTTP) unSignedRequestCall(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) {
 	c := http.Client{
 		Timeout: 5 * time.Second,
 	}
@@ -119,7 +169,7 @@ func (h *HTTP) UnSignedRequest(ctx context.Context, apiPath *url.URL, method str
 	return respData, nil
 }
 
-func (h *HTTP) SignedRequest(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) {
+func (h *HTTP) signedRequestCall(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) {
 	// Check if the auth values are present
 	if h.APIKey == "" || h.APISecret == "" {
 		return nil, &transport.Error{
