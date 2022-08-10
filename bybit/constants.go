@@ -56,6 +56,8 @@ const (
 	PrivateLinearGetActiveOrderPath      = "/private/linear/order/list"
 	PrivateLinearOrderCancelPath         = "/private/linear/order/cancel"
 	PrivateLinearOrderCancelAllPath      = "/private/linear/order/cancel-all"
+	PrivateLinearReplaceActiveOrderPath  = "/private/linear/order/replace"
+	PrivateLinearQueryActiveOrderPath    = "/private/linear/order/search"
 	PrivateLinearPositionListPath        = "/private/linear/position/list"
 	PrivateLinearPositionSetLeveragePath = "/private/linear/position/set-leverage"
 	PrivateLinearTradeExecutionListPath  = "/private/linear/trade/execution/list"

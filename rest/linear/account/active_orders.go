@@ -39,3 +39,19 @@ func (c *LinearAccountClient) CancelAllActiveOrders(ctx context.Context, params 
 	}
 	return
 }
+
+func (c *LinearAccountClient) ReplaceActiveOrder(ctx context.Context, params *linear.ReplaceActiveOrderParams) (res *linear.ReplaceActiveOrderResponse, err error) {
+	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearReplaceActiveOrderPath, params, &res)
+	if err != nil {
+		return
+	}
+	return
+}
+
+func (c *LinearAccountClient) QueryActiveOrder(ctx context.Context, params *linear.QueryActiveOrderParams) (res *linear.QueryActiveOrderResponse, err error) {
+	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearQueryActiveOrderPath, params, &res)
+	if err != nil {
+		return
+	}
+	return
+}
