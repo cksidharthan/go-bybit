@@ -2,6 +2,7 @@ package market_test
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"testing"
 	"time"
@@ -99,5 +100,19 @@ func TestClient_Linear_Market(t *testing.T) {
 		assert.Equal(t, 0, symbolInfo.RetCode)
 		assert.NotEmpty(t, symbolInfo)
 		assert.NotNil(t, symbolInfo)
+	})
+
+	t.Run("Get Liquidated Orders -  LINEAR", func(t *testing.T) {
+		t.Parallel()
+		t.Skip("this endpoint is not available and sometimes goes offline")
+		liquidatedOrders, err := bybitClient.Market().GetLiquidatedOrders(context.Background(), &linear.GetLiquidatedOrdersParams{
+			Symbol: "BTCUSDT",
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, liquidatedOrders.RetCode)
+		assert.NotEmpty(t, liquidatedOrders)
+		assert.Equal(t, "OK", liquidatedOrders.RetMsg)
+		fmt.Println(liquidatedOrders)
+		assert.NotNil(t, liquidatedOrders)
 	})
 }
