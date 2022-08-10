@@ -20,7 +20,7 @@ go get -u github.com/cksidharthan/go-bybit
 | SPOT              | Account Data | :heavy_check_mark: | :heavy_check_mark: |
 | SPOT              | Wallet Data  | :heavy_check_mark: | :heavy_check_mark: |
 | SPOT              | API Data     | :heavy_check_mark: | :heavy_check_mark: |
-| USDT Perpetual    | Market Data  |        :x:         |        :x:         |
+| USDT Perpetual    | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
 | USDT Perpetual    | Account Data |        :x:         |        :x:         |
 | USDT Perpetual    | Wallet Data  |        :x:         |        :x:         |
 | USDT Perpetual    | API Data     |        :x:         |        :x:         |

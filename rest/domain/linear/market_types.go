@@ -191,3 +191,102 @@ type QueryMarkPriceKlineResult struct {
 	Close   float64 `json:"close"`
 	StartAt int     `json:"start_at"`
 }
+
+type QueryIndexPriceKlineParams struct {
+	Symbol   string         `url:"symbol" json:"symbol"`
+	Interval bybit.Interval `url:"interval" json:"interval"`
+	From     int            `url:"from" json:"from"`
+	Limit    int            `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type QueryIndexPriceKlineResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              []QueryIndexPriceKlineResult `json:"result"`
+}
+
+type QueryIndexPriceKlineResult struct {
+	Symbol   string `json:"symbol"`
+	Period   string `json:"period"`
+	OpenTime int    `json:"open_time"`
+	Open     string `json:"open"`
+	High     string `json:"high"`
+	Low      string `json:"low"`
+	Close    string `json:"close"`
+}
+
+type QueryPremiumIndexKlineParams struct {
+	Symbol   string         `url:"symbol" json:"symbol"`
+	Interval bybit.Interval `url:"interval" json:"interval"`
+	From     int            `url:"from,omitempty" json:"from,omitempty"`
+	Limit    int            `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type QueryPremiumIndexKlineResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              []QueryPremiumIndexKlineResult `json:"result"`
+}
+
+type QueryPremiumIndexKlineResult struct {
+	Symbol   string  `json:"symbol"`
+	Period   string  `json:"period"`
+	OpenTime float64 `json:"open_time"`
+	Open     string  `json:"open"`
+	High     string  `json:"high"`
+	Low      string  `json:"low"`
+	Close    string  `json:"close"`
+}
+
+type GetOpenInterestParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+	// Data recording period. 5min, 15min, 30min, 1h, 4h, 1d
+	Period bybit.Period `url:"period" json:"period"`
+	Limit  int          `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type GetOpenInterestResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              []GetOpenInterestResult `json:"result"`
+}
+
+type GetOpenInterestResult struct {
+	Symbol       string  `json:"symbol"`
+	Timestamp    int     `json:"timestamp"`
+	OpenInterest float64 `json:"open_interest"`
+}
+
+type GetLatestBigDealParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+	Limit  int    `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type GetLatestBigDealResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              []GetLatestBigDealResult `json:"result"`
+}
+
+type GetLatestBigDealResult struct {
+	Symbol    string  `json:"symbol"`
+	Side      string  `json:"side"`
+	Timestamp int     `json:"timestamp"`
+	Value     float64 `json:"value"`
+}
+
+type GetLongShortRatioParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+	// Data recording period. 5min, 15min, 30min, 1h, 4h, 1d
+	Period bybit.Period `url:"period,omitempty" json:"period,omitempty"`
+	// Limit for data size per page, max size is 500. Default as showing 50 pieces of data per page
+	Limit int `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type GetLongShortRatioResponse struct {
+	domain.BaseResponse `json:",inline"`
+	Result              []GetLongShortRatioResult `json:"result"`
+}
+
+type GetLongShortRatioResult struct {
+	Symbol    string  `json:"symbol"`
+	BuyRatio  float64 `json:"buy_ratio"`
+	SellRatio float64 `json:"sell_ratio"`
+	Timestamp int     `json:"timestamp"`
+}
