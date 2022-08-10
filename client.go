@@ -4,20 +4,20 @@ import (
 	"github.com/cksidharthan/go-bybit/rest"
 )
 
-type BybitClientInterface interface {
+type RestClientInterface interface {
 	Rest() rest.Interface
 }
 
-type BybitClient struct {
+type RestClient struct {
 	rest rest.Interface
 }
 
-func (c *BybitClient) Bybit() rest.Interface {
+func (c *RestClient) Rest() rest.Interface {
 	return c.rest
 }
 
-func New(url, apiKey, apiSecret string) *BybitClient {
-	return &BybitClient{
-		rest: rest.New(url, apiKey, apiSecret),
+func NewBybitClient(url, apiKey, apiSecret string) *RestClient {
+	return &RestClient{
+		rest: rest.NewRestClient(url, apiKey, apiSecret),
 	}
 }

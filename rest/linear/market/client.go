@@ -5,13 +5,13 @@ import (
 	httpTransport "github.com/cksidharthan/go-bybit/transport/http"
 )
 
-type Client struct {
+type LinearMarketClient struct {
 	transporter transport.Transporter
 }
 
-func New(url, apiKey, apiSecret string) *Client {
+func NewLinearMarketClient(url, apiKey, apiSecret string) *LinearMarketClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
-	return &Client{
+	return &LinearMarketClient{
 		transporter: transporter,
 	}
 }

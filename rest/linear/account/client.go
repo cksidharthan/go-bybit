@@ -5,13 +5,13 @@ import (
 	httpTransport "github.com/cksidharthan/go-bybit/transport/http"
 )
 
-type Client struct {
+type LinearAccountClient struct {
 	transporter transport.Transporter
 }
 
-func New(url, apiKey, apiSecret string) *Client {
+func NewLinearAccountClient(url, apiKey, apiSecret string) *LinearAccountClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
-	return &Client{
+	return &LinearAccountClient{
 		transporter: transporter,
 	}
 }

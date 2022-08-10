@@ -14,7 +14,7 @@ import (
 
 func TestClient_Linear_Market(t *testing.T) {
 	t.Parallel()
-	bybitClient := linearRest.New(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
+	bybitClient := linearRest.NewLinearClient(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
 
 	t.Run("Get Order Book - LINEAR", func(t *testing.T) {
 		t.Parallel()

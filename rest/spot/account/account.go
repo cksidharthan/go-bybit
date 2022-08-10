@@ -9,7 +9,7 @@ import (
 	"github.com/google/go-querystring/query"
 )
 
-func (c *Client) PlaceActiveOrder(ctx context.Context, params spot.PlaceActiveOrderParams) (res *spot.PlaceActiveOrderResponse, err error) {
+func (c *SpotAccountClient) PlaceActiveOrder(ctx context.Context, params spot.PlaceActiveOrderParams) (res *spot.PlaceActiveOrderResponse, err error) {
 	queryString, err := query.Values(params)
 	if err != nil {
 		return
@@ -21,7 +21,7 @@ func (c *Client) PlaceActiveOrder(ctx context.Context, params spot.PlaceActiveOr
 	return
 }
 
-func (c *Client) GetActiveOrder(ctx context.Context, params spot.GetActiveOrderParams) (res *spot.GetActiveOrderResponse, err error) {
+func (c *SpotAccountClient) GetActiveOrder(ctx context.Context, params spot.GetActiveOrderParams) (res *spot.GetActiveOrderResponse, err error) {
 	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateSpotOrderPath, params, &res)
 	if err != nil {
 		return
@@ -29,7 +29,7 @@ func (c *Client) GetActiveOrder(ctx context.Context, params spot.GetActiveOrderP
 	return
 }
 
-func (c *Client) CancelActiveOrder(ctx context.Context, params spot.CancelActiveOrderParams) (res *spot.CancelActiveOrderResponse, err error) {
+func (c *SpotAccountClient) CancelActiveOrder(ctx context.Context, params spot.CancelActiveOrderParams) (res *spot.CancelActiveOrderResponse, err error) {
 	err = c.transporter.SignedRequest(ctx, http.MethodDelete, bybit.PrivateSpotOrderPath, params, &res)
 	if err != nil {
 		return
@@ -37,7 +37,7 @@ func (c *Client) CancelActiveOrder(ctx context.Context, params spot.CancelActive
 	return
 }
 
-func (c *Client) FastCancelActiveOrder(ctx context.Context, params spot.FastCancelActiveOrderParams) (res *spot.FastCancelActiveOrderResponse, err error) {
+func (c *SpotAccountClient) FastCancelActiveOrder(ctx context.Context, params spot.FastCancelActiveOrderParams) (res *spot.FastCancelActiveOrderResponse, err error) {
 	err = c.transporter.SignedRequest(ctx, http.MethodDelete, bybit.PrivateSpotOrderFastPath, params, &res)
 	if err != nil {
 		return
@@ -45,7 +45,7 @@ func (c *Client) FastCancelActiveOrder(ctx context.Context, params spot.FastCanc
 	return
 }
 
-func (c *Client) BatchCancelActiveOrder(ctx context.Context, params spot.BatchCancelActiveOrderParams) (res *spot.BatchCancelActiveOrderResponse, err error) {
+func (c *SpotAccountClient) BatchCancelActiveOrder(ctx context.Context, params spot.BatchCancelActiveOrderParams) (res *spot.BatchCancelActiveOrderResponse, err error) {
 	err = c.transporter.SignedRequest(ctx, http.MethodDelete, bybit.PrivateSpotOrderBatchCancelPath, params, &res)
 	if err != nil {
 		return
@@ -53,7 +53,7 @@ func (c *Client) BatchCancelActiveOrder(ctx context.Context, params spot.BatchCa
 	return
 }
 
-func (c *Client) BatchFastCancelActiveOrder(ctx context.Context, params spot.BatchFastCancelActiveOrderParams) (res *spot.BatchFastCancelActiveOrderResponse, err error) {
+func (c *SpotAccountClient) BatchFastCancelActiveOrder(ctx context.Context, params spot.BatchFastCancelActiveOrderParams) (res *spot.BatchFastCancelActiveOrderResponse, err error) {
 	err = c.transporter.SignedRequest(ctx, http.MethodDelete, bybit.PrivateSpotOrderBatchFastCancelPath, params, &res)
 	if err != nil {
 		return
@@ -61,7 +61,7 @@ func (c *Client) BatchFastCancelActiveOrder(ctx context.Context, params spot.Bat
 	return
 }
 
-func (c *Client) BatchCancelActiveOrdersByIDs(ctx context.Context, params spot.BatchCancelActiveOrdersByIDsParams) (res *spot.BatchCancelActiveOrdersByIDsResponse, err error) {
+func (c *SpotAccountClient) BatchCancelActiveOrdersByIDs(ctx context.Context, params spot.BatchCancelActiveOrdersByIDsParams) (res *spot.BatchCancelActiveOrdersByIDsResponse, err error) {
 	err = c.transporter.SignedRequest(ctx, http.MethodDelete, bybit.PrivateSpotBatchCancelByIdsPath, params, &res)
 	if err != nil {
 		return
@@ -69,7 +69,7 @@ func (c *Client) BatchCancelActiveOrdersByIDs(ctx context.Context, params spot.B
 	return
 }
 
-func (c *Client) GetOpenOrders(ctx context.Context, params spot.GetOpenOrdersParams) (res *spot.GetOpenOrdersResponse, err error) {
+func (c *SpotAccountClient) GetOpenOrders(ctx context.Context, params spot.GetOpenOrdersParams) (res *spot.GetOpenOrdersResponse, err error) {
 	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateOpenOrdersPath, params, &res)
 	if err != nil {
 		return
@@ -77,7 +77,7 @@ func (c *Client) GetOpenOrders(ctx context.Context, params spot.GetOpenOrdersPar
 	return
 }
 
-func (c *Client) GetOrderHistory(ctx context.Context, params spot.GetOrderHistoryParams) (res *spot.GetOrderHistoryResponse, err error) {
+func (c *SpotAccountClient) GetOrderHistory(ctx context.Context, params spot.GetOrderHistoryParams) (res *spot.GetOrderHistoryResponse, err error) {
 	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateOrderHistoryPath, params, &res)
 	if err != nil {
 		return
@@ -85,7 +85,7 @@ func (c *Client) GetOrderHistory(ctx context.Context, params spot.GetOrderHistor
 	return
 }
 
-func (c *Client) GetTradeHistory(ctx context.Context, params spot.GetTradeHistoryParams) (res *spot.GetTradeHistoryResponse, err error) {
+func (c *SpotAccountClient) GetTradeHistory(ctx context.Context, params spot.GetTradeHistoryParams) (res *spot.GetTradeHistoryResponse, err error) {
 	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateTradeHistoryPath, params, &res)
 	if err != nil {
 		return

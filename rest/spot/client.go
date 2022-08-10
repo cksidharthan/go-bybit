@@ -31,10 +31,10 @@ func (c *Client) Wallet() spot.WalletInterface {
 	return c.wallet
 }
 
-func New(url, apiKey, apiSecret string) Interface {
+func NewSpotClient(url, apiKey, apiSecret string) Interface {
 	return &Client{
-		market:  market.New(url, apiKey, apiSecret),
-		account: account.New(url, apiKey, apiSecret),
-		wallet:  wallet.New(url, apiKey, apiSecret),
+		market:  market.NewSpotMarketClient(url, apiKey, apiSecret),
+		account: account.NewSpotAccountClient(url, apiKey, apiSecret),
+		wallet:  wallet.NewSpotWalletClient(url, apiKey, apiSecret),
 	}
 }

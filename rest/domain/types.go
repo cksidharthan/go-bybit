@@ -6,3 +6,11 @@ type BaseResponse struct {
 	ExtCode string `json:"ext_code"`
 	ExtInfo string `json:"ext_info"`
 }
+
+type LinearBaseResponse struct {
+	BaseResponse     `json:",inline"`
+	TimeNow          string `json:"time_now"`
+	RateLimitStatus  int    `json:"rate_limit_status"`
+	RateLimitResetMs int    `json:"rate_limit_reset_ms"`
+	RateLimit        int    `json:"rate_limit"`
+}

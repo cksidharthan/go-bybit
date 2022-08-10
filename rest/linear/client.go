@@ -31,10 +31,10 @@ func (c *Client) Wallet() linear.WalletInterface {
 	return c.wallet
 }
 
-func New(url, apiKey, apiSecret string) Interface {
+func NewLinearClient(url, apiKey, apiSecret string) Interface {
 	return &Client{
-		market:  market.New(url, apiKey, apiSecret),
-		account: account.New(url, apiKey, apiSecret),
-		wallet:  wallet.New(url, apiKey, apiSecret),
+		market:  market.NewLinearMarketClient(url, apiKey, apiSecret),
+		account: account.NewLinearAccountClient(url, apiKey, apiSecret),
+		wallet:  wallet.NewLinearWalletClient(url, apiKey, apiSecret),
 	}
 }

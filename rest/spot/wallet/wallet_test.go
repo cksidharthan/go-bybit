@@ -11,7 +11,7 @@ import (
 )
 
 func TestSpotClient_Wallet(t *testing.T) {
-	client := spotRest.New(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
+	client := spotRest.NewSpotClient(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
 
 	t.Run("happy path - get symbols", func(t *testing.T) {
 		t.Parallel()

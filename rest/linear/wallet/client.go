@@ -5,13 +5,13 @@ import (
 	httpTransport "github.com/cksidharthan/go-bybit/transport/http"
 )
 
-type Client struct {
+type LinearWalletClient struct {
 	transporter transport.Transporter
 }
 
-func New(url, apiKey, apiSecret string) *Client {
+func NewLinearWalletClient(url, apiKey, apiSecret string) *LinearWalletClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
-	return &Client{
+	return &LinearWalletClient{
 		transporter: transporter,
 	}
 }

@@ -11,6 +11,7 @@ type OrderBookParams struct {
 
 type OrderBookResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string            `json:"time_now"`
 	Result              []OrderBookResult `json:"result"`
 }
 
@@ -30,6 +31,7 @@ type QueryKlineParams struct {
 
 type QueryKlineResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string             `json:"time_now"`
 	Result              []QueryKlineResult `json:"result"`
 }
 
@@ -53,6 +55,7 @@ type GetSymbolInformationParams struct {
 
 type GetSymbolInformationResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string                       `json:"time_now"`
 	Result              []GetSymbolInformationResult `json:"result"`
 }
 
@@ -93,6 +96,7 @@ type GetPublicTradingRecordsParams struct {
 
 type GetPublicTradingRecordsResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string                          `json:"time_now"`
 	Result              []GetPublicTradingRecordsResult `json:"result"`
 }
 
@@ -112,6 +116,7 @@ type GetLastFundingRateParams struct {
 
 type GetLastFundingRateResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string                   `json:"time_now"`
 	Result              GetLastFundingRateResult `json:"result"`
 }
 
@@ -123,6 +128,7 @@ type GetLastFundingRateResult struct {
 
 type QuerySymbolResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string              `json:"time_now"`
 	Result              []QuerySymbolResult `json:"result"`
 }
 
@@ -158,6 +164,7 @@ type GetLiquidatedOrdersParams struct {
 
 type GetLiquidatedOrdersResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string                      `json:"time_now"`
 	Result              []GetLiquidatedOrdersResult `json:"result"`
 }
 
@@ -179,6 +186,7 @@ type QueryMarkPriceKlineParams struct {
 
 type QueryMarkPriceKlineResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string                      `json:"time_now"`
 	Result              []QueryMarkPriceKlineResult `json:"result"`
 }
 
@@ -201,6 +209,7 @@ type QueryIndexPriceKlineParams struct {
 
 type QueryIndexPriceKlineResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string                       `json:"time_now"`
 	Result              []QueryIndexPriceKlineResult `json:"result"`
 }
 
@@ -223,6 +232,7 @@ type QueryPremiumIndexKlineParams struct {
 
 type QueryPremiumIndexKlineResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string                         `json:"time_now"`
 	Result              []QueryPremiumIndexKlineResult `json:"result"`
 }
 
@@ -245,6 +255,7 @@ type GetOpenInterestParams struct {
 
 type GetOpenInterestResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string                  `json:"time_now"`
 	Result              []GetOpenInterestResult `json:"result"`
 }
 
@@ -261,6 +272,7 @@ type GetLatestBigDealParams struct {
 
 type GetLatestBigDealResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string                   `json:"time_now"`
 	Result              []GetLatestBigDealResult `json:"result"`
 }
 
@@ -281,6 +293,7 @@ type GetLongShortRatioParams struct {
 
 type GetLongShortRatioResponse struct {
 	domain.BaseResponse `json:",inline"`
+	TimeNow             string                    `json:"time_now"`
 	Result              []GetLongShortRatioResult `json:"result"`
 }
 
