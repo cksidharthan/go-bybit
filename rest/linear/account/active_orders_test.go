@@ -56,6 +56,17 @@ func TestClient_Linear_Market(t *testing.T) {
 		assert.Equal(t, 1, len(response.Result.Data))
 		assert.Equal(t, "BTCUSDT", response.Result.Data[0].Symbol)
 	})
+
+	t.Run("Cancel all Active orders - LINEAR", func(t *testing.T) {
+		t.Parallel()
+		response, err := bybitClient.Account().CancelAllActiveOrders(context.Background(), &linear.CancelAllActiveOrdersParams{
+			Symbol: "BTCUSDT",
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.NotNil(t, response)
+	})
 }
 
 func getLinearBTCBuyPriceForTest(client linearRest.Interface) (*float64, error) {

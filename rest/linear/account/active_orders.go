@@ -25,7 +25,7 @@ func (c *LinearAccountClient) GetActiveOrder(ctx context.Context, params *linear
 }
 
 func (c *LinearAccountClient) CancelActiveOrder(ctx context.Context, params *linear.CancelActiveOrderParams) (res *linear.CancelActiveOrderResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearOrderCancelPath, params, &res)
+	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearOrderCancelPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -33,7 +33,7 @@ func (c *LinearAccountClient) CancelActiveOrder(ctx context.Context, params *lin
 }
 
 func (c *LinearAccountClient) CancelAllActiveOrders(ctx context.Context, params *linear.CancelAllActiveOrdersParams) (res *linear.CancelAllActiveOrdersResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearOrderCancelAllPath, params, &res)
+	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearOrderCancelAllPath, params, &res)
 	if err != nil {
 		return
 	}
