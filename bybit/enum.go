@@ -124,3 +124,20 @@ const (
 	// IntervalMonth :
 	IntervalMonth = Interval("M")
 )
+
+type Period string
+
+const (
+	// Period5Min :
+	Period5Min = Period("5m")
+	// Period15Min :
+	Period15Min = Period("15m")
+	// Period30Min :
+	Period30Min = Period("30m")
+	// Period1hr :
+	Period1hr = Period("1h")
+	// Period4hr :
+	Period4hr = Period("4h")
+	// Period1day :
+	Period1day = Period("1d")
+)

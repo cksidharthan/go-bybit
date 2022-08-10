@@ -18,140 +18,225 @@ func TestClient_Linear_Market(t *testing.T) {
 
 	t.Run("Get Order Book - LINEAR", func(t *testing.T) {
 		t.Parallel()
-		orderBook, err := bybitClient.Market().GetOrderBook(context.Background(), &linear.OrderBookParams{
+		response, err := bybitClient.Market().GetOrderBook(context.Background(), &linear.OrderBookParams{
 			Symbol: "BTCUSDT",
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, 0, orderBook.RetCode)
-		assert.NotEmpty(t, orderBook)
-		assert.NotNil(t, orderBook)
-		assert.Equal(t, "BTCUSDT", orderBook.Result[0].Symbol)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.NotNil(t, response)
+		assert.Equal(t, "BTCUSDT", response.Result[0].Symbol)
 	})
 
 	t.Run("Query Kline - LINEAR", func(t *testing.T) {
 		t.Parallel()
-		kline, err := bybitClient.Market().QueryKline(context.Background(), &linear.QueryKlineParams{
+		response, err := bybitClient.Market().QueryKline(context.Background(), &linear.QueryKlineParams{
 			Symbol:   "BTCUSDT",
 			Interval: bybit.Interval1Min,
 			From:     time.Now().Add(-time.Hour).Second(),
 			Limit:    3,
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, 0, kline.RetCode)
-		assert.NotEmpty(t, kline)
-		assert.NotNil(t, kline)
-		assert.Equal(t, "BTCUSDT", kline.Result[0].Symbol)
-		assert.Equal(t, 3, len(kline.Result))
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.NotNil(t, response)
+		assert.Equal(t, "BTCUSDT", response.Result[0].Symbol)
+		assert.Equal(t, 3, len(response.Result))
 	})
 
 	t.Run("Get Symbol Info - Single Symbol - LINEAR", func(t *testing.T) {
 		t.Parallel()
-		symbolInfo, err := bybitClient.Market().GetSymbolInformation(context.Background(), &linear.GetSymbolInformationParams{
+		response, err := bybitClient.Market().GetSymbolInformation(context.Background(), &linear.GetSymbolInformationParams{
 			Symbol: "BTCUSDT",
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, 0, symbolInfo.RetCode)
-		assert.NotEmpty(t, symbolInfo)
-		assert.NotNil(t, symbolInfo)
-		assert.Equal(t, "BTCUSDT", symbolInfo.Result[0].Symbol)
-		assert.Equal(t, 1, len(symbolInfo.Result))
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.NotNil(t, response)
+		assert.Equal(t, "BTCUSDT", response.Result[0].Symbol)
+		assert.Equal(t, 1, len(response.Result))
 	})
 
 	t.Run("Get Symbol Info - Multiple Symbols - LINEAR", func(t *testing.T) {
 		t.Parallel()
-		symbolInfo, err := bybitClient.Market().GetSymbolInformation(context.Background(), &linear.GetSymbolInformationParams{})
+		response, err := bybitClient.Market().GetSymbolInformation(context.Background(), &linear.GetSymbolInformationParams{})
 		assert.NoError(t, err)
-		assert.Equal(t, 0, symbolInfo.RetCode)
-		assert.NotEmpty(t, symbolInfo)
-		assert.NotNil(t, symbolInfo)
-		assert.GreaterOrEqual(t, len(symbolInfo.Result), 0)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.NotNil(t, response)
+		assert.GreaterOrEqual(t, len(response.Result), 0)
 	})
 
 	t.Run("Get Public Trading Records - LINEAR", func(t *testing.T) {
 		t.Parallel()
-		symbolInfo, err := bybitClient.Market().GetPublicTradingRecords(context.Background(), &linear.GetPublicTradingRecordsParams{
+		response, err := bybitClient.Market().GetPublicTradingRecords(context.Background(), &linear.GetPublicTradingRecordsParams{
 			Symbol: "BTCUSDT",
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, 0, symbolInfo.RetCode)
-		assert.NotEmpty(t, symbolInfo)
-		assert.NotNil(t, symbolInfo)
-		assert.GreaterOrEqual(t, len(symbolInfo.Result), 0)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.NotNil(t, response)
+		assert.GreaterOrEqual(t, len(response.Result), 0)
 	})
 
 	t.Run("Get Public Trading Records - Limit - LINEAR", func(t *testing.T) {
 		t.Parallel()
-		symbolInfo, err := bybitClient.Market().GetPublicTradingRecords(context.Background(), &linear.GetPublicTradingRecordsParams{
+		response, err := bybitClient.Market().GetPublicTradingRecords(context.Background(), &linear.GetPublicTradingRecordsParams{
 			Symbol: "BTCUSDT",
 			Limit:  3,
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, 0, symbolInfo.RetCode)
-		assert.NotEmpty(t, symbolInfo)
-		assert.NotNil(t, symbolInfo)
-		assert.Equal(t, 3, len(symbolInfo.Result))
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.NotNil(t, response)
+		assert.Equal(t, 3, len(response.Result))
 	})
 
 	t.Run("Query Symbol -  LINEAR", func(t *testing.T) {
 		t.Parallel()
-		symbolInfo, err := bybitClient.Market().QuerySymbol(context.Background())
+		response, err := bybitClient.Market().QuerySymbol(context.Background())
 		assert.NoError(t, err)
-		assert.Equal(t, 0, symbolInfo.RetCode)
-		assert.NotEmpty(t, symbolInfo)
-		assert.NotNil(t, symbolInfo)
+		assert.Equal(t, 0, response.RetCode)
+		assert.Equal(t, "OK", response.RetMsg)
+		assert.NotEmpty(t, response)
+		assert.NotNil(t, response)
 	})
 
 	t.Run("Get Liquidated Orders -  LINEAR", func(t *testing.T) {
 		t.Parallel()
 		t.Skip("this endpoint is not available and sometimes goes offline")
-		liquidatedOrders, err := bybitClient.Market().GetLiquidatedOrders(context.Background(), &linear.GetLiquidatedOrdersParams{
+		response, err := bybitClient.Market().GetLiquidatedOrders(context.Background(), &linear.GetLiquidatedOrdersParams{
 			Symbol: "BTCUSDT",
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, 0, liquidatedOrders.RetCode)
-		assert.NotEmpty(t, liquidatedOrders)
-		assert.Equal(t, "OK", liquidatedOrders.RetMsg)
-		assert.NotNil(t, liquidatedOrders)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.Equal(t, "OK", response.RetMsg)
+		assert.NotNil(t, response)
 	})
 
 	t.Run("Query Mark Price Kline -  LINEAR", func(t *testing.T) {
 		t.Parallel()
-		kline, err := bybitClient.Market().QueryMarkPriceKline(context.Background(), &linear.QueryMarkPriceKlineParams{
+		response, err := bybitClient.Market().QueryMarkPriceKline(context.Background(), &linear.QueryMarkPriceKlineParams{
 			Symbol:   "BTCUSDT",
 			Interval: bybit.Interval1Min,
 			From:     time.Now().Add(-time.Hour).Second(),
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, 0, kline.RetCode)
-		assert.NotEmpty(t, kline)
-		assert.Equal(t, "OK", kline.RetMsg)
-		assert.NotNil(t, kline)
-		assert.Equal(t, "BTCUSDT", kline.Result[0].Symbol)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.Equal(t, "OK", response.RetMsg)
+		assert.NotNil(t, response)
+		assert.Equal(t, "BTCUSDT", response.Result[0].Symbol)
 	})
 
 	t.Run("Query Mark Price Kline - Param validation error -  LINEAR", func(t *testing.T) {
 		t.Parallel()
-		kline, err := bybitClient.Market().QueryMarkPriceKline(context.Background(), &linear.QueryMarkPriceKlineParams{
+		response, err := bybitClient.Market().QueryMarkPriceKline(context.Background(), &linear.QueryMarkPriceKlineParams{
 			Symbol: "BTCUSDT",
 			From:   time.Now().Add(-time.Hour).Second(),
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, 10001, kline.RetCode)
-		assert.NotEmpty(t, kline)
-		assert.Equal(t, "Param validation for 'interval' failed on the 'required' tag", kline.RetMsg)
+		assert.Equal(t, 10001, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.Equal(t, "Param validation for 'interval' failed on the 'required' tag", response.RetMsg)
 	})
 
 	t.Run("Get Last Funding Rate -  LINEAR", func(t *testing.T) {
 		t.Parallel()
-		fundingRate, err := bybitClient.Market().GetLastFundingRate(context.Background(), &linear.GetLastFundingRateParams{
+		response, err := bybitClient.Market().GetLastFundingRate(context.Background(), &linear.GetLastFundingRateParams{
 			Symbol: "BTCUSDT",
 		})
 		assert.NoError(t, err)
-		assert.Equal(t, 0, fundingRate.RetCode)
-		assert.NotEmpty(t, fundingRate)
-		assert.Equal(t, "OK", fundingRate.RetMsg)
-		assert.NotNil(t, fundingRate)
-		assert.Equal(t, "BTCUSDT", fundingRate.Result.Symbol)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.Equal(t, "OK", response.RetMsg)
+		assert.NotNil(t, response)
+		assert.Equal(t, "BTCUSDT", response.Result.Symbol)
 	})
 
+	t.Run("Query Index Price Kline -  LINEAR", func(t *testing.T) {
+		t.Parallel()
+		response, err := bybitClient.Market().QueryIndexPriceKline(context.Background(), &linear.QueryIndexPriceKlineParams{
+			Symbol:   "BTCUSD",
+			Interval: bybit.Interval1Min,
+			From:     time.Now().Add(-time.Hour).Second(),
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.Equal(t, "OK", response.RetMsg)
+		assert.NotNil(t, response)
+		assert.Equal(t, "BTCUSD", response.Result[0].Symbol)
+	})
+
+	t.Run("Query Index Price Kline - Param Validation fail -  LINEAR", func(t *testing.T) {
+		t.Parallel()
+		response, err := bybitClient.Market().QueryIndexPriceKline(context.Background(), &linear.QueryIndexPriceKlineParams{
+			Symbol:   "BTCUSDT",
+			Interval: bybit.Interval1Min,
+			From:     time.Now().Add(-time.Hour).Second(),
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 10001, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.Equal(t, "Param validation for 'symbol' failed on the 'symbol' tag", response.RetMsg)
+		assert.NotNil(t, response)
+	})
+
+	t.Run("Query Premium Index Kline -  LINEAR", func(t *testing.T) {
+		t.Parallel()
+		response, err := bybitClient.Market().QueryPremiumIndexKline(context.Background(), &linear.QueryPremiumIndexKlineParams{
+			Symbol:   "BTCUSD",
+			Interval: bybit.Interval1Min,
+			From:     time.Now().Add(-time.Hour).Second(),
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.Equal(t, "OK", response.RetMsg)
+		assert.NotNil(t, response)
+		assert.Equal(t, "BTCUSD", response.Result[0].Symbol)
+	})
+
+	t.Run("Get Open Interest -  LINEAR", func(t *testing.T) {
+		t.Parallel()
+		response, err := bybitClient.Market().GetOpenInterest(context.Background(), &linear.GetOpenInterestParams{
+			Symbol: "BTCUSDT",
+			Period: bybit.Period1hr,
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.Equal(t, "OK", response.RetMsg)
+		assert.NotNil(t, response)
+		assert.Equal(t, "BTCUSDT", response.Result[0].Symbol)
+	})
+
+	t.Run("Get Latest Big Deal -  LINEAR", func(t *testing.T) {
+		t.Parallel()
+		response, err := bybitClient.Market().GetLatestBigDeal(context.Background(), &linear.GetLatestBigDealParams{
+			Symbol: "BTCUSDT",
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.Equal(t, "OK", response.RetMsg)
+		assert.NotNil(t, response)
+		assert.Equal(t, "BTCUSDT", response.Result[0].Symbol)
+	})
+
+	t.Run("Get Long Short Ratio -  LINEAR", func(t *testing.T) {
+		t.Parallel()
+		response, err := bybitClient.Market().GetLongShortRatio(context.Background(), &linear.GetLongShortRatioParams{
+			Symbol: "BTCUSDT",
+			Period: bybit.Period1hr,
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.Equal(t, "OK", response.RetMsg)
+		assert.NotNil(t, response)
+		assert.Equal(t, "BTCUSDT", response.Result[0].Symbol)
+	})
 }

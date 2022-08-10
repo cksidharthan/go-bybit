@@ -35,3 +35,7 @@ test: $(info Running tests...)
 	CGO_ENABLED=0 go tool cover -html=cover.out -o cover.html
 
 .PHONY: all
+
+# NOTE: Install godoc to run this command: `go install golang.org/x/tools/cmd/godoc@latest`
+docs:
+	godoc -http=:6060

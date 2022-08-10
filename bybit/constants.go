@@ -30,14 +30,19 @@ const (
 	PrivateWalletBalancePath = "/spot/v1/account"
 
 	/* USDT Perpetual Market API */
-	PublicLinearOrderBookPath         = "v2/public/orderBook/L2"
-	PublicQueryKlinePath              = "/public/linear/kline"
-	PublicGetSymbolInformationPath    = "/v2/public/tickers"
-	PublicGetPublicTradingRecordsPath = "/public/linear/recent-trading-records"
-	PublicGetLastFundingRatePath      = "/public/linear/funding/prev-funding-rate"
-	PublicQuerySymbolPath             = "/v2/public/symbols"
-	PublicLiquidatedOrdersPath        = "/v2/public/liq-records"
-	PublicQueryMarkPriceKline         = "/public/linear/mark-price-kline"
+	PublicLinearOrderBookPath             = "v2/public/orderBook/L2"
+	PublicQueryKlinePath                  = "/public/linear/kline"
+	PublicGetSymbolInformationPath        = "/v2/public/tickers"
+	PublicGetPublicTradingRecordsPath     = "/public/linear/recent-trading-records"
+	PublicGetLastFundingRatePath          = "/public/linear/funding/prev-funding-rate"
+	PublicQuerySymbolPath                 = "/v2/public/symbols"
+	PublicLiquidatedOrdersPath            = "/v2/public/liq-records"
+	PublicQueryMarkPriceKline             = "/public/linear/mark-price-kline"
+	PublicQueryIndexPriceKlinePath        = "/v2/public/index-price-kline"
+	PublicQueryPremiumIndexPriceKlinePath = "/v2/public/premium-index-kline"
+	PublicGetOpenInterestPath             = "/v2/public/open-interest"
+	PublicGetLatestBigDealPath            = "/v2/public/big-deal"
+	PublicGetLongShortRatioPath           = "/v2/public/account-ratio"
 
 	// ACCOUNT DATA ENDPOINTS
 	// Inverse Perpetual
