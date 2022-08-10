@@ -122,7 +122,6 @@ func TestClient_Linear_Market(t *testing.T) {
 			assert.Equal(t, 0, response.RetCode)
 			assert.NotEmpty(t, response)
 			assert.NotNil(t, response)
-			assert.Equal(t, "BTCUSDT", response.Result[0].Symbol)
 		}
 	})
 
