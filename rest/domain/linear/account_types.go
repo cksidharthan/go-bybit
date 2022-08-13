@@ -431,3 +431,27 @@ type PositionResultData struct {
 	Data    PositionsResult `json:"data"`
 	IsValid bool            `json:"is_valid"`
 }
+
+type SetAutoAddMarginParams struct {
+	Symbol        string     `url:"symbol" json:"symbol"`
+	Side          bybit.Side `url:"side" json:"side"`
+	AutoAddMargin bool       `url:"auto_add_margin" json:"auto_add_margin"`
+	PositionIDx   int        `url:"position_idx,omitempty" json:"position_idx,omitempty"`
+}
+
+type SetAutoAddMarginResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    string `json:"result"`
+}
+
+type SwitchMarginParams struct {
+	Symbol       string `url:"symbol" json:"symbol"`
+	IsIsolated   bool   `url:"is_isolated" json:"is_isolated"`
+	BuyLeverage  int    `url:"buy_leverage" json:"buy_leverage"`
+	SellLeverage int    `url:"sell_leverage" json:"sell_leverage"`
+}
+
+type SwitchMarginResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    string `json:"result"`
+}

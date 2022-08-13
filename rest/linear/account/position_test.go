@@ -30,4 +30,34 @@ func TestClient_Linear_Account_Position(t *testing.T) {
 		assert.NotEmpty(t, response)
 		assert.NotNil(t, response)
 	})
+
+	t.Run("Set Auto Add Margin - LINEAR", func(t *testing.T) {
+		t.Skip("the api endpoint works. but the test scenario has to be changed")
+		response, err := bybitClient.Account().SetAutoAddMargin(context.Background(), &linear.SetAutoAddMarginParams{
+			Symbol:        "ADAUSDT",
+			Side:          bybit.SideBuy,
+			AutoAddMargin: true,
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, response.RetCode)
+		assert.Equal(t, "OK", response.RetMsg)
+		assert.NotEmpty(t, response)
+		assert.NotNil(t, response)
+	})
+
+	t.Run("Switch Margin - LINEAR", func(t *testing.T) {
+		t.Skip("the api endpoint works. but the test scenario has to be changed")
+		response, err := bybitClient.Account().SwitchMargin(context.Background(), &linear.SwitchMarginParams{
+			Symbol:       "ADAUSDT",
+			IsIsolated:   true,
+			BuyLeverage:  2,
+			SellLeverage: 2,
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, response.RetCode)
+		assert.Equal(t, "OK", response.RetMsg)
+		assert.NotEmpty(t, response)
+		assert.NotNil(t, response)
+	})
+
 }

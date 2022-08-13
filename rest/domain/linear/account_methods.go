@@ -20,8 +20,8 @@ type AccountInterface interface {
 
 	GetPositionsBySymbol(ctx context.Context, params *GetPositionsBySymbolParams) (*GetPositionsBySymbolResponse, error)
 	GetPositions(ctx context.Context) (*GetPositionsResponse, error)
-	//SetAutoAddMargin(ctx context.Context, params *SetAutoAddMarginParams) (*SetAutoAddMarginResponse, error)
-	//SwitchMarginMode(ctx context.Context, params *SwitchMarginModeParams) (*SwitchMarginModeResponse, error)
+	SetAutoAddMargin(ctx context.Context, params *SetAutoAddMarginParams) (*SetAutoAddMarginResponse, error)
+	SwitchMargin(ctx context.Context, params *SwitchMarginParams) (*SwitchMarginResponse, error)
 	//SwitchPositionMode(ctx context.Context, params *SwitchPositionModeParams) (*SwitchPositionModeResponse, error)
 	//PositionTpSlSwitch(ctx context.Context, params *PositionTpSlSwitchParams) (*PositionTpSlSwitchResponse, error)
 	//AddReduceMargin(ctx context.Context, params *AddReduceMarginParams) (*AddReduceMarginResponse, error)

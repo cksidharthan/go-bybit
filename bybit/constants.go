@@ -66,6 +66,7 @@ const (
 	PrivateLinearQueryConditionalOrderPath     = "/private/linear/stop-order/search"
 	PrivateLinearGetPositionPath               = "/private/linear/position/list"
 	PrivateLinearSetAutoAddMarginPath          = "/private/linear/position/set-auto-add-margin"
+	PrivateSwithcMarginPath                    = "/private/linear/position/switch-isolated"
 	PrivateLinearPositionSetLeveragePath       = "/private/linear/position/set-leverage"
 	PrivateLinearTradeExecutionListPath        = "/private/linear/trade/execution/list"
 )
