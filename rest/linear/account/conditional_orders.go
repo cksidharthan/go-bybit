@@ -30,3 +30,11 @@ func (c *LinearAccountClient) CancelConditionalOrder(ctx context.Context, params
 	}
 	return
 }
+
+func (c *LinearAccountClient) CancelAllConditionalOrders(ctx context.Context, params *linear.CancelAllConditionalOrdersParams) (res *linear.CancelAllConditionalOrdersResponse, err error) {
+	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateCancelAllConditionalOrderPath, params, &res)
+	if err != nil {
+		return
+	}
+	return
+}

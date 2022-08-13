@@ -288,3 +288,12 @@ type CancelConditionalOrderResponse struct {
 type CancelConditionalOrderResult struct {
 	StopOrderID string `json:"stop_order_id"`
 }
+
+type CancelAllConditionalOrdersParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type CancelAllConditionalOrdersResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    []string `json:"result"`
+}
