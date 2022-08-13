@@ -124,7 +124,6 @@ func TestClient_Linear_Market(t *testing.T) {
 			assert.NotNil(t, response)
 		}
 	})
-
 }
 
 func getLinearBTCBuyPriceForTest(client linearRest.Interface) (*float64, error) {

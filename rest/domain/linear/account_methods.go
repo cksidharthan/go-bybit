@@ -9,4 +9,6 @@ type AccountInterface interface {
 	CancelAllActiveOrders(ctx context.Context, params *CancelAllActiveOrdersParams) (*CancelAllActiveOrdersResponse, error)
 	ReplaceActiveOrder(ctx context.Context, params *ReplaceActiveOrderParams) (*ReplaceActiveOrderResponse, error)
 	QueryActiveOrder(ctx context.Context, params *QueryActiveOrderParams) (*QueryActiveOrderResponse, error)
+
+	PlaceConditionalOrder(ctx context.Context, params *PlaceConditionalOrderParams) (*PlaceConditionalOrderResponse, error)
 }
