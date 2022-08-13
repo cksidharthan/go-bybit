@@ -22,3 +22,11 @@ func (c *LinearAccountClient) GetConditionalOrder(ctx context.Context, params *l
 	}
 	return
 }
+
+func (c *LinearAccountClient) CancelConditionalOrder(ctx context.Context, params *linear.CancelConditionalOrderParams) (res *linear.CancelConditionalOrderResponse, err error) {
+	err = c.transporter.SignedRequest(ctx, http.MethodDelete, bybit.PrivateCancelConditionalOrderPath, params, &res)
+	if err != nil {
+		return
+	}
+	return
+}

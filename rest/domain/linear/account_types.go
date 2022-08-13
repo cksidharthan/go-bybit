@@ -273,3 +273,18 @@ type GetConditionalOrderResultData struct {
 	ReduceOnly     bool    `json:"reduce_only"`
 	CloseOnTrigger bool    `json:"close_on_trigger"`
 }
+
+type CancelConditionalOrderParams struct {
+	Symbol      string `url:"symbol" json:"symbol"`
+	StopOrderID string `url:"stop_order_id,omitempty" json:"stop_order_id,omitempty"`
+	OrderLinkID string `url:"order_link_id,omitempty" json:"order_link_id,omitempty"`
+}
+
+type CancelConditionalOrderResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    CancelConditionalOrderResult `json:"result"`
+}
+
+type CancelConditionalOrderResult struct {
+	StopOrderID string `json:"stop_order_id"`
+}
