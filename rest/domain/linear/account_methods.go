@@ -17,4 +17,17 @@ type AccountInterface interface {
 	ReplaceConditionalOrder(ctx context.Context, params *ReplaceConditionalOrderParams) (*ReplaceConditionalOrderResponse, error)
 	QueryConditionalOrderBySymbol(ctx context.Context, params *QueryConditionalOrderBySymbolParams) (*QueryConditionalOrderBySymbolResponse, error)
 	QueryConditionalOrderWithIDs(ctx context.Context, params *QueryConditionalOrderWithIDsParams) (*QueryConditionalOrderWithIDsResponse, error)
+
+	GetPositionsBySymbol(ctx context.Context, params *GetPositionsBySymbolParams) (*GetPositionsBySymbolResponse, error)
+	GetPositions(ctx context.Context) (*GetPositionsResponse, error)
+	//SetAutoAddMargin(ctx context.Context, params *SetAutoAddMarginParams) (*SetAutoAddMarginResponse, error)
+	//SwitchMarginMode(ctx context.Context, params *SwitchMarginModeParams) (*SwitchMarginModeResponse, error)
+	//SwitchPositionMode(ctx context.Context, params *SwitchPositionModeParams) (*SwitchPositionModeResponse, error)
+	//PositionTpSlSwitch(ctx context.Context, params *PositionTpSlSwitchParams) (*PositionTpSlSwitchResponse, error)
+	//AddReduceMargin(ctx context.Context, params *AddReduceMarginParams) (*AddReduceMarginResponse, error)
+	//SetLeverage(ctx context.Context, params *SetLeverageParams) (*SetLeverageResponse, error)
+	//SetTradingStop(ctx context.Context, params *SetTradingStopParams) (*SetTradingStopResponse, error)
+	//GetUserTradeRecords(ctx context.Context, params *GetUserTradeRecordsParams) (*GetUserTradeRecordsResponse, error)
+	//GetExtendedUserTradeRecords(ctx context.Context, params *GetExtendedUserTradeRecordsParams) (*GetExtendedUserTradeRecordsResponse, error)
+	//GetClosedProfitLoss(ctx context.Context, params *GetClosedProfitLossParams) (*GetClosedProfitLossResponse, error)
 }

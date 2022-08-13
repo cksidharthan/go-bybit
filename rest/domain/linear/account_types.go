@@ -384,3 +384,50 @@ type QueryConditionalOrderWithIDsResult struct {
 	ReduceOnly     bool    `json:"reduce_only"`
 	CloseOnTrigger bool    `json:"close_on_trigger"`
 }
+
+type GetPositionsBySymbolParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type GetPositionsBySymbolResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    []PositionsResult `json:"result"`
+}
+
+type PositionsResult struct {
+	UserID              int     `json:"user_id"`
+	Symbol              string  `json:"symbol"`
+	Side                string  `json:"side"`
+	Size                float64 `json:"size"`
+	PositionValue       float64 `json:"position_value"`
+	EntryPrice          float64 `json:"entry_price"`
+	LiqPrice            float64 `json:"liq_price"`
+	BustPrice           float64 `json:"bust_price"`
+	Leverage            float64 `json:"leverage"`
+	AutoAddMargin       int     `json:"auto_add_margin"`
+	IsIsolated          bool    `json:"is_isolated"`
+	PositionMargin      float64 `json:"position_margin"`
+	OccClosingFee       float64 `json:"occ_closing_fee"`
+	RealisedPnl         float64 `json:"realised_pnl"`
+	CumRealisedPnl      float64 `json:"cum_realised_pnl"`
+	FreeQty             float64 `json:"free_qty"`
+	TpSlMode            string  `json:"tp_sl_mode"`
+	UnrealisedPnl       float64 `json:"unrealised_pnl"`
+	DeleverageIndicator int     `json:"deleverage_indicator"`
+	RiskID              int     `json:"risk_id"`
+	StopLoss            float64 `json:"stop_loss"`
+	TakeProfit          float64 `json:"take_profit"`
+	TrailingStop        float64 `json:"trailing_stop"`
+	PositionIDx         int     `json:"position_idx"`
+	Mode                string  `json:"mode"`
+}
+
+type GetPositionsResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    []PositionResultData `json:"result"`
+}
+
+type PositionResultData struct {
+	Data    PositionsResult `json:"data"`
+	IsValid bool            `json:"is_valid"`
+}
