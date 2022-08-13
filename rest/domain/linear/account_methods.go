@@ -11,4 +11,5 @@ type AccountInterface interface {
 	QueryActiveOrder(ctx context.Context, params *QueryActiveOrderParams) (*QueryActiveOrderResponse, error)
 
 	PlaceConditionalOrder(ctx context.Context, params *PlaceConditionalOrderParams) (*PlaceConditionalOrderResponse, error)
+	GetConditionalOrder(ctx context.Context, params *GetConditionalOrderParams) (*GetConditionalOrderResponse, error)
 }

@@ -14,3 +14,11 @@ func (c *LinearAccountClient) PlaceConditionalOrder(ctx context.Context, params 
 	}
 	return
 }
+
+func (c *LinearAccountClient) GetConditionalOrder(ctx context.Context, params *linear.GetConditionalOrderParams) (res *linear.GetConditionalOrderResponse, err error) {
+	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateGetConditionalOrderPath, params, &res)
+	if err != nil {
+		return
+	}
+	return
+}

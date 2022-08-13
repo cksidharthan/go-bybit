@@ -43,6 +43,17 @@ func TestClient_Linear_Account(t *testing.T) {
 		assert.NotNil(t, response)
 	})
 
+	t.Run("Place Conditional Order - LINEAR", func(t *testing.T) {
+		t.Parallel()
+		response, err := bybitClient.Account().GetConditionalOrder(context.Background(), &linear.GetConditionalOrderParams{
+			Symbol: "ADAUSDT",
+		})
+		assert.NoError(t, err)
+		assert.Equal(t, 0, response.RetCode)
+		assert.NotEmpty(t, response)
+		assert.NotNil(t, response)
+	})
+
 }
 
 func getLinearADABuyPriceForTest(client linearRest.Interface) (*float64, error) {

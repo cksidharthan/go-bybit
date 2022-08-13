@@ -228,3 +228,48 @@ type PlaceConditionalOrderResult struct {
 	CloseOnTrigger bool    `json:"close_on_trigger"`
 	PositionIdx    int     `json:"position_idx"`
 }
+
+type GetConditionalOrderParams struct {
+	StopOrderID     string `url:"stop_order_id,omitempty" json:"stop_order_id,omitempty"`
+	OrderLinkID     string `url:"order_link_id,omitempty" json:"order_link_id,omitempty"`
+	Symbol          string `url:"symbol,omitempty" json:"symbol,omitempty"`
+	StopOrderStatus string `url:"stop_order_status,omitempty" json:"stop_order_status,omitempty"`
+	Order           string `url:"order_status,omitempty" json:"order_status,omitempty"`
+	Page            int    `url:"page,omitempty" json:"page,omitempty"`
+	Limit           int    `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type GetConditionalOrderResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    GetConditionalOrderResult `json:"result"`
+}
+
+type GetConditionalOrderResult struct {
+	CurrentPage int                             `json:"current_page"`
+	LastPage    int                             `json:"last_page"`
+	Data        []GetConditionalOrderResultData `json:"data"`
+}
+
+type GetConditionalOrderResultData struct {
+	StopOrderID    string  `json:"stop_order_id"`
+	UserID         string  `json:"order_id"`
+	Symbol         string  `json:"symbol"`
+	Side           string  `json:"side"`
+	OrderType      string  `json:"order_type"`
+	Price          float64 `json:"price"`
+	Qty            float64 `json:"qty"`
+	TimeInForce    string  `json:"time_in_force"`
+	OrderStatus    string  `json:"order_status"`
+	TriggerPrice   float64 `json:"trigger_price"`
+	OrderLinkID    string  `json:"order_link_id"`
+	CreatedTime    string  `json:"created_time"`
+	UpdatedTime    string  `json:"updated_time"`
+	TakeProfit     float64 `json:"take_profit"`
+	StopLoss       float64 `json:"stop_loss"`
+	TriggerBy      string  `json:"trigger_by"`
+	BasePrice      string  `json:"base_price"`
+	TpTriggerBy    string  `json:"tp_trigger_by"`
+	SlTriggerBy    string  `json:"sl_trigger_by"`
+	ReduceOnly     bool    `json:"reduce_only"`
+	CloseOnTrigger bool    `json:"close_on_trigger"`
+}
