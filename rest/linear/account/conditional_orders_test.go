@@ -118,6 +118,41 @@ func TestClient_Linear_Account(t *testing.T) {
 		}
 	})
 
+	t.Run("Replace Conditional Order - LINEAR", func(t *testing.T) {
+		t.Parallel()
+		stopOrderID := ""
+		{
+			response, err := bybitClient.Account().PlaceConditionalOrder(context.Background(), &linear.PlaceConditionalOrderParams{
+				Side:           bybit.SideBuy,
+				Symbol:         "ADAUSDT",
+				OrderType:      bybit.OrderTypeLimit,
+				Qty:            10,
+				Price:          preferredADABuyPrice,
+				TimeInForce:    bybit.TimeInForceGoodTillCancel,
+				BasePrice:      preferredADABuyPrice,
+				StopPx:         preferredADABuyPrice + 0.5,
+				TriggerBy:      "LastPrice",
+				ReduceOnly:     false,
+				CloseOnTrigger: false,
+			})
+			assert.NoError(t, err)
+			assert.Equal(t, 0, response.RetCode)
+			assert.NotEmpty(t, response)
+			assert.NotNil(t, response)
+			stopOrderID = response.Result.StopOrderID
+		}
+		{
+			response, err := bybitClient.Account().ReplaceConditionalOrder(context.Background(), &linear.ReplaceConditionalOrderParams{
+				Symbol:      "ADAUSDT",
+				StopOrderID: stopOrderID,
+				TpTriggerBy: "MarkPrice",
+			})
+			assert.NoError(t, err)
+			assert.Equal(t, 0, response.RetCode)
+			assert.NotEmpty(t, response)
+			assert.NotNil(t, response)
+		}
+	})
 }
 
 func getLinearADABuyPriceForTest(client linearRest.Interface) (*float64, error) {

@@ -14,4 +14,5 @@ type AccountInterface interface {
 	GetConditionalOrder(ctx context.Context, params *GetConditionalOrderParams) (*GetConditionalOrderResponse, error)
 	CancelConditionalOrder(ctx context.Context, params *CancelConditionalOrderParams) (*CancelConditionalOrderResponse, error)
 	CancelAllConditionalOrders(ctx context.Context, params *CancelAllConditionalOrdersParams) (*CancelAllConditionalOrdersResponse, error)
+	ReplaceConditionalOrder(ctx context.Context, params *ReplaceConditionalOrderParams) (*ReplaceConditionalOrderResponse, error)
 }

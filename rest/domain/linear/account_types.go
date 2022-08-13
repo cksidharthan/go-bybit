@@ -297,3 +297,25 @@ type CancelAllConditionalOrdersResponse struct {
 	domain.LinearBaseResponse `json:",inline"`
 	Result                    []string `json:"result"`
 }
+
+type ReplaceConditionalOrderParams struct {
+	StopOrderID    string  `url:"stop_order_id,omitempty" json:"stop_order_id,omitempty"`
+	OrderLinkID    string  `url:"order_link_id,omitempty" json:"order_link_id,omitempty"`
+	Symbol         string  `url:"symbol,omitempty" json:"symbol,omitempty"`
+	PRQty          float64 `url:"p_r_qty,omitempty" json:"p_r_qty,omitempty"`
+	PRPrice        float64 `url:"p_r_price,omitempty" json:"p_r_price,omitempty"`
+	PRTriggerPrice float64 `url:"p_r_trigger_price,omitempty" json:"p_r_trigger_price,omitempty"`
+	TakeProfit     float64 `url:"take_profit,omitempty" json:"take_profit,omitempty"`
+	StopLoss       float64 `url:"stop_loss,omitempty" json:"stop_loss,omitempty"`
+	TpTriggerBy    string  `url:"tp_trigger_by,omitempty" json:"tp_trigger_by,omitempty"`
+	SlTriggerBy    string  `url:"sl_trigger_by,omitempty" json:"sl_trigger_by,omitempty"`
+}
+
+type ReplaceConditionalOrderResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    ReplaceConditionalOrderResult `json:"result"`
+}
+
+type ReplaceConditionalOrderResult struct {
+	StopOrderID string `json:"stop_order_id"`
+}
