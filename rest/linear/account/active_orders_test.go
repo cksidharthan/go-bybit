@@ -21,9 +21,6 @@ func TestClient_Linear_Market(t *testing.T) {
 	if err != nil {
 		t.Fatalf("failed to get current BTC price: %v", err)
 	}
-	// Do we need an error here? since the currentBTC price is always float
-	preferredBTCBuyPrice, _ := bybit.GetPrecision(*currentBTCPrice - 1000.00)
-	fmt.Println("preferred BTC buy price:", preferredBTCBuyPrice)
 
 	t.Run("Place Active Order - LINEAR", func(t *testing.T) {
 		t.Parallel()
@@ -124,7 +121,6 @@ func TestClient_Linear_Market(t *testing.T) {
 			assert.NotNil(t, response)
 		}
 	})
-
 }
 
 func getLinearBTCBuyPriceForTest(client linearRest.Interface) (*float64, error) {
@@ -142,6 +138,5 @@ func getLinearBTCBuyPriceForTest(client linearRest.Interface) (*float64, error) 
 	if err != nil {
 		return nil, fmt.Errorf("failed to get current BTC price: %v", err)
 	}
-	fmt.Println("current BTC price:", currentBTCPrice)
 	return &currentBTCPrice, nil
 }
