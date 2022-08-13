@@ -319,3 +319,68 @@ type ReplaceConditionalOrderResponse struct {
 type ReplaceConditionalOrderResult struct {
 	StopOrderID string `json:"stop_order_id"`
 }
+
+type QueryConditionalOrderBySymbolParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type QueryConditionalOrderBySymbolResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    []QueryConditionalOrderBySymbolResult `json:"result"`
+}
+
+type QueryConditionalOrderBySymbolResult struct {
+	StopOrderID  string  `json:"stop_order_id"`
+	UserID       int     `json:"user_id"`
+	Symbol       string  `json:"symbol"`
+	Side         string  `json:"side"`
+	OrderType    string  `json:"order_type"`
+	Price        float64 `json:"price"`
+	Qty          float64 `json:"qty"`
+	TimeInForce  string  `json:"time_in_force"`
+	OrderStatus  string  `json:"order_status"`
+	TriggerPrice float64 `json:"trigger_price"`
+	OrderLinkID  string  `json:"order_link_id"`
+	CreatedTime  string  `json:"created_time"`
+	UpdatedTime  string  `json:"updated_time"`
+	TakeProfit   float64 `json:"take_profit"`
+	StopLoss     float64 `json:"stop_loss"`
+	TpTriggerBy  string  `json:"tp_trigger_by"`
+	SlTriggerBy  string  `json:"sl_trigger_by"`
+	TriggerBy    string  `json:"trigger_by"`
+}
+
+type QueryConditionalOrderWithIDsParams struct {
+	Symbol      string `url:"symbol" json:"symbol"`
+	StopOrderID string `url:"stop_order_id,omitempty" json:"stop_order_id,omitempty"`
+	OrderLinkID string `url:"order_link_id,omitempty" json:"order_link_id,omitempty"`
+}
+
+type QueryConditionalOrderWithIDsResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    QueryConditionalOrderWithIDsResult `json:"result"`
+}
+
+type QueryConditionalOrderWithIDsResult struct {
+	StopOrderID    string  `json:"stop_order_id"`
+	UserID         int     `json:"user_id"`
+	Symbol         string  `json:"symbol"`
+	Side           string  `json:"side"`
+	OrderType      string  `json:"order_type"`
+	Price          float64 `json:"price"`
+	Qty            float64 `json:"qty"`
+	TimeInForce    string  `json:"time_in_force"`
+	OrderStatus    string  `json:"order_status"`
+	TriggerPrice   float64 `json:"trigger_price"`
+	BasePrice      string  `json:"base_price"`
+	OrderLinkID    string  `json:"order_link_id"`
+	CreatedTime    string  `json:"created_time"`
+	UpdatedTime    string  `json:"updated_time"`
+	TakeProfit     float64 `json:"take_profit"`
+	StopLoss       float64 `json:"stop_loss"`
+	TpTriggerBy    string  `json:"tp_trigger_by"`
+	SlTriggerBy    string  `json:"sl_trigger_by"`
+	TriggerBy      string  `json:"trigger_by"`
+	ReduceOnly     bool    `json:"reduce_only"`
+	CloseOnTrigger bool    `json:"close_on_trigger"`
+}
