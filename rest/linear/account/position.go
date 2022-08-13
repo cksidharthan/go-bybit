@@ -2,9 +2,10 @@ package account
 
 import (
 	"context"
+	"net/http"
+
 	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/linear"
-	"net/http"
 )
 
 func (c *LinearAccountClient) GetPositionsBySymbol(ctx context.Context, params *linear.GetPositionsBySymbolParams) (res *linear.GetPositionsBySymbolResponse, err error) {
