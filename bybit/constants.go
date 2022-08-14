@@ -78,4 +78,7 @@ const (
 
 	PublicLinearGetRiskLimitPath  = "/public/linear/risk-limit"
 	PrivateLinearSetRiskLimitPath = "/private/linear/position/set-risk"
+
+	PrivateLinearPredictedFundingRatePath = "/private/linear/funding/predicted-funding"
+	PrivateLinearGetLastFundingFeePath    = "/private/linear/funding/prev-funding"
 )

@@ -666,3 +666,35 @@ type SetRiskLimitResponse struct {
 type SetRiskLimitResult struct {
 	RiskID int64 `json:"risk_id"`
 }
+
+type PredictedFundingRateParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type PredictedFundingRateResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    PredictedFundingRateResult `json:"result"`
+}
+
+type PredictedFundingRateResult struct {
+	PredictedFundingRate float64 `json:"predicted_funding_rate"`
+	PredictedFundingFee  float64 `json:"predicted_funding_fee"`
+}
+
+type GetLastFundingFeeParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type GetLastFundingFeeResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    GetLastFundingFeeResult `json:"result"`
+}
+
+type GetLastFundingFeeResult struct {
+	Symbol      string  `json:"symbol"`
+	Side        string  `json:"side"`
+	Size        float64 `json:"size"`
+	FundingRate float64 `json:"funding_rate"`
+	ExecFee     float64 `json:"exec_fee"`
+	ExecTime    string  `json:"exec_time"`
+}
