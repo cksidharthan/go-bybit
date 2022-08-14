@@ -2,9 +2,10 @@ package account
 
 import (
 	"context"
+	"net/http"
+
 	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/linear"
-	"net/http"
 )
 
 func (c *LinearAccountClient) GetPredictedFundingRate(ctx context.Context, params *linear.PredictedFundingRateParams) (res *linear.PredictedFundingRateResponse, err error) {
