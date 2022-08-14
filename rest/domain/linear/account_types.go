@@ -384,3 +384,247 @@ type QueryConditionalOrderWithIDsResult struct {
 	ReduceOnly     bool    `json:"reduce_only"`
 	CloseOnTrigger bool    `json:"close_on_trigger"`
 }
+
+type GetPositionsBySymbolParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type GetPositionsBySymbolResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    []PositionsResult `json:"result"`
+}
+
+type PositionsResult struct {
+	UserID              int     `json:"user_id"`
+	Symbol              string  `json:"symbol"`
+	Side                string  `json:"side"`
+	Size                float64 `json:"size"`
+	PositionValue       float64 `json:"position_value"`
+	EntryPrice          float64 `json:"entry_price"`
+	LiqPrice            float64 `json:"liq_price"`
+	BustPrice           float64 `json:"bust_price"`
+	Leverage            float64 `json:"leverage"`
+	AutoAddMargin       int     `json:"auto_add_margin"`
+	IsIsolated          bool    `json:"is_isolated"`
+	PositionMargin      float64 `json:"position_margin"`
+	OccClosingFee       float64 `json:"occ_closing_fee"`
+	RealisedPnl         float64 `json:"realised_pnl"`
+	CumRealisedPnl      float64 `json:"cum_realised_pnl"`
+	FreeQty             float64 `json:"free_qty"`
+	TpSlMode            string  `json:"tp_sl_mode"`
+	UnrealisedPnl       float64 `json:"unrealised_pnl"`
+	DeleverageIndicator int     `json:"deleverage_indicator"`
+	RiskID              int     `json:"risk_id"`
+	StopLoss            float64 `json:"stop_loss"`
+	TakeProfit          float64 `json:"take_profit"`
+	TrailingStop        float64 `json:"trailing_stop"`
+	PositionIDx         int     `json:"position_idx"`
+	Mode                string  `json:"mode"`
+}
+
+type GetPositionsResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    []PositionResultData `json:"result"`
+}
+
+type PositionResultData struct {
+	Data    PositionsResult `json:"data"`
+	IsValid bool            `json:"is_valid"`
+}
+
+type SetAutoAddMarginParams struct {
+	Symbol        string     `url:"symbol" json:"symbol"`
+	Side          bybit.Side `url:"side" json:"side"`
+	AutoAddMargin bool       `url:"auto_add_margin" json:"auto_add_margin"`
+	PositionIDx   int        `url:"position_idx,omitempty" json:"position_idx,omitempty"`
+}
+
+type SetAutoAddMarginResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    string `json:"result"`
+}
+
+type SwitchMarginParams struct {
+	Symbol       string `url:"symbol" json:"symbol"`
+	IsIsolated   bool   `url:"is_isolated" json:"is_isolated"`
+	BuyLeverage  int    `url:"buy_leverage" json:"buy_leverage"`
+	SellLeverage int    `url:"sell_leverage" json:"sell_leverage"`
+}
+
+type SwitchMarginResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    string `json:"result"`
+}
+
+type SwitchPositionModeParams struct {
+	Symbol string `url:"symbol,omitempty" json:"symbol,omitempty"`
+	Coin   string `url:"coin,omitempty" json:"coin,omitempty"`
+	Mode   string `url:"mode" json:"mode"`
+}
+
+type SwitchPositionModeResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    string `json:"result"`
+}
+
+type PositionTpSlSwitchParams struct {
+	Symbol   string `url:"symbol" json:"symbol"`
+	TpSlMode string `url:"tp_sl_mode" json:"tp_sl_mode"`
+}
+
+type PositionTpSlSwitchResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    PositionTpSlSwitchResult `json:"result"`
+}
+
+type PositionTpSlSwitchResult struct {
+	TpSlMode string `json:"tp_sl_mode"`
+}
+
+type AddReduceMarginParams struct {
+	Symbol      string     `url:"symbol" json:"symbol"`
+	Side        bybit.Side `url:"side" json:"side"`
+	Margin      float64    `url:"margin" json:"margin"`
+	PositionIDx int        `url:"position_idx,omitempty" json:"position_idx,omitempty"`
+}
+
+type AddReduceMarginResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    string `json:"result"`
+}
+
+type AddReduceMarginResult struct {
+	PositionListResult PositionsResult `json:"PositionListResult"`
+	WalletBalance      float64         `json:"wallet_balance"`
+	AvailableBalance   float64         `json:"available_balance"`
+}
+
+type SetLeverageParams struct {
+	Symbol       string `url:"symbol" json:"symbol"`
+	BuyLeverage  int    `url:"buy_leverage" json:"buy_leverage"`
+	SellLeverage int    `url:"sell_leverage" json:"sell_leverage"`
+}
+
+type SetLeverageResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    string `json:"result"`
+}
+
+type SetTradingStopParams struct {
+	Symbol       string     `url:"symbol" json:"symbol"`
+	Side         bybit.Side `url:"side" json:"side"`
+	TakeProfit   float64    `url:"take_profit,omitempty" json:"take_profit,omitempty"`
+	StopLoss     float64    `url:"stop_loss,omitempty" json:"stop_loss,omitempty"`
+	TrailingStop float64    `url:"trailing_stop,omitempty" json:"trailing_stop,omitempty"`
+	TpTriggerBy  string     `url:"tp_trigger_by,omitempty" json:"tp_trigger_by,omitempty"`
+	SlTriggerBy  string     `url:"sl_trigger_by,omitempty" json:"sl_trigger_by,omitempty"`
+	SlSize       float64    `url:"sl_size,omitempty" json:"sl_size,omitempty"`
+	TpSize       float64    `url:"tp_size,omitempty" json:"tp_size,omitempty"`
+	PositionIDx  int        `url:"position_idx,omitempty" json:"position_idx,omitempty"`
+}
+
+type SetTradingStopResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    string `json:"result"`
+}
+
+type GetUserTradeRecordsParams struct {
+	Symbol    string `url:"symbol" json:"symbol"`
+	StartTime int64  `url:"start_time,omitempty" json:"start_time,omitempty"`
+	EndTime   int64  `url:"end_time,omitempty" json:"end_time,omitempty"`
+	ExecType  string `url:"exec_type,omitempty" json:"exec_type,omitempty"`
+	Page      int    `url:"page,omitempty" json:"page,omitempty"`
+	Limit     int    `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type GetUserTradeRecordsResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    UserTradeRecordResult `json:"result"`
+}
+
+type UserTradeRecordResult struct {
+	CurrentPage int               `json:"current_page"`
+	Data        []UserTradeRecord `json:"data"`
+}
+
+type GetExtendedUserTradeRecordsParams struct {
+	Symbol    string `url:"symbol" json:"symbol"`
+	StartTime int64  `url:"start_time,omitempty" json:"start_time,omitempty"`
+	EndTime   int64  `url:"end_time,omitempty" json:"end_time,omitempty"`
+	ExecType  string `url:"exec_type,omitempty" json:"exec_type,omitempty"`
+	PageToken string `url:"page_token,omitempty" json:"page_token,omitempty"`
+	Limit     int    `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type GetExtendedUserTradeRecordsResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    GetExtendedUserTradeRecordsResult `json:"result"`
+}
+
+type GetExtendedUserTradeRecordsResult struct {
+	CurrentPage int               `json:"current_page"`
+	Data        []UserTradeRecord `json:"data"`
+}
+
+type UserTradeRecord struct {
+	OrderID          string  `json:"order_id"`
+	OrderLinkID      string  `json:"order_link_id"`
+	Symbol           string  `json:"symbol"`
+	Side             string  `json:"side"`
+	ExecID           string  `json:"exec_id"`
+	Price            float64 `json:"price"`
+	OrderPrice       float64 `json:"order_price"`
+	OrderQty         float64 `json:"order_qty"`
+	OrderType        string  `json:"order_type"`
+	FeeRate          float64 `json:"fee_rate"`
+	ExecPrice        float64 `json:"exec_price"`
+	ExecType         string  `json:"exec_type"`
+	ExecQty          float64 `json:"exec_qty"`
+	ExecFee          float64 `json:"exec_fee"`
+	ExecValue        float64 `json:"exec_value"`
+	LeavesQty        float64 `json:"leaves_qty"`
+	ClosedSize       float64 `json:"closed_size"`
+	LastLiquidityInd string  `json:"last_liquidity_ind"`
+	TradeTime        int64   `json:"trade_time"`
+	TradeTimeMs      int64   `json:"trade_time_ms"`
+}
+
+type GetClosedProfitLossParams struct {
+	Symbol    string `url:"symbol" json:"symbol"`
+	StartTime int64  `url:"start_time,omitempty" json:"start_time,omitempty"`
+	EndTime   int64  `url:"end_time,omitempty" json:"end_time,omitempty"`
+	ExecType  string `url:"exec_type,omitempty" json:"exec_type,omitempty"`
+	Page      int    `url:"page,omitempty" json:"page,omitempty"`
+	Limit     int    `url:"limit,omitempty" json:"limit,omitempty"`
+}
+
+type GetClosedProfitLossResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    ProfitAndLossResult `json:"result"`
+}
+
+type ProfitAndLossResult struct {
+	CurrentPage int                       `json:"current_page"`
+	Data        []ProfitAndLossResultData `json:"data"`
+}
+
+type ProfitAndLossResultData struct {
+	ID                int64   `json:"id"`
+	UserID            int64   `json:"user_id"`
+	Symbol            string  `json:"symbol"`
+	Side              string  `json:"side"`
+	Qty               float64 `json:"qty"`
+	OrderID           string  `json:"order_id"`
+	OrderPrice        float64 `json:"order_price"`
+	OrdrType          string  `json:"order_type"`
+	ExecType          string  `json:"exec_type"`
+	ClosedSize        float64 `json:"closed_size"`
+	CumEntryValue     float64 `json:"cum_entry_value"`
+	AverageEntryPrice float64 `json:"average_entry_price"`
+	CumExitValue      float64 `json:"cum_exit_value"`
+	AvgExitValue      float64 `json:"avg_exit_value"`
+	ClosedPnl         float64 `json:"closed_pnl"`
+	FillCount         int     `json:"fill_count"`
+	Leverage          float64 `json:"leverage"`
+	CreatedAt         int64   `json:"created_at"`
+}
