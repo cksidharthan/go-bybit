@@ -2,9 +2,10 @@ package account
 
 import (
 	"context"
+	"net/http"
+
 	"github.com/cksidharthan/go-bybit/bybit"
 	"github.com/cksidharthan/go-bybit/rest/domain/linear"
-	"net/http"
 )
 
 func (c *LinearAccountClient) GetRiskLimit(ctx context.Context, params *linear.GetRiskLimitParams) (res *linear.GetRiskLimitResponse, err error) {
