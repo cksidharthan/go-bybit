@@ -705,7 +705,7 @@ type GetAPIKeyInfoResponse struct {
 }
 
 type GetAPIKeyInfoResult struct {
-	ApiKey        string   `json:"api_key"`
+	APIKey        string   `json:"api_key"`
 	Type          string   `json:"type"`
 	UserID        int64    `json:"user_id"`
 	InviterID     int64    `json:"inviter_id"`
