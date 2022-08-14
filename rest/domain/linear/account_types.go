@@ -628,3 +628,41 @@ type ProfitAndLossResultData struct {
 	Leverage          float64 `json:"leverage"`
 	CreatedAt         int64   `json:"created_at"`
 }
+
+type GetRiskLimitParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type GetRiskLimitResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    []GetRiskLimitResult `json:"result"`
+}
+
+type GetRiskLimitResult struct {
+	ID             int64    `json:"id"`
+	Symbol         string   `json:"symbol"`
+	Limit          float64  `json:"limit"`
+	MaintainMargin float64  `json:"maintain_margin"`
+	StartingMargin float64  `json:"starting_margin"`
+	Section        []string `json:"section"`
+	IsLowestRisk   int      `json:"is_lowest_risk"`
+	CreatedAt      string   `json:"created_at"`
+	UpdatedAt      string   `json:"updated_at"`
+	MaxLeverage    float64  `json:"max_leverage"`
+}
+
+type SetRiskLimitParams struct {
+	Symbol      string     `url:"symbol" json:"symbol"`
+	Side        bybit.Side `url:"side" json:"side"`
+	RiskID      int64      `url:"risk_id" json:"risk_id"`
+	PositionIDx int64      `url:"position_idx,omitempty" json:"position_idx,omitempty"`
+}
+
+type SetRiskLimitResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    SetRiskLimitResult `json:"result"`
+}
+
+type SetRiskLimitResult struct {
+	RiskID int64 `json:"risk_id"`
+}
