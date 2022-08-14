@@ -82,6 +82,12 @@ const (
 	PrivateLinearPredictedFundingRatePath = "/private/linear/funding/predicted-funding"
 	PrivateLinearGetLastFundingFeePath    = "/private/linear/funding/prev-funding"
 
+	// nolint:gosec
 	PrivateLinearGetAPIKeyInfoPath = "/v2/private/account/api-key"
 	PrivateLinearGetLCPInfoPath    = "/v2/private/account/lcp"
+
+	PrivateLinearGetWalletBalancePath     = "/v2/private/wallet/balance"
+	PrivateLinearGetWalletFundRecordsPath = "/v2/private/wallet/fund/records"
+	PrivateLinearGetWithdrawRecordsPath   = "/v2/private/wallet/withdraw/list"
+	PrivateLinearAssetExchangeRecordsPath = "/v2/private/exchange-order/list"
 )

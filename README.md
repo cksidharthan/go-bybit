@@ -2,9 +2,9 @@
 
 # go-bybit
 
-Unofficial [Bybit](https://bybit.com) API Client  for [Go](https://golang.org/).
+[Bybit](https://bybit.com) API Client for [Golang (Go)](https://golang.org/).
 
-This Project is under active development
+This Project is under active development. Please feel free to contribute.
 
 ## Install
 
@@ -14,20 +14,15 @@ go get -u github.com/cksidharthan/go-bybit
 
 # Enpoints completed
 
-| Category          | SubCategory  |      Created       |       Tested       |
-|-------------------|--------------|:------------------:|:------------------:|
-| SPOT              | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
-| SPOT              | Account Data | :heavy_check_mark: | :heavy_check_mark: |
-| SPOT              | Wallet Data  | :heavy_check_mark: | :heavy_check_mark: |
-| SPOT              | API Data     | :heavy_check_mark: | :heavy_check_mark: |
-| USDT Perpetual    | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
-| USDT Perpetual    | Account Data | :heavy_check_mark: | :heavy_check_mark: |
-| USDT Perpetual    | Wallet Data  |        :x:         |        :x:         |
-| USDT Perpetual    | API Data     |        :x:         |        :x:         |
-| Inverse Perpetual | Market Data  |        :x:         |        :x:         |
-| Inverse Perpetual | Account Data |        :x:         |        :x:         |
-| Inverse Perpetual | Wallet Data  |        :x:         |        :x:         |
-| Inverse Perpetual | API Data     |        :x:         |        :x:         |
+| Category       | SubCategory  |      Created       |       Tested       |
+|----------------|--------------|:------------------:|:------------------:|
+| SPOT           | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
+| SPOT           | Account Data | :heavy_check_mark: | :heavy_check_mark: |
+| SPOT           | Wallet Data  | :heavy_check_mark: | :heavy_check_mark: |
+| SPOT           | API Data     | :heavy_check_mark: | :heavy_check_mark: |
+| USDT Perpetual | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
+| USDT Perpetual | Account Data | :heavy_check_mark: | :heavy_check_mark: |
+| USDT Perpetual | Wallet Data  | :heavy_check_mark: | :heavy_check_mark: |
 
 ### Contributing
 

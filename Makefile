@@ -38,7 +38,7 @@ lint: $(LINT_BIN) ; $(info Running lint...) @
 	CGO_LDFLAGS_ALLOW="-Wl,-z,now" CGO_LDFLAGS="${BUILDER_LINKER_FLAGS}" $(LINT_BIN) --timeout 10m run
 	CGO_LDFLAGS_ALLOW="-Wl,-z,now" CGO_LDFLAGS="${BUILDER_LINKER_FLAGS}" go vet ./...
 
-test: fmt $(info Running tests...)
+test: fmt lint $(info Running tests...)
 	# NOTE: make sure to export the values for the env variables in the terminal prompt before running the tests
 	export BYBIT_API_KEY=${BYBIT_API_KEY}
 	export BYBIT_API_SECRET=${BYBIT_API_SECRET}
