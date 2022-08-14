@@ -628,3 +628,113 @@ type ProfitAndLossResultData struct {
 	Leverage          float64 `json:"leverage"`
 	CreatedAt         int64   `json:"created_at"`
 }
+
+type GetRiskLimitParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type GetRiskLimitResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    []GetRiskLimitResult `json:"result"`
+}
+
+type GetRiskLimitResult struct {
+	ID             int64    `json:"id"`
+	Symbol         string   `json:"symbol"`
+	Limit          float64  `json:"limit"`
+	MaintainMargin float64  `json:"maintain_margin"`
+	StartingMargin float64  `json:"starting_margin"`
+	Section        []string `json:"section"`
+	IsLowestRisk   int      `json:"is_lowest_risk"`
+	CreatedAt      string   `json:"created_at"`
+	UpdatedAt      string   `json:"updated_at"`
+	MaxLeverage    float64  `json:"max_leverage"`
+}
+
+type SetRiskLimitParams struct {
+	Symbol      string     `url:"symbol" json:"symbol"`
+	Side        bybit.Side `url:"side" json:"side"`
+	RiskID      int64      `url:"risk_id" json:"risk_id"`
+	PositionIDx int64      `url:"position_idx,omitempty" json:"position_idx,omitempty"`
+}
+
+type SetRiskLimitResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    SetRiskLimitResult `json:"result"`
+}
+
+type SetRiskLimitResult struct {
+	RiskID int64 `json:"risk_id"`
+}
+
+type PredictedFundingRateParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type PredictedFundingRateResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    PredictedFundingRateResult `json:"result"`
+}
+
+type PredictedFundingRateResult struct {
+	PredictedFundingRate float64 `json:"predicted_funding_rate"`
+	PredictedFundingFee  float64 `json:"predicted_funding_fee"`
+}
+
+type GetLastFundingFeeParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type GetLastFundingFeeResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    GetLastFundingFeeResult `json:"result"`
+}
+
+type GetLastFundingFeeResult struct {
+	Symbol      string  `json:"symbol"`
+	Side        string  `json:"side"`
+	Size        float64 `json:"size"`
+	FundingRate float64 `json:"funding_rate"`
+	ExecFee     float64 `json:"exec_fee"`
+	ExecTime    string  `json:"exec_time"`
+}
+
+type GetAPIKeyInfoResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    []GetAPIKeyInfoResult `json:"result"`
+}
+
+type GetAPIKeyInfoResult struct {
+	APIKey        string   `json:"api_key"`
+	Type          string   `json:"type"`
+	UserID        int64    `json:"user_id"`
+	InviterID     int64    `json:"inviter_id"`
+	IPs           []string `json:"ips"`
+	Note          string   `json:"note"`
+	Permissions   []string `json:"permissions"`
+	CreatedAt     string   `json:"created_at"`
+	ExpiredAt     string   `json:"expired_at"`
+	ReadOnly      bool     `json:"read_only"`
+	VipLevel      string   `json:"vip_level"`
+	MktMakerLevel string   `json:"mkt_maker_level"`
+}
+
+type GetLCPInfoParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type GetLCPInfoResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    GetLCPInfoResult `json:"result"`
+}
+
+type GetLCPInfoResult struct {
+	LCPList []LCPData `json:"lcp_list"`
+}
+
+type LCPData struct {
+	Date          string  `json:"date"`
+	SelfRatio     float64 `json:"self_ratio"`
+	PlatformRatio float64 `json:"platform_ratio"`
+	Score         float64 `json:"score"`
+}

@@ -75,4 +75,13 @@ const (
 	PrivateLinearGetUserTradeRecordsPath         = "/private/linear/trade/execution/list"
 	PrivateLinearGetExtendedUserTradeRecordsPath = "/private/linear/trade/execution/history-list"
 	PrivateLinearGetClosedProfitLossPath         = "/private/linear/trade/closed-pnl/list"
+
+	PublicLinearGetRiskLimitPath  = "/public/linear/risk-limit"
+	PrivateLinearSetRiskLimitPath = "/private/linear/position/set-risk"
+
+	PrivateLinearPredictedFundingRatePath = "/private/linear/funding/predicted-funding"
+	PrivateLinearGetLastFundingFeePath    = "/private/linear/funding/prev-funding"
+
+	PrivateLinearGetAPIKeyInfoPath = "/v2/private/account/api-key"
+	PrivateLinearGetLCPInfoPath    = "/v2/private/account/lcp"
 )

@@ -30,4 +30,13 @@ type AccountInterface interface {
 	GetUserTradeRecords(ctx context.Context, params *GetUserTradeRecordsParams) (*GetUserTradeRecordsResponse, error)
 	GetExtendedUserTradeRecords(ctx context.Context, params *GetExtendedUserTradeRecordsParams) (*GetExtendedUserTradeRecordsResponse, error)
 	GetClosedProfitLoss(ctx context.Context, params *GetClosedProfitLossParams) (*GetClosedProfitLossResponse, error)
+
+	GetRiskLimit(ctx context.Context, params *GetRiskLimitParams) (*GetRiskLimitResponse, error)
+	SetRiskLimit(ctx context.Context, params *SetRiskLimitParams) (*SetRiskLimitResponse, error)
+
+	GetPredictedFundingRate(ctx context.Context, params *PredictedFundingRateParams) (*PredictedFundingRateResponse, error)
+	GetLastFundingFee(ctx context.Context, params *GetLastFundingFeeParams) (*GetLastFundingFeeResponse, error)
+
+	GetAPIKeyInfo(ctx context.Context) (*GetAPIKeyInfoResponse, error)
+	GetLCPInfo(ctx context.Context, params *GetLCPInfoParams) (*GetLCPInfoResponse, error)
 }
