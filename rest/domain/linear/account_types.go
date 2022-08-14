@@ -698,3 +698,43 @@ type GetLastFundingFeeResult struct {
 	ExecFee     float64 `json:"exec_fee"`
 	ExecTime    string  `json:"exec_time"`
 }
+
+type GetAPIKeyInfoResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    []GetAPIKeyInfoResult `json:"result"`
+}
+
+type GetAPIKeyInfoResult struct {
+	ApiKey        string   `json:"api_key"`
+	Type          string   `json:"type"`
+	UserID        int64    `json:"user_id"`
+	InviterID     int64    `json:"inviter_id"`
+	IPs           []string `json:"ips"`
+	Note          string   `json:"note"`
+	Permissions   []string `json:"permissions"`
+	CreatedAt     string   `json:"created_at"`
+	ExpiredAt     string   `json:"expired_at"`
+	ReadOnly      bool     `json:"read_only"`
+	VipLevel      string   `json:"vip_level"`
+	MktMakerLevel string   `json:"mkt_maker_level"`
+}
+
+type GetLCPInfoParams struct {
+	Symbol string `url:"symbol" json:"symbol"`
+}
+
+type GetLCPInfoResponse struct {
+	domain.LinearBaseResponse `json:",inline"`
+	Result                    GetLCPInfoResult `json:"result"`
+}
+
+type GetLCPInfoResult struct {
+	LCPList []LCPData `json:"lcp_list"`
+}
+
+type LCPData struct {
+	Date          string  `json:"date"`
+	SelfRatio     float64 `json:"self_ratio"`
+	PlatformRatio float64 `json:"platform_ratio"`
+	Score         float64 `json:"score"`
+}

@@ -36,4 +36,7 @@ type AccountInterface interface {
 
 	GetPredictedFundingRate(ctx context.Context, params *PredictedFundingRateParams) (*PredictedFundingRateResponse, error)
 	GetLastFundingFee(ctx context.Context, params *GetLastFundingFeeParams) (*GetLastFundingFeeResponse, error)
+
+	GetAPIKeyInfo(ctx context.Context) (*GetAPIKeyInfoResponse, error)
+	GetLCPInfo(ctx context.Context, params *GetLCPInfoParams) (*GetLCPInfoResponse, error)
 }

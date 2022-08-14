@@ -81,4 +81,7 @@ const (
 
 	PrivateLinearPredictedFundingRatePath = "/private/linear/funding/predicted-funding"
 	PrivateLinearGetLastFundingFeePath    = "/private/linear/funding/prev-funding"
+
+	PrivateLinearGetAPIKeyInfoPath = "/v2/private/account/api-key"
+	PrivateLinearGetLCPInfoPath    = "/v2/private/account/lcp"
 )
