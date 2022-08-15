@@ -123,7 +123,7 @@ func TestClient_Linear_Market(t *testing.T) {
 	})
 }
 
-func getLinearBTCBuyPriceForTest(client linearRest.Interface) (*float64, error) {
+func getLinearBTCBuyPriceForTest(client *linearRest.Client) (*float64, error) {
 	response, err := client.Market().GetSymbolInformation(context.Background(), &linear.GetSymbolInformationParams{
 		Symbol: "BTCUSDT",
 	})

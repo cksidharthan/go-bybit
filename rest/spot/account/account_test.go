@@ -340,7 +340,7 @@ func TestSpotClient_Account(t *testing.T) {
 	})
 }
 
-func getSpotBTCBuyPriceForTest(client spotRest.Interface) (*float64, error) {
+func getSpotBTCBuyPriceForTest(client *spotRest.Client) (*float64, error) {
 	response, err := client.Market().GetLastTradedPrice(context.Background(), &spot.GetLastTradedPriceParams{
 		Symbol: "BTCUSDT",
 	})
