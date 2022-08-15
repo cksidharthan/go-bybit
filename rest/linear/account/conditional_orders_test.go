@@ -197,7 +197,7 @@ func TestClient_Linear_Account(t *testing.T) {
 	})
 }
 
-func getLinearADABuyPriceForTest(client linearRest.Interface) (*float64, error) {
+func getLinearADABuyPriceForTest(client *linearRest.Client) (*float64, error) {
 	response, err := client.Market().GetSymbolInformation(context.Background(), &linear.GetSymbolInformationParams{
 		Symbol: "ADAUSDT",
 	})

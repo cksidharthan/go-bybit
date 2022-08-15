@@ -7,12 +7,6 @@ import (
 	"github.com/cksidharthan/go-bybit/rest/spot/wallet"
 )
 
-type Interface interface {
-	Market() spot.MarketInterface
-	Account() spot.AccountInterface
-	Wallet() spot.WalletInterface
-}
-
 type Client struct {
 	market  spot.MarketInterface
 	account spot.AccountInterface
@@ -31,7 +25,7 @@ func (c *Client) Wallet() spot.WalletInterface {
 	return c.wallet
 }
 
-func NewSpotClient(url, apiKey, apiSecret string) Interface {
+func NewSpotClient(url, apiKey, apiSecret string) *Client {
 	return &Client{
 		market:  market.NewSpotMarketClient(url, apiKey, apiSecret),
 		account: account.NewSpotAccountClient(url, apiKey, apiSecret),

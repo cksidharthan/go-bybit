@@ -7,12 +7,6 @@ import (
 	"github.com/cksidharthan/go-bybit/rest/linear/wallet"
 )
 
-type Interface interface {
-	Market() linear.MarketInterface
-	Account() linear.AccountInterface
-	Wallet() linear.WalletInterface
-}
-
 type Client struct {
 	market  linear.MarketInterface
 	account linear.AccountInterface
@@ -31,7 +25,7 @@ func (c *Client) Wallet() linear.WalletInterface {
 	return c.wallet
 }
 
-func NewLinearClient(url, apiKey, apiSecret string) Interface {
+func NewLinearClient(url, apiKey, apiSecret string) *Client {
 	return &Client{
 		market:  market.NewLinearMarketClient(url, apiKey, apiSecret),
 		account: account.NewLinearAccountClient(url, apiKey, apiSecret),
