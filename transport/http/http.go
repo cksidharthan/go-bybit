@@ -126,7 +126,7 @@ func (h *HTTP) unSignedRequestCall(ctx context.Context, apiPath *url.URL, method
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
-			HTTPCode: -1,
+			HTTPCode: http.StatusBadRequest,
 		}
 	}
 
@@ -138,7 +138,7 @@ func (h *HTTP) unSignedRequestCall(ctx context.Context, apiPath *url.URL, method
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
-			HTTPCode: -1,
+			HTTPCode: http.StatusBadRequest,
 		}
 	}
 
@@ -146,7 +146,7 @@ func (h *HTTP) unSignedRequestCall(ctx context.Context, apiPath *url.URL, method
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
-			HTTPCode: -1,
+			HTTPCode: http.StatusBadGateway,
 		}
 	}
 
@@ -157,7 +157,7 @@ func (h *HTTP) unSignedRequestCall(ctx context.Context, apiPath *url.URL, method
 		if err != nil {
 			return nil, &transport.Error{
 				ErrorMsg: err.Error(),
-				HTTPCode: -1,
+				HTTPCode: http.StatusInternalServerError,
 			}
 		}
 		return nil, &transport.Error{
@@ -174,7 +174,7 @@ func (h *HTTP) signedRequestCall(ctx context.Context, apiPath *url.URL, method s
 	if h.APIKey == "" || h.APISecret == "" {
 		return nil, &transport.Error{
 			ErrorMsg: "APIKey and APISecret are required",
-			HTTPCode: -1,
+			HTTPCode: http.StatusUnauthorized,
 		}
 	}
 
@@ -186,7 +186,7 @@ func (h *HTTP) signedRequestCall(ctx context.Context, apiPath *url.URL, method s
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
-			HTTPCode: -1,
+			HTTPCode: http.StatusBadRequest,
 		}
 	}
 	apiURL := base.ResolveReference(apiPath)
@@ -202,7 +202,7 @@ func (h *HTTP) signedRequestCall(ctx context.Context, apiPath *url.URL, method s
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
-			HTTPCode: -1,
+			HTTPCode: http.StatusBadRequest,
 		}
 	}
 
@@ -222,7 +222,7 @@ func (h *HTTP) signedRequestCall(ctx context.Context, apiPath *url.URL, method s
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
-			HTTPCode: -1,
+			HTTPCode: http.StatusInternalServerError,
 		}
 	}
 
@@ -233,7 +233,7 @@ func (h *HTTP) signedRequestCall(ctx context.Context, apiPath *url.URL, method s
 		if err != nil {
 			return nil, &transport.Error{
 				ErrorMsg: err.Error(),
-				HTTPCode: -1,
+				HTTPCode: http.StatusInternalServerError,
 			}
 		}
 		return nil, &transport.Error{

@@ -223,7 +223,9 @@ func TestClient_Linear_Market(t *testing.T) {
 		assert.NotEmpty(t, response)
 		assert.Equal(t, "OK", response.RetMsg)
 		assert.NotNil(t, response)
-		assert.Equal(t, "BTCUSDT", response.Result[0].Symbol)
+		if len(response.Result) != 0 {
+			assert.Equal(t, "BTCUSDT", response.Result[0].Symbol)
+		}
 	})
 
 	t.Run("Get Long Short Ratio -  LINEAR", func(t *testing.T) {
