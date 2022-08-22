@@ -14,7 +14,7 @@ go get -u github.com/cksidharthan/go-bybit
 
 # Enpoints completed
 
-| Category          | SubCategory  |      Created       |       Tested       |
+| Category          | SubCategory  |      Created       |     Testcases      |
 |-------------------|--------------|:------------------:|:------------------:|
 | SPOT              | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
 | SPOT              | Account Data | :heavy_check_mark: | :heavy_check_mark: |
@@ -23,9 +23,9 @@ go get -u github.com/cksidharthan/go-bybit
 | USDT Perpetual    | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
 | USDT Perpetual    | Account Data | :heavy_check_mark: | :heavy_check_mark: |
 | USDT Perpetual    | Wallet Data  | :heavy_check_mark: | :heavy_check_mark: |
-| Inverse Perpetual | Market Data  |   :in_progress:    |   :in_progress:    |
-| Inverse Perpetual | Account Data |   :in_progress:    |   :in_progress:    |
-| Inverse Perpetual | Wallet Data  |   :in_progress:    |   :in_progress:    |
+| Inverse Perpetual | Market Data  | :heavy_check_mark: |   :construction:   |
+| Inverse Perpetual | Account Data |   :construction:   |   :construction:   |
+| Inverse Perpetual | Wallet Data  |   :construction:   |   :construction:   |
 
 ### Contributing
 
