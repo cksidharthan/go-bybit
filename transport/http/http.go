@@ -105,7 +105,7 @@ func (h *HTTP) UnsignedRequest(ctx context.Context, method string, path string, 
 
 func (h *HTTP) unSignedRequestCall(ctx context.Context, apiPath *url.URL, method string, payload []byte, headers map[string]string) ([]byte, error) {
 	c := http.Client{
-		Timeout: 5 * time.Second,
+		Timeout: 15 * time.Second,
 	}
 
 	base, err := url.Parse(h.BaseURL)
@@ -179,7 +179,7 @@ func (h *HTTP) signedRequestCall(ctx context.Context, apiPath *url.URL, method s
 	}
 
 	c := http.Client{
-		Timeout: 5 * time.Second,
+		Timeout: 15 * time.Second,
 	}
 
 	base, err := url.Parse(h.BaseURL)
@@ -214,7 +214,7 @@ func (h *HTTP) signedRequestCall(ctx context.Context, apiPath *url.URL, method s
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
-			HTTPCode: -1,
+			HTTPCode: http.StatusRequestTimeout,
 		}
 	}
 
