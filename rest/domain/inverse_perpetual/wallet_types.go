@@ -1,1 +1,1 @@
-package inverse_perpetual
+package inverseperp
