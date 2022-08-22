@@ -14,15 +14,18 @@ go get -u github.com/cksidharthan/go-bybit
 
 # Enpoints completed
 
-| Category       | SubCategory  |      Created       |       Tested       |
-|----------------|--------------|:------------------:|:------------------:|
-| SPOT           | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
-| SPOT           | Account Data | :heavy_check_mark: | :heavy_check_mark: |
-| SPOT           | Wallet Data  | :heavy_check_mark: | :heavy_check_mark: |
-| SPOT           | API Data     | :heavy_check_mark: | :heavy_check_mark: |
-| USDT Perpetual | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
-| USDT Perpetual | Account Data | :heavy_check_mark: | :heavy_check_mark: |
-| USDT Perpetual | Wallet Data  | :heavy_check_mark: | :heavy_check_mark: |
+| Category          | SubCategory  |      Created       |       Tested       |
+|-------------------|--------------|:------------------:|:------------------:|
+| SPOT              | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
+| SPOT              | Account Data | :heavy_check_mark: | :heavy_check_mark: |
+| SPOT              | Wallet Data  | :heavy_check_mark: | :heavy_check_mark: |
+| SPOT              | API Data     | :heavy_check_mark: | :heavy_check_mark: |
+| USDT Perpetual    | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
+| USDT Perpetual    | Account Data | :heavy_check_mark: | :heavy_check_mark: |
+| USDT Perpetual    | Wallet Data  | :heavy_check_mark: | :heavy_check_mark: |
+| Inverse Perpetual | Market Data  |   :in_progress:    |   :in_progress:    |
+| Inverse Perpetual | Account Data |   :in_progress:    |   :in_progress:    |
+| Inverse Perpetual | Wallet Data  |   :in_progress:    |   :in_progress:    |
 
 ### Contributing
 
