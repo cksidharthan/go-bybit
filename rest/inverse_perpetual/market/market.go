@@ -2,9 +2,10 @@ package market
 
 import (
 	"context"
+	"net/http"
+
 	"github.com/cksidharthan/go-bybit/bybit"
 	inverseperp "github.com/cksidharthan/go-bybit/rest/domain/inverse_perpetual"
-	"net/http"
 )
 
 func (c *InversePerpetualMarketClient) OrderBook(ctx context.Context, params *inverseperp.OrderBookParams) (response *inverseperp.OrderBookResponse, err error) {
@@ -23,7 +24,7 @@ func (c *InversePerpetualMarketClient) QueryKline(ctx context.Context, params *i
 	return
 }
 
-func (c *InversePerpetualMarketClient) GetSymbolInformation(ctx context.Context, params *inverseperp.GetSymbolInformationResponse) (response *inverseperp.GetSymbolInformationResponse, err error) {
+func (c *InversePerpetualMarketClient) GetSymbolInformation(ctx context.Context, params *inverseperp.GetSymbolInformationParams) (response *inverseperp.GetSymbolInformationResponse, err error) {
 	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualSymbolInformationPath, params, &response)
 	if err != nil {
 		return
