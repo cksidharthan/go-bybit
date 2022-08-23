@@ -44,13 +44,6 @@ const (
 	PublicLinearGetLatestBigDealPath            = "/v2/public/big-deal"
 	PublicLinearGetLongShortRatioPath           = "/v2/public/account-ratio"
 
-	// ACCOUNT DATA ENDPOINTS
-	// Inverse Perpetual
-	PrivateInversePerpOrderCreatePath  = "/v2/private/order/create"
-	PrivateInversePerpOrderCancelPath  = "/v2/private/order/cancel"
-	PrivateInversePerpPositionListPath = "/v2/private/position/list"
-	PrivateInversePerpLeverageSavePath = "/v2/private/position/leverage/save"
-
 	// USDT Perpetual
 	PrivateLinearPlaceOrderPath                  = "/private/linear/order/create"
 	PrivateLinearGetActiveOrderPath              = "/private/linear/order/list"
@@ -75,19 +68,28 @@ const (
 	PrivateLinearGetUserTradeRecordsPath         = "/private/linear/trade/execution/list"
 	PrivateLinearGetExtendedUserTradeRecordsPath = "/private/linear/trade/execution/history-list"
 	PrivateLinearGetClosedProfitLossPath         = "/private/linear/trade/closed-pnl/list"
-
-	PublicLinearGetRiskLimitPath  = "/public/linear/risk-limit"
-	PrivateLinearSetRiskLimitPath = "/private/linear/position/set-risk"
-
-	PrivateLinearPredictedFundingRatePath = "/private/linear/funding/predicted-funding"
-	PrivateLinearGetLastFundingFeePath    = "/private/linear/funding/prev-funding"
-
+	PublicLinearGetRiskLimitPath                 = "/public/linear/risk-limit"
+	PrivateLinearSetRiskLimitPath                = "/private/linear/position/set-risk"
+	PrivateLinearPredictedFundingRatePath        = "/private/linear/funding/predicted-funding"
+	PrivateLinearGetLastFundingFeePath           = "/private/linear/funding/prev-funding"
 	// nolint:gosec
-	PrivateLinearGetAPIKeyInfoPath = "/v2/private/account/api-key"
-	PrivateLinearGetLCPInfoPath    = "/v2/private/account/lcp"
-
+	PrivateLinearGetAPIKeyInfoPath        = "/v2/private/account/api-key"
+	PrivateLinearGetLCPInfoPath           = "/v2/private/account/lcp"
 	PrivateLinearGetWalletBalancePath     = "/v2/private/wallet/balance"
 	PrivateLinearGetWalletFundRecordsPath = "/v2/private/wallet/fund/records"
 	PrivateLinearGetWithdrawRecordsPath   = "/v2/private/wallet/withdraw/list"
 	PrivateLinearAssetExchangeRecordsPath = "/v2/private/exchange-order/list"
+
+	/* Inverse Perpetual Account API */
+	PublicInversePerpetualOrderBookPath              = "/v2/public/orderBook/L2"
+	PublicInversePerpetualQueryKlinePath             = "/v2/public/kline/list"
+	PublicInversePerpetualSymbolInformationPath      = "/v2/public/tickers"
+	PublicInversePerpetualPublicTradingRecordsPath   = "/v2/public/trading-records"
+	PublicInversePerpetualQuerySymbolPath            = "/v2/public/symbols"
+	PublicInversePerpetualQueryMarkPriceKlinePath    = "/v2/public/mark-price-kline"
+	PublicInversePerpetualQueryIndexPriceKlinePath   = "/v2/public/index-price-kline"
+	PublicInversePerpetualQueryPremiumIndexKlinePath = "/v2/public/premium-index-kline"
+	PublicInversePerpetualOpenInterestPath           = "/v2/public/open-interest"
+	PublicInversePerpetualLatestBigDealPath          = "/v2/public/big-deal"
+	PublicInversePerpetualLongShortRatioPath         = "/v2/public/account-ratio"
 )
