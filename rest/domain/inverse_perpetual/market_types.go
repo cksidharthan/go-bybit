@@ -14,10 +14,10 @@ type OrderBookResponse struct {
 }
 
 type OrderBookResult struct {
-	Symbol string `json:"symbol"`
-	Price  string `json:"price"`
-	Size   int64  `json:"size"`
-	Side   string `json:"side"`
+	Symbol string  `json:"symbol"`
+	Price  string  `json:"price"`
+	Size   float64 `json:"size"`
+	Side   string  `json:"side"`
 }
 
 type QueryKlineParams struct {
@@ -123,22 +123,22 @@ type QuerySymbolsResult struct {
 }
 
 type LeverageFilter struct {
-	MinLeverage float64 `json:"min_leverage"`
-	MaxLeverage float64 `json:"max_leverage"`
-	TickSize    float64 `json:"tick_size"`
+	MinLeverage  float64 `json:"min_leverage"`
+	MaxLeverage  float64 `json:"max_leverage"`
+	LeverageStep string  `json:"leverage_step"`
 }
 
 type PriceFilter struct {
-	MinPrice float64 `json:"min_price"`
-	MaxPrice float64 `json:"max_price"`
-	TickSize float64 `json:"tick_size"`
+	MinPrice string `json:"min_price"`
+	MaxPrice string `json:"max_price"`
+	TickSize string `json:"tick_size"`
 }
 
 type LotSizeFilter struct {
 	MaxTradingQty         float64 `json:"max_trading_qty"`
 	MinTradingQty         float64 `json:"min_trading_qty"`
 	QtyStep               float64 `json:"qty_step"`
-	PostOnlyMaxTradingQty float64 `json:"post_only_max_trading_qty"`
+	PostOnlyMaxTradingQty string  `json:"post_only_max_trading_qty"`
 }
 
 type QueryMarkPriceKlineParams struct {
@@ -159,10 +159,10 @@ type QueryMarkPriceKlineResult struct {
 	Symbol  string  `json:"symbol"`
 	Period  string  `json:"period"`
 	StartAt int64   `json:"start_at"`
-	Open    int64   `json:"open"`
-	High    int64   `json:"high"`
-	Low     int64   `json:"low"`
-	Close   int64   `json:"close"`
+	Open    float64 `json:"open"`
+	High    float64 `json:"high"`
+	Low     float64 `json:"low"`
+	Close   float64 `json:"close"`
 }
 
 type QueryIndexPriceKlineParams struct {
@@ -182,10 +182,10 @@ type QueryIndexPriceKlineResult struct {
 	Symbol   string `json:"symbol"`
 	Period   string `json:"period"`
 	OpenTime int64  `json:"open_time"`
-	Open     int64  `json:"open"`
-	High     int64  `json:"high"`
-	Low      int64  `json:"low"`
-	Close    int64  `json:"close"`
+	Open     string `json:"open"`
+	High     string `json:"high"`
+	Low      string `json:"low"`
+	Close    string `json:"close"`
 }
 
 type QueryPremiumIndexKlineParams struct {
@@ -205,10 +205,10 @@ type QueryPremiumIndexKlineResult struct {
 	Symbol   string `json:"symbol"`
 	Period   string `json:"period"`
 	OpenTime int64  `json:"open_time"`
-	Open     int64  `json:"open"`
-	High     int64  `json:"high"`
-	Low      int64  `json:"low"`
-	Close    int64  `json:"close"`
+	Open     string `json:"open"`
+	High     string `json:"high"`
+	Low      string `json:"low"`
+	Close    string `json:"close"`
 }
 
 type OpenInterestParams struct {

@@ -41,7 +41,7 @@ func (c *InversePerpetualMarketClient) PublicTradingRecords(ctx context.Context,
 }
 
 func (c *InversePerpetualMarketClient) QuerySymbols(ctx context.Context) (response *inverseperp.QuerySymbolsResponse, err error) {
-	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualOrderBookPath, nil, &response)
+	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualQuerySymbolPath, nil, &response)
 	if err != nil {
 		return
 	}

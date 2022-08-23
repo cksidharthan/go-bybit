@@ -23,7 +23,7 @@ go get -u github.com/cksidharthan/go-bybit
 | USDT Perpetual    | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
 | USDT Perpetual    | Account Data | :heavy_check_mark: | :heavy_check_mark: |
 | USDT Perpetual    | Wallet Data  | :heavy_check_mark: | :heavy_check_mark: |
-| Inverse Perpetual | Market Data  | :heavy_check_mark: |   :construction:   |
+| Inverse Perpetual | Market Data  | :heavy_check_mark: | :heavy_check_mark: |
 | Inverse Perpetual | Account Data |   :construction:   |   :construction:   |
 | Inverse Perpetual | Wallet Data  |   :construction:   |   :construction:   |
 
