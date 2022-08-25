@@ -24,6 +24,8 @@ func (c *Client) InversePerpetual() inverseperp.Client {
 	return c.inversePerpetual
 }
 
+// NewRestClient - creates a new bybit rest client
+// docs - https://bybit-exchange.github.io/docs/spot/#t-introduction
 func NewRestClient(url, apiKey, apiSecret string) *Client {
 	return &Client{
 		spot:             *spot.NewSpotClient(url, apiKey, apiSecret),
