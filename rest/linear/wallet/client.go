@@ -9,6 +9,7 @@ type LinearWalletClient struct {
 	transporter transport.Transporter
 }
 
+// NewLinearWalletClient - create a new linear wallet client.
 func NewLinearWalletClient(url, apiKey, apiSecret string) *LinearWalletClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
 	return &LinearWalletClient{

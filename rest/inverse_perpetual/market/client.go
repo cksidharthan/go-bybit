@@ -9,6 +9,9 @@ type InversePerpetualMarketClient struct {
 	transporter transport.Transporter
 }
 
+// NewInversePerpetualMarketClient - create a new inverse perpetual market client.
+//
+// docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-marketdata
 func NewInversePerpetualMarketClient(url, apiKey, apiSecret string) *InversePerpetualMarketClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
 	return &InversePerpetualMarketClient{
