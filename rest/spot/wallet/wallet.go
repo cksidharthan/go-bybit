@@ -8,6 +8,7 @@ import (
 	"github.com/cksidharthan/go-bybit/rest/domain/spot"
 )
 
+// GetWalletBalance - get wallet balance. [/spot/v1/account]
 func (c *SpotWalletClient) GetWalletBalance(ctx context.Context) (res *spot.GetWalletBalanceResponse, err error) {
 	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateWalletBalancePath, nil, &res)
 	if err != nil {
