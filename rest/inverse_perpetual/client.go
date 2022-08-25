@@ -25,6 +25,9 @@ func (c *Client) Wallet() inverseperp.WalletInterface {
 	return c.wallet
 }
 
+// NewInversePerpetualClient - create a new inverse perpetual client.
+//
+// docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-introduction
 func NewInversePerpetualClient(url, apiKey, apiSecret string) *Client {
 	return &Client{
 		market:  market.NewInversePerpetualMarketClient(url, apiKey, apiSecret),
