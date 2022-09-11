@@ -6,7 +6,7 @@ import (
 )
 
 type SpotMarketClient struct {
-	transporter transport.Transporter
+	Transporter transport.Transporter
 }
 
 // NewSpotMarketClient - creates a new bybit spot market client
@@ -15,6 +15,6 @@ type SpotMarketClient struct {
 func NewSpotMarketClient(url, apiKey, apiSecret string) *SpotMarketClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
 	return &SpotMarketClient{
-		transporter: transporter,
+		Transporter: transporter,
 	}
 }

@@ -12,7 +12,7 @@ import (
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-placeactive
 func (c *LinearAccountClient) PlaceActiveOrder(ctx context.Context, params *linear.PlaceActiveOrderParams) (res *linear.PlaceActiveOrderResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearPlaceOrderPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearPlaceOrderPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -26,7 +26,7 @@ func (c *LinearAccountClient) PlaceActiveOrder(ctx context.Context, params *line
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-getactive
 func (c *LinearAccountClient) GetActiveOrder(ctx context.Context, params *linear.GetActiveOrderParams) (res *linear.GetActiveOrderResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetActiveOrderPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetActiveOrderPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -40,7 +40,7 @@ func (c *LinearAccountClient) GetActiveOrder(ctx context.Context, params *linear
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-cancelactive
 func (c *LinearAccountClient) CancelActiveOrder(ctx context.Context, params *linear.CancelActiveOrderParams) (res *linear.CancelActiveOrderResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearOrderCancelPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearOrderCancelPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -52,7 +52,7 @@ func (c *LinearAccountClient) CancelActiveOrder(ctx context.Context, params *lin
 // Cancel all active orders that are unfilled or partially filled. Fully filled orders cannot be cancelled.
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-cancelactive
 func (c *LinearAccountClient) CancelAllActiveOrders(ctx context.Context, params *linear.CancelAllActiveOrdersParams) (res *linear.CancelAllActiveOrdersResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearOrderCancelAllPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearOrderCancelAllPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -63,7 +63,7 @@ func (c *LinearAccountClient) CancelAllActiveOrders(ctx context.Context, params 
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-replaceactive
 func (c *LinearAccountClient) ReplaceActiveOrder(ctx context.Context, params *linear.ReplaceActiveOrderParams) (res *linear.ReplaceActiveOrderResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearReplaceActiveOrderPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearReplaceActiveOrderPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -75,7 +75,7 @@ func (c *LinearAccountClient) ReplaceActiveOrder(ctx context.Context, params *li
 // Query real-time active order information. If only order_id or order_link_id are passed, a single order will be returned; otherwise, returns up to 500 unfilled orders.
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-queryactive
 func (c *LinearAccountClient) QueryActiveOrder(ctx context.Context, params *linear.QueryActiveOrderParams) (res *linear.QueryActiveOrderResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearQueryActiveOrderPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearQueryActiveOrderPath, params, &res)
 	if err != nil {
 		return
 	}

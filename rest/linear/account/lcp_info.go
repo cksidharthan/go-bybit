@@ -14,7 +14,7 @@ import (
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-lcp
 func (c *LinearAccountClient) GetLCPInfo(ctx context.Context, params *linear.GetLCPInfoParams) (res *linear.GetLCPInfoResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetLCPInfoPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetLCPInfoPath, params, &res)
 	if err != nil {
 		return
 	}

@@ -12,7 +12,7 @@ import (
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-predictedfunding
 func (c *LinearAccountClient) GetPredictedFundingRate(ctx context.Context, params *linear.PredictedFundingRateParams) (res *linear.PredictedFundingRateResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearPredictedFundingRatePath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearPredictedFundingRatePath, params, &res)
 	if err != nil {
 		return
 	}
@@ -27,7 +27,7 @@ func (c *LinearAccountClient) GetPredictedFundingRate(ctx context.Context, param
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-mylastfundingfee
 func (c *LinearAccountClient) GetLastFundingFee(ctx context.Context, params *linear.GetLastFundingFeeParams) (res *linear.GetLastFundingFeeResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetLastFundingFeePath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetLastFundingFeePath, params, &res)
 	if err != nil {
 		return
 	}

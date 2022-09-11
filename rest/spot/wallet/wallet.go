@@ -12,7 +12,7 @@ import (
 //
 // docs  - https://bybit-exchange.github.io/docs/spot/#t-balance
 func (c *SpotWalletClient) GetWalletBalance(ctx context.Context) (res *spot.GetWalletBalanceResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateWalletBalancePath, nil, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateWalletBalancePath, nil, &res)
 	if err != nil {
 		return
 	}

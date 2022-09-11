@@ -12,7 +12,7 @@ import (
 //
 // docs  - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-myposition
 func (c *LinearAccountClient) GetPositionsBySymbol(ctx context.Context, params *linear.GetPositionsBySymbolParams) (res *linear.GetPositionsBySymbolResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetPositionPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetPositionPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -23,7 +23,7 @@ func (c *LinearAccountClient) GetPositionsBySymbol(ctx context.Context, params *
 //
 // docs  - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-myposition
 func (c *LinearAccountClient) GetPositions(ctx context.Context) (res *linear.GetPositionsResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetPositionPath, nil, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetPositionPath, nil, &res)
 	if err != nil {
 		return
 	}
@@ -34,7 +34,7 @@ func (c *LinearAccountClient) GetPositions(ctx context.Context) (res *linear.Get
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-setautoaddmargin
 func (c *LinearAccountClient) SetAutoAddMargin(ctx context.Context, params *linear.SetAutoAddMarginParams) (res *linear.SetAutoAddMarginResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearSetAutoAddMarginPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearSetAutoAddMarginPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -45,7 +45,7 @@ func (c *LinearAccountClient) SetAutoAddMargin(ctx context.Context, params *line
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-marginswitch
 func (c *LinearAccountClient) SwitchMargin(ctx context.Context, params *linear.SwitchMarginParams) (res *linear.SwitchMarginResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearSwitchMarginPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearSwitchMarginPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -59,7 +59,7 @@ func (c *LinearAccountClient) SwitchMargin(ctx context.Context, params *linear.S
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-switchpositionmode
 func (c *LinearAccountClient) SwitchPositionMode(ctx context.Context, params *linear.SwitchPositionModeParams) (res *linear.SwitchPositionModeResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearSwitchPositionModePath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearSwitchPositionModePath, params, &res)
 	if err != nil {
 		return
 	}
@@ -70,7 +70,7 @@ func (c *LinearAccountClient) SwitchPositionMode(ctx context.Context, params *li
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-switchmode
 func (c *LinearAccountClient) PositionTpSlSwitch(ctx context.Context, params *linear.PositionTpSlSwitchParams) (res *linear.PositionTpSlSwitchResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearPositionTpSlSwitch, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearPositionTpSlSwitch, params, &res)
 	if err != nil {
 		return
 	}
@@ -81,7 +81,7 @@ func (c *LinearAccountClient) PositionTpSlSwitch(ctx context.Context, params *li
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-addmargin
 func (c *LinearAccountClient) AddReduceMargin(ctx context.Context, params *linear.AddReduceMarginParams) (res *linear.AddReduceMarginResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearAddReduceMarginPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearAddReduceMarginPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -92,7 +92,7 @@ func (c *LinearAccountClient) AddReduceMargin(ctx context.Context, params *linea
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-setleverage
 func (c *LinearAccountClient) SetLeverage(ctx context.Context, params *linear.SetLeverageParams) (res *linear.SetLeverageResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearSetLeveragePath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearSetLeveragePath, params, &res)
 	if err != nil {
 		return
 	}
@@ -105,7 +105,7 @@ func (c *LinearAccountClient) SetLeverage(ctx context.Context, params *linear.Se
 //
 // docs - /private/linear/position/trading-stop
 func (c *LinearAccountClient) SetTradingStop(ctx context.Context, params *linear.SetTradingStopParams) (res *linear.SetTradingStopResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearSetTradingStopPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodPost, bybit.PrivateLinearSetTradingStopPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -118,7 +118,7 @@ func (c *LinearAccountClient) SetTradingStop(ctx context.Context, params *linear
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-usertraderecords
 func (c *LinearAccountClient) GetUserTradeRecords(ctx context.Context, params *linear.GetUserTradeRecordsParams) (res *linear.GetUserTradeRecordsResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetUserTradeRecordsPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetUserTradeRecordsPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -131,7 +131,7 @@ func (c *LinearAccountClient) GetUserTradeRecords(ctx context.Context, params *l
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-userhistorytraderecords
 func (c *LinearAccountClient) GetExtendedUserTradeRecords(ctx context.Context, params *linear.GetExtendedUserTradeRecordsParams) (res *linear.GetExtendedUserTradeRecordsResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetExtendedUserTradeRecordsPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetExtendedUserTradeRecordsPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -144,7 +144,7 @@ func (c *LinearAccountClient) GetExtendedUserTradeRecords(ctx context.Context, p
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/linear/#t-closedprofitandloss
 func (c *LinearAccountClient) GetClosedProfitLoss(ctx context.Context, params *linear.GetClosedProfitLossParams) (res *linear.GetClosedProfitLossResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetClosedProfitLossPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetClosedProfitLossPath, params, &res)
 	if err != nil {
 		return
 	}
