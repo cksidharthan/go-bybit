@@ -6,12 +6,12 @@ import (
 )
 
 type LinearMarketClient struct {
-	transporter transport.Transporter
+	Transporter transport.Transporter
 }
 
 func NewLinearMarketClient(url, apiKey, apiSecret string) *LinearMarketClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
 	return &LinearMarketClient{
-		transporter: transporter,
+		Transporter: transporter,
 	}
 }

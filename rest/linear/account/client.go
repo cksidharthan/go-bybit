@@ -6,12 +6,12 @@ import (
 )
 
 type LinearAccountClient struct {
-	transporter transport.Transporter
+	Transporter transport.Transporter
 }
 
 func NewLinearAccountClient(url, apiKey, apiSecret string) *LinearAccountClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
 	return &LinearAccountClient{
-		transporter: transporter,
+		Transporter: transporter,
 	}
 }

@@ -6,7 +6,7 @@ import (
 )
 
 type SpotWalletClient struct {
-	transporter transport.Transporter
+	Transporter transport.Transporter
 }
 
 // NewSpotWalletClient - creates a new bybit spot wallet client
@@ -14,6 +14,6 @@ type SpotWalletClient struct {
 func NewSpotWalletClient(url, apiKey, apiSecret string) *SpotWalletClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
 	return &SpotWalletClient{
-		transporter: transporter,
+		Transporter: transporter,
 	}
 }

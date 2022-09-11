@@ -12,7 +12,7 @@ import (
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-balance
 func (c *LinearWalletClient) GetWalletBalance(ctx context.Context, params *linear.GetWalletBalanceParams) (res *linear.GetWalletBalanceResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetWalletBalancePath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetWalletBalancePath, params, &res)
 	if err != nil {
 		return
 	}
@@ -30,7 +30,7 @@ func (c *LinearWalletClient) GetWalletBalance(ctx context.Context, params *linea
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-walletrecords
 func (c *LinearWalletClient) GetWalletFundRecords(ctx context.Context, params *linear.GetWalletFundRecordsParams) (res *linear.GetWalletFundRecordsResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetWalletFundRecordsPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetWalletFundRecordsPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -49,7 +49,7 @@ func (c *LinearWalletClient) GetWalletFundRecords(ctx context.Context, params *l
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-withdrawrecords
 func (c *LinearWalletClient) GetWithdrawRecords(ctx context.Context, params *linear.GetWithdrawRecordsParams) (res *linear.GetWithdrawRecordsResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetWithdrawRecordsPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearGetWithdrawRecordsPath, params, &res)
 	if err != nil {
 		return
 	}
@@ -60,7 +60,7 @@ func (c *LinearWalletClient) GetWithdrawRecords(ctx context.Context, params *lin
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-assetexchangerecords
 func (c *LinearWalletClient) GetAssetExchangeRecords(ctx context.Context, params *linear.GetAssetExchangeRecordsParams) (res *linear.GetAssetExchangeRecordsResponse, err error) {
-	err = c.transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearAssetExchangeRecordsPath, params, &res)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateLinearAssetExchangeRecordsPath, params, &res)
 	if err != nil {
 		return
 	}

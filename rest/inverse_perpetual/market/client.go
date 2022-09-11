@@ -6,7 +6,7 @@ import (
 )
 
 type InversePerpetualMarketClient struct {
-	transporter transport.Transporter
+	Transporter transport.Transporter
 }
 
 // NewInversePerpetualMarketClient - create a new inverse perpetual market client.
@@ -15,6 +15,6 @@ type InversePerpetualMarketClient struct {
 func NewInversePerpetualMarketClient(url, apiKey, apiSecret string) *InversePerpetualMarketClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
 	return &InversePerpetualMarketClient{
-		transporter: transporter,
+		Transporter: transporter,
 	}
 }

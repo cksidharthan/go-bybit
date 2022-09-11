@@ -6,13 +6,13 @@ import (
 )
 
 type SpotAccountClient struct {
-	transporter transport.Transporter
+	Transporter transport.Transporter
 }
 
 // NewSpotAccountClient - creates a new bybit spot account client
 func NewSpotAccountClient(url, apiKey, apiSecret string) *SpotAccountClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
 	return &SpotAccountClient{
-		transporter: transporter,
+		Transporter: transporter,
 	}
 }

@@ -14,7 +14,7 @@ import (
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-orderbook
 func (c *InversePerpetualMarketClient) OrderBook(ctx context.Context, params *inverseperp.OrderBookParams) (response *inverseperp.OrderBookResponse, err error) {
-	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualOrderBookPath, params, &response)
+	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualOrderBookPath, params, &response)
 	if err != nil {
 		return
 	}
@@ -25,7 +25,7 @@ func (c *InversePerpetualMarketClient) OrderBook(ctx context.Context, params *in
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-querykline
 func (c *InversePerpetualMarketClient) QueryKline(ctx context.Context, params *inverseperp.QueryKlineParams) (response *inverseperp.QueryKlineResponse, err error) {
-	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualQueryKlinePath, params, &response)
+	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualQueryKlinePath, params, &response)
 	if err != nil {
 		return
 	}
@@ -36,7 +36,7 @@ func (c *InversePerpetualMarketClient) QueryKline(ctx context.Context, params *i
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-latestsymbolinfo
 func (c *InversePerpetualMarketClient) GetSymbolInformation(ctx context.Context, params *inverseperp.GetSymbolInformationParams) (response *inverseperp.GetSymbolInformationResponse, err error) {
-	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualSymbolInformationPath, params, &response)
+	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualSymbolInformationPath, params, &response)
 	if err != nil {
 		return
 	}
@@ -47,7 +47,7 @@ func (c *InversePerpetualMarketClient) GetSymbolInformation(ctx context.Context,
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-publictradingrecords
 func (c *InversePerpetualMarketClient) PublicTradingRecords(ctx context.Context, params *inverseperp.PublicTradingRecordsParams) (response *inverseperp.PublicTradingRecordsResponse, err error) {
-	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualPublicTradingRecordsPath, params, &response)
+	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualPublicTradingRecordsPath, params, &response)
 	if err != nil {
 		return
 	}
@@ -58,7 +58,7 @@ func (c *InversePerpetualMarketClient) PublicTradingRecords(ctx context.Context,
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-querysymbol
 func (c *InversePerpetualMarketClient) QuerySymbols(ctx context.Context) (response *inverseperp.QuerySymbolsResponse, err error) {
-	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualQuerySymbolPath, nil, &response)
+	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualQuerySymbolPath, nil, &response)
 	if err != nil {
 		return
 	}
@@ -69,7 +69,7 @@ func (c *InversePerpetualMarketClient) QuerySymbols(ctx context.Context) (respon
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-markpricekline
 func (c *InversePerpetualMarketClient) QueryMarkPriceKline(ctx context.Context, params *inverseperp.QueryMarkPriceKlineParams) (response *inverseperp.QueryMarkPriceKlineResponse, err error) {
-	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualQueryMarkPriceKlinePath, params, &response)
+	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualQueryMarkPriceKlinePath, params, &response)
 	if err != nil {
 		return
 	}
@@ -80,7 +80,7 @@ func (c *InversePerpetualMarketClient) QueryMarkPriceKline(ctx context.Context, 
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-queryindexpricekline
 func (c *InversePerpetualMarketClient) QueryIndexPriceKline(ctx context.Context, params *inverseperp.QueryIndexPriceKlineParams) (response *inverseperp.QueryIndexPriceKlineResponse, err error) {
-	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualQueryIndexPriceKlinePath, params, &response)
+	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualQueryIndexPriceKlinePath, params, &response)
 	if err != nil {
 		return
 	}
@@ -93,7 +93,7 @@ func (c *InversePerpetualMarketClient) QueryIndexPriceKline(ctx context.Context,
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-querypremiumindexkline
 func (c *InversePerpetualMarketClient) QueryPremiumIndexKline(ctx context.Context, params *inverseperp.QueryPremiumIndexKlineParams) (response *inverseperp.QueryPremiumIndexKlineResponse, err error) {
-	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualQueryPremiumIndexKlinePath, params, &response)
+	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualQueryPremiumIndexKlinePath, params, &response)
 	if err != nil {
 		return
 	}
@@ -106,7 +106,7 @@ func (c *InversePerpetualMarketClient) QueryPremiumIndexKline(ctx context.Contex
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-marketopeninterest
 func (c *InversePerpetualMarketClient) OpenInterest(ctx context.Context, params *inverseperp.OpenInterestParams) (response *inverseperp.OpenInterestResponse, err error) {
-	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualOrderBookPath, params, &response)
+	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualOrderBookPath, params, &response)
 	if err != nil {
 		return
 	}
@@ -121,7 +121,7 @@ func (c *InversePerpetualMarketClient) OpenInterest(ctx context.Context, params 
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-marketbigdeal
 func (c *InversePerpetualMarketClient) LatestBigDeal(ctx context.Context, params *inverseperp.LatestBigDealParams) (response *inverseperp.LatestBigDealResponse, err error) {
-	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualLatestBigDealPath, params, &response)
+	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualLatestBigDealPath, params, &response)
 	if err != nil {
 		return
 	}
@@ -132,7 +132,7 @@ func (c *InversePerpetualMarketClient) LatestBigDeal(ctx context.Context, params
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-marketaccountratio
 func (c *InversePerpetualMarketClient) LongShortRatio(ctx context.Context, params *inverseperp.LongShortRatioParams) (response *inverseperp.LongShortRatioResponse, err error) {
-	err = c.transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualLongShortRatioPath, params, &response)
+	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualLongShortRatioPath, params, &response)
 	if err != nil {
 		return
 	}
