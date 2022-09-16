@@ -693,16 +693,16 @@ type GetRiskLimitResponse struct {
 }
 
 type GetRiskLimitResult struct {
-	ID             int64   `url:"id" json:"id"`
-	Symbol         string  `url:"symbol" json:"symbol"`
-	Limit          int64   `url:"limit" json:"limit"`
-	MaintainMargin float64 `url:"maintain_margin" json:"maintain_margin"`
-	StartingMargin float64 `url:"starting_margin" json:"starting_margin"`
-	Section        string  `url:"section" json:"section"`
-	IsLowestRisk   int64   `url:"is_lowest_risk" json:"is_lowest_risk"`
-	CreatedAt      string  `url:"created_at" json:"created_at"`
-	UpdatedAt      string  `url:"updated_at" json:"updated_at"`
-	MaxLeverage    float64 `url:"max_leverage" json:"max_leverage"`
+	ID             int64    `url:"id" json:"id"`
+	Symbol         string   `url:"symbol" json:"symbol"`
+	Limit          int64    `url:"limit" json:"limit"`
+	MaintainMargin string   `url:"maintain_margin" json:"maintain_margin"`
+	StartingMargin string   `url:"starting_margin" json:"starting_margin"`
+	Section        []string `url:"section" json:"section"`
+	IsLowestRisk   int64    `url:"is_lowest_risk" json:"is_lowest_risk"`
+	CreatedAt      string   `url:"created_at" json:"created_at"`
+	UpdatedAt      string   `url:"updated_at" json:"updated_at"`
+	MaxLeverage    string   `url:"max_leverage" json:"max_leverage"`
 }
 
 type SetRiskLimitParams struct {
