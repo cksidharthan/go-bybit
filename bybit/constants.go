@@ -92,4 +92,9 @@ const (
 	PublicInversePerpetualOpenInterestPath           = "/v2/public/open-interest"
 	PublicInversePerpetualLatestBigDealPath          = "/v2/public/big-deal"
 	PublicInversePerpetualLongShortRatioPath         = "/v2/public/account-ratio"
+
+	PrivateInversePerpetualWalletBalancePath     = "/v2/private/wallet/balance"
+	PrivateInversePerpetualWalletFundRecordsPath = "/v2/private/wallet/fund/records"
+	PrivateInversePerpetualWithdrawRecordsPath   = "/v2/private/wallet/withdraw/list"
+	PrivateInversePerpetualAssetExchangeRecords  = "/v2/private/exchange-order/list"
 )
