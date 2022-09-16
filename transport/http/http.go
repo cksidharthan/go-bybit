@@ -8,7 +8,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"sort"
@@ -16,9 +15,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/google/go-querystring/query"
-
 	"github.com/cksidharthan/go-bybit/transport"
+	"github.com/google/go-querystring/query"
 )
 
 type HTTP struct {
@@ -142,7 +140,7 @@ func (h *HTTP) unSignedRequestCall(ctx context.Context, apiPath *url.URL, method
 		}
 	}
 
-	respData, err := ioutil.ReadAll(resp.Body)
+	respData, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),
@@ -218,7 +216,7 @@ func (h *HTTP) signedRequestCall(ctx context.Context, apiPath *url.URL, method s
 		}
 	}
 
-	respData, err := ioutil.ReadAll(resp.Body)
+	respData, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return nil, &transport.Error{
 			ErrorMsg: err.Error(),

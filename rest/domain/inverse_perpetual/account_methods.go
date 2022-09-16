@@ -20,7 +20,8 @@ type AccountInterface interface {
 	QueryConditionalOrder(ctx context.Context, params *QueryConditionalOrderParams) (*QueryConditionalOrderResponse, error)
 
 	// Position
-	GetPosition(ctx context.Context, params *GetPositionParams) (*GetPositionResponse, error)
+	GetPosition(ctx context.Context) (*GetPositionResponse, error)
+	GetPositionWithSymbol(ctx context.Context, params *GetPositionWithSymbolParams) (*GetPositionWithSymbolResponse, error)
 	ChangeMargin(ctx context.Context, params *ChangeMarginParams) (*ChangeMarginResponse, error)
 	SetTradingStop(ctx context.Context, params *SetTradingStopParams) (*SetTradingStopResponse, error)
 	SetLeverage(ctx context.Context, params *SetLeverageParams) (*SetLeverageResponse, error)
@@ -29,16 +30,13 @@ type AccountInterface interface {
 	PositionTpSlSwitch(ctx context.Context, params *PositionTpSlSwitchParams) (*PositionTpSlSwitchResponse, error)
 	MarginSwitch(ctx context.Context, params *MarginSwitchParams) (*MarginSwitchResponse, error)
 	QueryTradingFeeRate(ctx context.Context, params *QueryTradingFeeRateParams) (*QueryTradingFeeRateResponse, error)
-
 	// Risk Limit
 	GetRiskLimit(ctx context.Context, params *GetRiskLimitParams) (*GetRiskLimitResponse, error)
 	SetRiskLimit(ctx context.Context, params *SetRiskLimitParams) (*SetRiskLimitResponse, error)
-
 	// Funding
 	GetFundingRate(ctx context.Context, params *GetFundingRateParams) (*GetFundingRateResponse, error)
 	GetLastFundingFee(ctx context.Context, params *GetLastFundingFeeParams) (*GetLastFundingFeeResponse, error)
 	GetPredictedFunding(ctx context.Context, params *GetPredictedFundingParams) (*GetPredictedFundingResponse, error)
-
-	GetAPIKeyInfo(ctx context.Context, params *GetAPIKeyInfoParams) (*GetAPIKeyInfoResponse, error)
+	GetAPIKeyInfo(ctx context.Context) (*GetAPIKeyInfoResponse, error)
 	GetLCPInfo(ctx context.Context, params *GetLCPInfoParams) (*GetLCPInfoResponse, error)
 }
