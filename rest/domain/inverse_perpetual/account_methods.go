@@ -30,13 +30,17 @@ type AccountInterface interface {
 	PositionTpSlSwitch(ctx context.Context, params *PositionTpSlSwitchParams) (*PositionTpSlSwitchResponse, error)
 	MarginSwitch(ctx context.Context, params *MarginSwitchParams) (*MarginSwitchResponse, error)
 	QueryTradingFeeRate(ctx context.Context, params *QueryTradingFeeRateParams) (*QueryTradingFeeRateResponse, error)
+
 	// Risk Limit
 	GetRiskLimit(ctx context.Context, params *GetRiskLimitParams) (*GetRiskLimitResponse, error)
 	SetRiskLimit(ctx context.Context, params *SetRiskLimitParams) (*SetRiskLimitResponse, error)
+
 	// Funding
 	GetFundingRate(ctx context.Context, params *GetFundingRateParams) (*GetFundingRateResponse, error)
 	GetLastFundingFee(ctx context.Context, params *GetLastFundingFeeParams) (*GetLastFundingFeeResponse, error)
 	GetPredictedFunding(ctx context.Context, params *GetPredictedFundingParams) (*GetPredictedFundingResponse, error)
+
 	GetAPIKeyInfo(ctx context.Context) (*GetAPIKeyInfoResponse, error)
+
 	GetLCPInfo(ctx context.Context, params *GetLCPInfoParams) (*GetLCPInfoResponse, error)
 }
