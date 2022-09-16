@@ -25,7 +25,6 @@ jobs:
         with:
           go-version: '^1.18'
       - run: go test ./... -coverpkg=./... -coverprofile=coverage.out
-      - run: go test ./... -json > test.out
       - run: go vet ./... 2> govet.out || true # Ignore go vet status code
 
   lint-check:

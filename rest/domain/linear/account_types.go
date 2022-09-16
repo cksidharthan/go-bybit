@@ -500,9 +500,9 @@ type AddReduceMarginResult struct {
 }
 
 type SetLeverageParams struct {
-	Symbol       string `url:"symbol" json:"symbol"`
-	BuyLeverage  int    `url:"buy_leverage" json:"buy_leverage"`
-	SellLeverage int    `url:"sell_leverage" json:"sell_leverage"`
+	Symbol       string  `url:"symbol" json:"symbol"`
+	BuyLeverage  float64 `url:"buy_leverage" json:"buy_leverage"`
+	SellLeverage float64 `url:"sell_leverage" json:"sell_leverage"`
 }
 
 type SetLeverageResponse struct {

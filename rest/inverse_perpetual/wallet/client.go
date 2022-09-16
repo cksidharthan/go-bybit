@@ -6,12 +6,12 @@ import (
 )
 
 type InversePerpetualWalletClient struct {
-	transporter transport.Transporter
+	Transporter transport.Transporter
 }
 
 func NewInversePerpetualWalletClient(url, apiKey, apiSecret string) *InversePerpetualWalletClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
 	return &InversePerpetualWalletClient{
-		transporter: transporter,
+		Transporter: transporter,
 	}
 }

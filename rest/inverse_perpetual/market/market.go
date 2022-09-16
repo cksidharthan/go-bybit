@@ -106,7 +106,7 @@ func (c *InversePerpetualMarketClient) QueryPremiumIndexKline(ctx context.Contex
 //
 // docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-marketopeninterest
 func (c *InversePerpetualMarketClient) OpenInterest(ctx context.Context, params *inverseperp.OpenInterestParams) (response *inverseperp.OpenInterestResponse, err error) {
-	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualOrderBookPath, params, &response)
+	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PublicInversePerpetualOpenInterestPath, params, &response)
 	if err != nil {
 		return
 	}

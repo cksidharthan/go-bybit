@@ -139,7 +139,7 @@ func TestClient_InversePerpetual_Market(t *testing.T) {
 		t.Parallel()
 		response, err := bybitClient.Market().OpenInterest(context.Background(), &domain.OpenInterestParams{
 			Symbol: "BTCUSD",
-			Limit:  50,
+			Period: "5min",
 		})
 		assert.NoError(t, err)
 		assert.Equal(t, 0, response.RetCode)
