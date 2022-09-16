@@ -3,12 +3,12 @@ package inverseperp
 import "github.com/cksidharthan/go-bybit/rest/domain"
 
 type WalletBalanceParams struct {
-	Coin string `json:"coin,omitempty" description:"currency alias. Returns all wallet balances if not passed."`
+	Coin string `url:"coin" json:"coin,omitempty" description:"currency alias. Returns all wallet balances if not passed."`
 }
 
 type WalletBalanceResponse struct {
 	domain.BaseResponse `json:",inline"`
-	Result              []map[string]WalletBalanceResult `json:"result"`
+	Result              map[string]WalletBalanceResult `json:"result"`
 }
 
 type WalletBalanceResult struct {
@@ -28,13 +28,13 @@ type WalletBalanceResult struct {
 }
 
 type WalletFundRecordsParams struct {
-	StartDate      string `json:"start_date,omitempty" description:"start date of the query"`
-	EndDate        string `json:"end_date,omitempty" description:"end date of the query"`
-	Currency       string `json:"currency,omitempty" description:"currency alias"`
-	Coin           string `json:"coin,omitempty" description:"currency alias"`
-	WalletFundType string `json:"wallet_fund_type,omitempty" description:"wallet fund type"`
-	Limit          int64  `json:"limit,omitempty" description:"number of records to return"`
-	Page           int64  `json:"page,omitempty" description:"page number"`
+	StartDate      string `url:"start_date" json:"start_date,omitempty" description:"start date of the query"`
+	EndDate        string `url:"end_date" json:"end_date,omitempty" description:"end date of the query"`
+	Currency       string `url:"currency" json:"currency,omitempty" description:"currency alias"`
+	Coin           string `url:"coin" json:"coin,omitempty" description:"currency alias"`
+	WalletFundType string `url:"wallet_fund_type" json:"wallet_fund_type,omitempty" description:"wallet fund type"`
+	Limit          int64  `url:"limit" json:"limit,omitempty" description:"number of records to return"`
+	Page           int64  `url:"page" json:"page,omitempty" description:"page number"`
 }
 
 type WalletFundRecordsResponse struct {
@@ -61,12 +61,12 @@ type WalletFundRecordsData struct {
 }
 
 type WithdrawRecordsParams struct {
-	StartDate string `json:"start_date,omitempty" description:"start date of the query"`
-	EndDate   string `json:"end_date,omitempty" description:"end date of the query"`
-	Coin      string `json:"coin,omitempty" description:"currency alias"`
-	Status    string `json:"status,omitempty" description:"status of the withdrawal"`
-	Limit     int64  `json:"limit,omitempty" description:"number of records to return"`
-	Page      int64  `json:"page,omitempty" description:"page number"`
+	StartDate string `url:"start_date" json:"start_date,omitempty" description:"start date of the query"`
+	EndDate   string `url:"end_date" json:"end_date,omitempty" description:"end date of the query"`
+	Coin      string `url:"coin" json:"coin,omitempty" description:"currency alias"`
+	Status    string `url:"status" json:"status,omitempty" description:"status of the withdrawal"`
+	Limit     int64  `url:"limit" json:"limit,omitempty" description:"number of records to return"`
+	Page      int64  `url:"page" json:"page,omitempty" description:"page number"`
 }
 
 type WithdrawRecordsResponse struct {
@@ -94,9 +94,9 @@ type WithdrawRecordsData struct {
 }
 
 type AssetExchangeRecordsParams struct {
-	Limit     int64  `json:"limit,omitempty" description:"number of records to return"`
-	From      int64  `json:"from,omitempty" description:"from id"`
-	Direction string `json:"direction,omitempty" description:"direction of the query"`
+	Limit     int64  `url:"limit" json:"limit,omitempty" description:"number of records to return"`
+	From      int64  `url:"from" json:"from,omitempty" description:"from id"`
+	Direction string `url:"direction" json:"direction,omitempty" description:"direction of the query"`
 }
 
 type AssetExchangeRecordsResponse struct {

@@ -2,9 +2,10 @@ package wallet
 
 import (
 	"context"
+	"net/http"
+
 	"github.com/cksidharthan/go-bybit/bybit"
 	inverseperp "github.com/cksidharthan/go-bybit/rest/domain/inverse_perpetual"
-	"net/http"
 )
 
 /*
@@ -15,7 +16,7 @@ GetWalletBalance - get wallet balance. [ /v2/private/wallet/balance  - GET ]
 docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-balance
 */
 func (c *InversePerpetualWalletClient) GetWalletBalance(ctx context.Context, params *inverseperp.WalletBalanceParams) (response *inverseperp.WalletBalanceResponse, err error) {
-	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PrivateInversePerpetualWalletBalancePath, params, &response)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateInversePerpetualWalletBalancePath, params, &response)
 	if err != nil {
 		return
 	}
@@ -32,7 +33,7 @@ This endpoint returns incomplete information for transfers involving the derivat
 docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-walletrecords
 */
 func (c *InversePerpetualWalletClient) GetWalletFundRecords(ctx context.Context, params *inverseperp.WalletFundRecordsParams) (response *inverseperp.WalletFundRecordsResponse, err error) {
-	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PrivateInversePerpetualWalletFundRecordsPath, params, &response)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateInversePerpetualWalletFundRecordsPath, params, &response)
 	if err != nil {
 		return
 	}
@@ -40,7 +41,7 @@ func (c *InversePerpetualWalletClient) GetWalletFundRecords(ctx context.Context,
 }
 
 /*
-GetWalletWithdrawRecords - get wallet withdraw records. [ /v2/private/wallet/withdraw/list  - GET ]
+GetWithdrawRecords - get wallet withdraw records. [ /v2/private/wallet/withdraw/list  - GET ]
 
 Get withdrawal records.
 
@@ -52,8 +53,8 @@ Once you have submitted a withdrawal application, there will be a record with ty
 
 docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-withdrawrecords
 */
-func (c *InversePerpetualWalletClient) GetWalletWithdrawRecords(ctx context.Context, params *inverseperp.WithdrawRecordsParams) (response *inverseperp.WithdrawRecordsResponse, err error) {
-	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PrivateInversePerpetualWithdrawRecordsPath, params, &response)
+func (c *InversePerpetualWalletClient) GetWithdrawRecords(ctx context.Context, params *inverseperp.WithdrawRecordsParams) (response *inverseperp.WithdrawRecordsResponse, err error) {
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateInversePerpetualWithdrawRecordsPath, params, &response)
 	if err != nil {
 		return
 	}
@@ -70,7 +71,7 @@ This endpoint returns the records of asset exchanges, including the exchanges fr
 docs - https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-assetexchangerecords
 */
 func (c *InversePerpetualWalletClient) GetAssetExchangeRecords(ctx context.Context, params *inverseperp.AssetExchangeRecordsParams) (response *inverseperp.AssetExchangeRecordsResponse, err error) {
-	err = c.Transporter.UnsignedRequest(ctx, http.MethodGet, bybit.PrivateInversePerpetualAssetExchangeRecords, params, &response)
+	err = c.Transporter.SignedRequest(ctx, http.MethodGet, bybit.PrivateInversePerpetualAssetExchangeRecords, params, &response)
 	if err != nil {
 		return
 	}
