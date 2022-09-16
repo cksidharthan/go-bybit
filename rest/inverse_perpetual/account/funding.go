@@ -2,9 +2,10 @@ package account
 
 import (
 	"context"
+	"net/http"
+
 	"github.com/cksidharthan/go-bybit/bybit"
 	inverseperp "github.com/cksidharthan/go-bybit/rest/domain/inverse_perpetual"
-	"net/http"
 )
 
 /*
