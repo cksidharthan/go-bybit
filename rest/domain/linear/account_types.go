@@ -445,10 +445,10 @@ type SetAutoAddMarginResponse struct {
 }
 
 type SwitchMarginParams struct {
-	Symbol       string `url:"symbol" json:"symbol"`
-	IsIsolated   bool   `url:"is_isolated" json:"is_isolated"`
-	BuyLeverage  int    `url:"buy_leverage" json:"buy_leverage"`
-	SellLeverage int    `url:"sell_leverage" json:"sell_leverage"`
+	Symbol       string  `url:"symbol" json:"symbol"`
+	IsIsolated   bool    `url:"is_isolated" json:"is_isolated"`
+	BuyLeverage  float64 `url:"buy_leverage" json:"buy_leverage"`
+	SellLeverage float64 `url:"sell_leverage" json:"sell_leverage"`
 }
 
 type SwitchMarginResponse struct {
