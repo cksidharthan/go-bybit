@@ -32,6 +32,7 @@ func TestClient_Linear_Account_Position(t *testing.T) {
 		assert.NotNil(t, response)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Set Auto Add Margin - LINEAR", func(t *testing.T) {
 		t.Skip("the api endpoint works. but the test scenario has to be changed")
 		response, err := bybitClient.Account().SetAutoAddMargin(context.Background(), &linear.SetAutoAddMarginParams{
@@ -46,6 +47,7 @@ func TestClient_Linear_Account_Position(t *testing.T) {
 		assert.NotNil(t, response)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Switch Margin - LINEAR", func(t *testing.T) {
 		t.Skip("the api endpoint works. but the test scenario has to be changed")
 		response, err := bybitClient.Account().SwitchMargin(context.Background(), &linear.SwitchMarginParams{
@@ -61,6 +63,7 @@ func TestClient_Linear_Account_Position(t *testing.T) {
 		assert.NotNil(t, response)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Switch Position Mode - LINEAR", func(t *testing.T) {
 		t.Skip("the api endpoint works. but the test scenario has to be changed")
 		response, err := bybitClient.Account().SwitchPositionMode(context.Background(), &linear.SwitchPositionModeParams{
@@ -74,6 +77,7 @@ func TestClient_Linear_Account_Position(t *testing.T) {
 		assert.NotNil(t, response)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Position TP SL Switch - LINEAR", func(t *testing.T) {
 		t.Skip("the api endpoint works. but the test scenario has to be changed")
 		response, err := bybitClient.Account().PositionTpSlSwitch(context.Background(), &linear.PositionTpSlSwitchParams{
@@ -87,6 +91,7 @@ func TestClient_Linear_Account_Position(t *testing.T) {
 		assert.NotNil(t, response)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Add Reduce Margin - LINEAR", func(t *testing.T) {
 		t.Skip("the api endpoint works. but the test scenario has to be changed")
 		response, err := bybitClient.Account().AddReduceMargin(context.Background(), &linear.AddReduceMarginParams{
@@ -100,6 +105,7 @@ func TestClient_Linear_Account_Position(t *testing.T) {
 		assert.NotNil(t, response)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Set Leverage - LINEAR", func(t *testing.T) {
 		t.Skip("the api endpoint works. but the test scenario has to be changed")
 		response, err := bybitClient.Account().SetLeverage(context.Background(), &linear.SetLeverageParams{
@@ -112,6 +118,7 @@ func TestClient_Linear_Account_Position(t *testing.T) {
 		assert.NotNil(t, response)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Set Trading stop - LINEAR", func(t *testing.T) {
 		t.Skip("the api endpoint works. but the test scenario has to be changed")
 		response, err := bybitClient.Account().SetTradingStop(context.Background(), &linear.SetTradingStopParams{

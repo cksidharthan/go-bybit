@@ -27,6 +27,7 @@ func TestClient_InversePerpetual_Account_RiskLimit(t *testing.T) {
 		assert.Equal(t, "OK", response.RetMsg)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Set Risk limit - INVERSE PERPETUAL", func(t *testing.T) {
 		t.Parallel()
 		t.Skip("Skipping this test for now. It works but this test scenario has to be changed")

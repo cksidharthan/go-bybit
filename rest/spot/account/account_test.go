@@ -49,6 +49,7 @@ func TestSpotClient_Account(t *testing.T) {
 	})
 
 	// Skipped Test
+	// TODO: Fix this skipped test
 	t.Run("Place Active Order - Sell - SPOT", func(t *testing.T) {
 		t.Skip("Skipping this test as it will fail if there is a lag in buy order")
 		order := spot.PlaceActiveOrderParams{

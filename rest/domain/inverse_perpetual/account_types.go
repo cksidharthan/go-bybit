@@ -426,7 +426,7 @@ type QueryConditionalOrderResult struct {
 
 type GetPositionResponse struct {
 	domain.BaseResponse `json:",inline"`
-	Result              GetPositionResult `json:"result"`
+	Result              []GetPositionResult `json:"result"`
 }
 
 type GetPositionResult struct {
@@ -472,7 +472,7 @@ type GetPositionWithSymbolParams struct {
 
 type GetPositionWithSymbolResponse struct {
 	domain.BaseResponse `json:",inline"`
-	Result              []GetPositionWithSymbolResult `json:"result"`
+	Result              GetPositionWithSymbolResult `json:"result"`
 }
 
 type GetPositionWithSymbolResult struct {
@@ -678,9 +678,9 @@ type QueryTradingFeeRateResponse struct {
 }
 
 type QueryTradingFeeRateResult struct {
-	UserID       int64   `url:"user_id" json:"user_id"`
-	TakerFeeRate float64 `url:"taker_fee_rate" json:"taker_fee_rate"`
-	MakerFeeRate float64 `url:"maker_fee_rate" json:"maker_fee_rate"`
+	UserID       int64  `url:"user_id" json:"user_id"`
+	TakerFeeRate string `url:"taker_fee_rate" json:"taker_fee_rate"`
+	MakerFeeRate string `url:"maker_fee_rate" json:"maker_fee_rate"`
 }
 
 type GetRiskLimitParams struct {

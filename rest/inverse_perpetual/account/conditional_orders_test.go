@@ -27,6 +27,7 @@ func TestClient_InversePerpetualConditionalOrders(t *testing.T) {
 		assert.Equal(t, "OK", response.RetMsg)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Place Conditional Order - INVERSE PERPETUAL", func(t *testing.T) {
 		t.Parallel()
 		t.Skip("Skipping this test as it places an actual order and my test account doesn't have enough USD balance")
@@ -44,6 +45,7 @@ func TestClient_InversePerpetualConditionalOrders(t *testing.T) {
 		assert.Equal(t, "OK", response.RetMsg)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Replace Conditional Order - INVERSE PERPETUAL", func(t *testing.T) {
 		t.Parallel()
 		t.Skip("Need to add a scenatio to test this. Currently the test account has some problems with USD asset")
@@ -76,6 +78,7 @@ func TestClient_InversePerpetualConditionalOrders(t *testing.T) {
 		assert.Equal(t, "OK", response.RetMsg)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Cancel Conditional Order - INVERSE PERPETUAL", func(t *testing.T) {
 		t.Parallel()
 		t.Skip("Need to add a scenatio to test this. Currently the test account has some problems with USD asset")

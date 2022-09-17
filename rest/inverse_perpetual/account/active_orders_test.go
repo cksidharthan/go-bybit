@@ -17,6 +17,7 @@ func TestClient_ActiveOrders(t *testing.T) {
 
 	bybitClient := account.NewInversePerpetualAccountClient(bybit.BybitTestnetBaseURL, os.Getenv("BYBIT_API_KEY"), os.Getenv("BYBIT_API_SECRET"))
 
+	// TODO: Fix this skipped test
 	t.Run("Place Active Order - INVERSE PERPETUAL", func(t *testing.T) {
 		t.Parallel()
 		t.Skipf("Skipping test %s, as there is some issue in adding USD in testnet account", t.Name())
@@ -57,6 +58,7 @@ func TestClient_ActiveOrders(t *testing.T) {
 		assert.NotNil(t, response)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Cancel Active Order - INVERSE PERPETUAL", func(t *testing.T) {
 		t.Parallel()
 		t.Skipf("Skipping test %s, as there is some issue in adding USD in testnet account", t.Name())
@@ -69,6 +71,7 @@ func TestClient_ActiveOrders(t *testing.T) {
 		assert.NotNil(t, response)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Replace Active Order - INVERSE PERPETUAL", func(t *testing.T) {
 		t.Parallel()
 		t.Skipf("Skipping test %s, as there is some issue in adding USD in testnet account", t.Name())
