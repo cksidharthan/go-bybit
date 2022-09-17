@@ -28,7 +28,7 @@ go get -u github.com/cksidharthan/go-bybit
 | USDT Perpetual    | [Account Data](https://bybit-exchange.github.io/docs/futuresV2/linear/#t-accountdata)  | :heavy_check_mark: | :heavy_check_mark: |
 | USDT Perpetual    | [Wallet Data](https://bybit-exchange.github.io/docs/futuresV2/linear/#t-wallet)        | :heavy_check_mark: | :heavy_check_mark: |
 | Inverse Perpetual | [Market Data](https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-marketdata)   | :heavy_check_mark: | :heavy_check_mark: |
-| Inverse Perpetual | [Account Data](https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-accountdata) | :heavy_check_mark: |   :construction:   |
+| Inverse Perpetual | [Account Data](https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-accountdata) | :heavy_check_mark: | :heavy_check_mark: |
 | Inverse Perpetual | [Wallet Data](https://bybit-exchange.github.io/docs/futuresV2/inverse/#t-wallet)       | :heavy_check_mark: | :heavy_check_mark: |
 
 ### Contributing

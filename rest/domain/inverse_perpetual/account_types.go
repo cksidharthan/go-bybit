@@ -227,10 +227,10 @@ type PlaceConditionalOrderParams struct {
 	Side           string  `url:"side" json:"side"`
 	Symbol         string  `url:"symbol" json:"symbol"`
 	OrderType      string  `url:"order_type" json:"order_type"`
-	Qty            string  `url:"qty" json:"qty"`
-	Price          string  `url:"price,omitempty" json:"price,omitempty"`
-	BasePrice      string  `url:"base_price" json:"base_price"`
-	StopPx         string  `url:"stop_px" json:"stop_px"`
+	Qty            float64 `url:"qty" json:"qty"`
+	Price          float64 `url:"price,omitempty" json:"price,omitempty"`
+	BasePrice      float64 `url:"base_price" json:"base_price"`
+	StopPx         float64 `url:"stop_px" json:"stop_px"`
 	TimeInForce    string  `url:"time_in_force" json:"time_in_force"`
 	TriggerBy      string  `url:"trigger_by" json:"trigger_by"`
 	CloseOnTrigger bool    `url:"close_on_trigger" json:"close_on_trigger"`
