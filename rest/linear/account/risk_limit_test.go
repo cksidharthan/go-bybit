@@ -24,6 +24,7 @@ func TestClient_Linear_Account_RiskLimit(t *testing.T) {
 		assert.NotNil(t, response)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Set Risk Limit - LINEAR", func(t *testing.T) {
 		t.Skip("need to create test for correct scenario")
 		response, err := bybitClient.Account().SetRiskLimit(context.Background(), &linear.SetRiskLimitParams{

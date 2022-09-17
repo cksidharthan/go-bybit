@@ -7,9 +7,7 @@ linters:
     - govet
     - unused
     - gosimple
-    - varcheck
     - ineffassign
-    - deadcode
     - typecheck
     - gosec
     - unconvert

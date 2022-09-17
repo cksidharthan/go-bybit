@@ -1,3 +1,4 @@
+// nolint:testpackage
 package http
 
 import (
@@ -31,6 +32,7 @@ func TestHttp_Call(t *testing.T) {
 	})
 
 	t.Run("unauthorized error", func(t *testing.T) {
+		t.Parallel()
 		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			assert.Equal(t, "/test-error-url", r.URL.String())
 			w.WriteHeader(http.StatusUnauthorized)

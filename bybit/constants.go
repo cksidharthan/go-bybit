@@ -97,4 +97,38 @@ const (
 	PrivateInversePerpetualWalletFundRecordsPath = "/v2/private/wallet/fund/records"
 	PrivateInversePerpetualWithdrawRecordsPath   = "/v2/private/wallet/withdraw/list"
 	PrivateInversePerpetualAssetExchangeRecords  = "/v2/private/exchange-order/list"
+
+	/* Inverse Perpetual Market API */
+	PrivateInversePerpetualPlaceActiveOrderPath      = "/v2/private/order/create"
+	PrivateInversePerpetualGetActiveOrderPath        = "/v2/private/order/list"
+	PrivateInversePerpetualCancelActiveOrderPath     = "/v2/private/order/cancel"
+	PrivateInversePerpetualCancelAllActiveOrdersPath = "/v2/private/order/cancelAll"
+	PrivateInversePerpetualReplaceActiveOrderPath    = "/v2/private/order/replace"
+	PrivateInversePerpetualQueryActiveOrderPath      = "/v2/private/order"
+
+	PrivateInversePerpetualPlaceConditionalOrderPath      = "/v2/private/stop-order/create"
+	PrivateInversePerpetualGetConditionalOrderPath        = "/v2/private/stop-order/list"
+	PrivateInversePerpetualCancelConditionalOrderPath     = "/v2/private/stop-order/cancel"
+	PrivateInversePerpetualCancelAllConditionalOrdersPath = "/v2/private/stop-order/cancelAll"
+	PrivateInversePerpetualReplaceConditionalOrderPath    = "/v2/private/stop-order/replace"
+	PrivateInversePerpetualQueryConditionalOrderPath      = "/v2/private/stop-order"
+
+	PrivateInversePerpetualGetPositionPath         = "/v2/private/position/list"
+	PrivateInversePerpetualChangeMarginPath        = "/v2/private/position/change-position-margin"
+	PrivateInversePerpetualSetTradingStopPath      = "/v2/private/position/trading-stop"
+	PrivateInversePerpetualSetLeveragePath         = "/v2/private/position/trading-stop"
+	PrivateInversePerpetualGetUserTradeRecordsPath = "/v2/private/execution/list"
+	PrivateInversePerpetualClosedProfitLossPath    = "/v2/private/trade/closed-pnl/list"
+	PrivateInversePerpetualPositionTpSlSwitchPath  = "/v2/private/tpsl/switch-mode"
+	PrivateInversePerpetualMarginSwitchPath        = "/v2/private/position/switch-isolated"
+	PrivateInversePerpetualQueryTradingFeeRatePath = "/v2/private/position/fee-rate"
+
+	PrivateInversePerpetualGetRiskLimitPath        = "/v2/public/risk-limit/list"
+	PrivateInversePerpetualSetRiskLimitPath        = "/v2/private/position/risk-limit"
+	PrivateInversePerpetualGetLastFundingRatePath  = "/v2/public/funding/prev-funding-rate"
+	PrivateInversePerpetualGetLastFundingFeePath   = "/v2/private/funding/prev-funding"
+	PrivateInversePerpetualGetPredictedFundingPath = "/v2/private/funding/predicted-funding"
+	// nolint:gosec
+	PrivateInversePerpetualGetAPIKeyInfoPath = "/v2/private/account/api-key"
+	PrivateInversePerpetualGetLCPInfoPath    = "/v2/private/account/lcp"
 )

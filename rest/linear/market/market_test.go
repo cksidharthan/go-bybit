@@ -102,6 +102,7 @@ func TestClient_Linear_Market(t *testing.T) {
 		assert.NotNil(t, response)
 	})
 
+	// TODO: Fix this skipped test
 	t.Run("Get Liquidated Orders -  LINEAR", func(t *testing.T) {
 		t.Parallel()
 		t.Skip("this endpoint is not available and sometimes goes offline")

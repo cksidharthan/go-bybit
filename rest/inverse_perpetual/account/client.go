@@ -6,12 +6,12 @@ import (
 )
 
 type InversePerpetualAccountClient struct {
-	transporter transport.Transporter
+	Transporter transport.Transporter
 }
 
 func NewInversePerpetualAccountClient(url, apiKey, apiSecret string) *InversePerpetualAccountClient {
 	transporter := httpTransport.New(url, apiKey, apiSecret)
 	return &InversePerpetualAccountClient{
-		transporter: transporter,
+		Transporter: transporter,
 	}
 }
