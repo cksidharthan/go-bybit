@@ -53,6 +53,9 @@ func main() {
 }
 ```
 
+All the tests in this repository interact with the Bybit API directly. Please refer them for examples, when using this library. :) 
+In the meantime, I'll be adding more examples to `./examples` folder.
+
 # Endpoints completed
 
 | Category          | SubCategory                                                                            |      Created       |     Testcases      |
