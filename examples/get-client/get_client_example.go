@@ -22,21 +22,21 @@ func main() {
 
 	spotResponse, err := spotClient.Market().GetSymbols(context.Background())
 	if err != nil {
-		fmt.Errorf("error: %v", err)
+		_ = fmt.Errorf("error: %v", err)
 	}
 
 	linearResponse, err := linearClient.Market().GetSymbolInformation(context.Background(), &linear.GetSymbolInformationParams{
 		Symbol: "BTCUSDT",
 	})
 	if err != nil {
-		fmt.Errorf("error: %v", err)
+		_ = fmt.Errorf("error: %v", err)
 	}
 
 	inverseResponse, err := inverseClient.Market().GetSymbolInformation(context.Background(), &inverseperp.GetSymbolInformationParams{
 		Symbol: "BTCUSD",
 	})
 	if err != nil {
-		fmt.Errorf("error: %v", err)
+		_ = fmt.Errorf("error: %v", err)
 	}
 
 	fmt.Println(spotResponse)
